@@ -408,6 +408,23 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     setInput('')
     setLoading(true)
 
+    // Completar inmediatamente cualquier mensaje anterior que esté siendo escrito
+    // y construir el historial con los mensajes completados
+    const completedMessages = messages.map((m) =>
+      m.isTyping && m.role === 'assistant'
+        ? {
+            ...m,
+            isTyping: false,
+            displayedContent: m.content, // Completar el contenido
+            hasTypo: false,
+            typoChar: undefined,
+          }
+        : m
+    )
+
+    // Actualizar el estado con los mensajes completados
+    setMessages(completedMessages)
+
     // Agregar mensaje del usuario
     const newUserMessage: Message = {
       id: `user-${Date.now()}`,
@@ -415,13 +432,16 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
       content: userMessage,
       timestamp: new Date(),
     }
-    setMessages((prev) => [...prev, newUserMessage])
+    
+    const messagesWithUser = [...completedMessages, newUserMessage]
+    setMessages(messagesWithUser)
 
     try {
       // Construir historial para OpenRouter con el nombre del agente
-      const historial: SofiaMessage[] = messages.map((msg) => ({
+      // Usar el contenido completo de los mensajes completados
+      const historial: SofiaMessage[] = completedMessages.map((msg) => ({
         role: msg.role,
-        content: msg.content,
+        content: msg.content, // Siempre usar el contenido completo
       }))
 
       // Llamar a la API route del servidor (más seguro para API keys)
