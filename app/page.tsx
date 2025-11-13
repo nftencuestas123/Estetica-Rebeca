@@ -2,6 +2,7 @@
 
 import Navbar from '@/components/Navbar'
 import PremiumHero from '@/components/PremiumHero'
+import PreLaunchSection from '@/components/PreLaunchSection'
 import RebecaSection from '@/components/RebecaSection'
 import StorytellingSection from '@/components/StorytellingSection'
 import PremiumTestimonials from '@/components/PremiumTestimonials'
@@ -16,6 +17,9 @@ export default function Home() {
       <Navbar />
       <div className="pt-16 sm:pt-20">
         <PremiumHero />
+
+      {/* Sección: Pre-Lanzamiento App */}
+      <PreLaunchSection />
 
       {/* Sección: Rebeca Barreto */}
       <RebecaSection />
