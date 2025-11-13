@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
+import ScrollToTop from '@/components/ScrollToTop'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="es-PY" className={inter.variable}>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <ScrollToTop />
+          {children}
+        </Providers>
       </body>
     </html>
   )
