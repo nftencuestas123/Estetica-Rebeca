@@ -6,25 +6,39 @@ import { motion, useAnimation } from 'framer-motion'
 
 export default function PremiumHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
   const controls = useAnimation()
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 40,
-        y: (e.clientY / window.innerHeight - 0.5) * 40,
-      })
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
-    window.addEventListener('mousemove', handleMouseMove)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    if (!isMobile) {
+      const handleMouseMove = (e: MouseEvent) => {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 40,
+          y: (e.clientY / window.innerHeight - 0.5) * 40,
+        })
+      }
+      window.addEventListener('mousemove', handleMouseMove)
+      
+      // Animación continua del background solo en desktop
+      controls.start({
+        backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+        transition: { duration: 20, repeat: Infinity, ease: 'linear' }
+      })
+      
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove)
+        window.removeEventListener('resize', checkMobile)
+      }
+    }
     
-    // Animación continua del background
-    controls.start({
-      backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-      transition: { duration: 20, repeat: Infinity, ease: 'linear' }
-    })
-    
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [controls])
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [controls, isMobile])
 
   return (
     <section className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
@@ -43,9 +57,9 @@ export default function PremiumHero() {
         style={{ opacity: 0.15 }}
       />
 
-      {/* Partículas animadas más grandes y coloridas */}
+      {/* Partículas animadas más grandes y coloridas - Reducidas en móvil */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
+        {[...Array(isMobile ? 5 : 30)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
@@ -55,58 +69,62 @@ export default function PremiumHero() {
               width: `${10 + Math.random() * 30}px`,
               height: `${10 + Math.random() * 30}px`,
             }}
-            animate={{
+            animate={!isMobile ? {
               y: [0, -100, 0],
               x: [0, Math.random() * 100 - 50, 0],
               opacity: [0.2, 0.8, 0.2],
               scale: [1, 1.5, 1],
               rotate: [0, 360],
-            }}
-            transition={{
+            } : {}}
+            transition={!isMobile ? {
               duration: 4 + Math.random() * 4,
               repeat: Infinity,
               delay: Math.random() * 2,
               ease: 'easeInOut',
-            }}
+            } : {}}
           >
             <div className={`w-full h-full rounded-full ${
               i % 3 === 0 ? 'bg-rose-400' : i % 3 === 1 ? 'bg-gold-400' : 'bg-accent-400'
-            } blur-sm`} />
+            } ${!isMobile ? 'blur-sm' : ''}`} />
           </motion.div>
         ))}
       </div>
 
-      {/* Formas grandes y dinámicas */}
-      <motion.div
-        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
-        animate={{
-          background: [
-            'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
-            'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
-            'radial-gradient(circle, rgba(199,125,255,0.4) 0%, transparent 70%)',
-            'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
-          ],
-          x: [0, 100, -50, 0],
-          y: [0, -100, 50, 0],
-          scale: [1, 1.3, 0.8, 1],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl"
-        animate={{
-          background: [
-            'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
-            'radial-gradient(circle, rgba(199,125,255,0.4) 0%, transparent 70%)',
-            'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
-            'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
-          ],
-          x: [0, -80, 60, 0],
-          y: [0, 80, -40, 0],
-          scale: [1, 1.2, 0.9, 1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-      />
+      {/* Formas grandes y dinámicas - Solo en desktop */}
+      {!isMobile && (
+        <>
+          <motion.div
+            className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
+            animate={{
+              background: [
+                'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(199,125,255,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
+              ],
+              x: [0, 100, -50, 0],
+              y: [0, -100, 50, 0],
+              scale: [1, 1.3, 0.8, 1],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl"
+            animate={{
+              background: [
+                'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(199,125,255,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
+              ],
+              x: [0, -80, 60, 0],
+              y: [0, 80, -40, 0],
+              scale: [1, 1.2, 0.9, 1],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </>
+      )}
 
       {/* Contenido principal */}
       <div className="relative z-10 max-w-7xl mx-auto w-full py-16 sm:py-24 md:py-32">
@@ -116,7 +134,7 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 backdrop-blur-md border-2 border-rose-400/50 rounded-full mb-6 sm:mb-8 shadow-lg text-xs sm:text-sm"
+            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 md:backdrop-blur-md border-2 border-rose-400/50 rounded-full mb-6 sm:mb-8 shadow-lg text-xs sm:text-sm"
           >
             <motion.div
               className="w-3 h-3 bg-rose-500 rounded-full"
@@ -143,39 +161,41 @@ export default function PremiumHero() {
           >
             <motion.span
               className="block"
-              animate={{
+              animate={!isMobile ? {
                 x: [0, mousePosition.x * 0.1],
                 y: [0, mousePosition.y * 0.1],
-              }}
-              transition={{ type: 'spring', stiffness: 50 }}
+              } : {}}
+              transition={!isMobile ? { type: 'spring', stiffness: 50 } : {}}
             >
               ¿Te sentís
             </motion.span>
             <motion.span
               className="block mt-2 relative"
-              animate={{
+              animate={!isMobile ? {
                 x: [0, mousePosition.x * 0.15],
                 y: [0, mousePosition.y * 0.15],
-              }}
-              transition={{ type: 'spring', stiffness: 50 }}
+              } : {}}
+              transition={!isMobile ? { type: 'spring', stiffness: 50 } : {}}
             >
               <span className="font-bold bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
                 invisible
               </span>
-              <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 1, type: 'spring' }}
-              />
+              {!isMobile && (
+                <motion.span
+                  className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 1, type: 'spring' }}
+                />
+              )}
             </motion.span>
             <motion.span
               className="block mt-2"
-              animate={{
+              animate={!isMobile ? {
                 x: [0, mousePosition.x * 0.1],
                 y: [0, mousePosition.y * 0.1],
-              }}
-              transition={{ type: 'spring', stiffness: 50 }}
+              } : {}}
+              transition={!isMobile ? { type: 'spring', stiffness: 50 } : {}}
             >
               en tu propia piel?
             </motion.span>
@@ -262,7 +282,7 @@ export default function PremiumHero() {
             >
               <Link
                 href="/contacto"
-                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-white/90 backdrop-blur-sm text-rose-600 rounded-full font-semibold text-base sm:text-lg border-2 border-rose-400 hover:border-rose-500 hover:bg-white transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
+                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-white/90 md:backdrop-blur-sm text-rose-600 rounded-full font-semibold text-base sm:text-lg border-2 border-rose-400 hover:border-rose-500 hover:bg-white transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
               >
                 Hablá con nosotras
               </Link>
@@ -287,7 +307,7 @@ export default function PremiumHero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.9 + index * 0.1, type: 'spring' }}
                 whileHover={{ scale: 1.1, y: -5 }}
-                className="text-center p-6 rounded-2xl bg-white/30 backdrop-blur-sm border border-rose-200/30 hover:border-rose-400/50 transition-all cursor-pointer"
+                className="text-center p-6 rounded-2xl bg-white/30 md:backdrop-blur-sm border border-rose-200/30 hover:border-rose-400/50 transition-all cursor-pointer"
               >
                 <motion.div
                   className={`text-5xl font-bold mb-2 bg-gradient-to-r ${

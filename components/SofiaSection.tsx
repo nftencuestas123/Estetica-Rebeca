@@ -515,22 +515,25 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-50/30 to-gold-50/20 relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-rose-400/20 via-gold-400/20 to-accent-400/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-accent-400/20 to-rose-400/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
+        {/* Background decorativo - Simplificado en móvil */}
+        <div className="hidden md:block">
+          <motion.div
+            className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-rose-400/20 via-gold-400/20 to-accent-400/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-accent-400/20 to-rose-400/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 10, repeat: Infinity }}
+          />
+        </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -541,7 +544,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
           className="text-center mb-16"
         >
           <motion.div
-            className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-rose-400/30 to-gold-400/30 backdrop-blur-sm border-2 border-rose-400/40 rounded-full text-xs sm:text-sm font-bold mb-4 sm:mb-6"
+            className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-rose-400/30 to-gold-400/30 border-2 border-rose-400/40 rounded-full text-xs sm:text-sm font-bold mb-4 sm:mb-6"
             animate={{
               boxShadow: [
                 '0 0 30px rgba(255,107,157,0.4)',
@@ -582,7 +585,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15, duration: 0.6, type: 'spring' }}
                 whileHover={{ scale: 1.08, y: -10 }}
-                className={`relative p-6 rounded-3xl backdrop-blur-md border-3 transition-all cursor-pointer overflow-hidden ${
+                className={`relative p-6 rounded-3xl md:backdrop-blur-md border-3 transition-all cursor-pointer overflow-hidden ${
                   currentAgent?.id === agent.id
                     ? 'bg-gradient-to-br from-rose-100/90 via-gold-100/80 to-rose-100/90 border-rose-400 shadow-2xl'
                     : 'bg-white/80 border-rose-200/60 hover:border-rose-400 hover:shadow-xl'
@@ -795,7 +798,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-2 border-rose-200/50 overflow-visible"
+            className="relative bg-white/95 md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-rose-200/50 overflow-visible"
           >
             {/* Imagen de perfil elegante en esquina izquierda - MUY VISIBLE */}
             {currentAgent && (
@@ -870,7 +873,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 {/* Estado disponible dinámico */}
                 {currentAgent && (
                   <motion.div
-                    className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
+                    className="flex items-center gap-2 bg-white/20 md:backdrop-blur-sm rounded-full px-4 py-2"
                     whileHover={{ scale: 1.05 }}
                   >
                     <motion.div

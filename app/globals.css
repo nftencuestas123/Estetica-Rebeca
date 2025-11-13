@@ -16,6 +16,90 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Optimizaciones de rendimiento móvil */
+@media (max-width: 768px) {
+  /* Optimizar scroll - más suave */
+  * {
+    -webkit-overflow-scrolling: touch;
+    will-change: auto;
+  }
+  
+  /* Reducir efectos costosos en móvil */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Optimizar renders con GPU */
+  body {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Reducir animaciones complejas */
+  [class*="animate-"] {
+    animation-duration: 0.3s !important;
+  }
+  
+  /* Optimizar imágenes */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Optimización general de rendimiento */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU acceleration para elementos animados */
+.animate-gpu {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimización de scroll en móvil */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto; /* Cambiar a auto en móvil para mejor rendimiento */
+  }
+  
+  /* Reducir repaints */
+  section {
+    contain: layout style paint;
+  }
+  
+  /* Optimizar Framer Motion en móvil */
+  [data-framer-component] {
+    will-change: auto;
+  }
+  
+  /* Desactivar transformaciones complejas */
+  [style*="transform"] {
+    will-change: auto;
+  }
+  
+  /* Optimizar imágenes */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    loading: lazy;
+  }
+  
+  /* Reducir animaciones de Framer Motion */
+  [data-framer-name] {
+    will-change: auto !important;
+  }
+  
+  /* Optimizar scroll suave */
+  * {
+    scroll-margin-top: 0;
+  }
+}
+
 html,
 body {
   max-width: 100vw;
@@ -183,14 +267,16 @@ a {
     }
   }
 
-  /* Efectos de hover premium */
+  /* Efectos de hover premium - Desactivado en móvil */
   .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  @media (min-width: 769px) {
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
   }
 
   /* Gradientes premium */

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Smartphone, Sparkles, Users, Zap, Bell } from 'lucide-react'
 import Image from 'next/image'
@@ -8,6 +8,16 @@ import Image from 'next/image'
 export default function PreLaunchSection() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,23 +33,25 @@ export default function PreLaunchSection() {
 
   return (
     <section className="relative py-20 sm:py-28 md:py-36 bg-gradient-to-br from-rose-500 via-rose-600 to-gold-500 overflow-hidden">
-      {/* Background animado espectacular */}
+      {/* Background animado espectacular - Reducido en móvil */}
       <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-0 left-0 w-full h-full"
-          animate={{
-            background: [
-              'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-              'radial-gradient(circle at 50% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-            ],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
+        {!isMobile && (
+          <motion.div
+            className="absolute top-0 left-0 w-full h-full"
+            animate={{
+              background: [
+                'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+                'radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+                'radial-gradient(circle at 50% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+                'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+              ],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        )}
         
-        {/* Partículas flotantes */}
-        {[...Array(20)].map((_, i) => (
+        {/* Partículas flotantes - Reducidas en móvil */}
+        {[...Array(isMobile ? 5 : 20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-white/30 rounded-full"
@@ -47,17 +59,17 @@ export default function PreLaunchSection() {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
-            animate={{
+            animate={!isMobile ? {
               y: [0, -30, 0],
               x: [0, Math.random() * 20 - 10, 0],
               opacity: [0.3, 0.8, 0.3],
               scale: [1, 1.5, 1],
-            }}
-            transition={{
+            } : {}}
+            transition={!isMobile ? {
               duration: 3 + Math.random() * 2,
               repeat: Infinity,
               delay: Math.random() * 2,
-            }}
+            } : {}}
           />
         ))}
       </div>
@@ -69,15 +81,15 @@ export default function PreLaunchSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 backdrop-blur-md border-2 border-white/40 rounded-full mb-6 sm:mb-8"
+            className={`inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 ${!isMobile ? 'backdrop-blur-md' : ''} border-2 border-white/40 rounded-full mb-6 sm:mb-8`}
           >
             <motion.div
               className="w-2 h-2 bg-white rounded-full"
-              animate={{
+              animate={!isMobile ? {
                 scale: [1, 1.3, 1],
                 opacity: [1, 0.7, 1],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+              } : {}}
+              transition={!isMobile ? { duration: 2, repeat: Infinity } : {}}
             />
             <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-wider">
               Próximamente
@@ -124,8 +136,8 @@ export default function PreLaunchSection() {
         >
           {/* Logo iOS */}
           <motion.div
-            whileHover={{ scale: 1.1, y: -10 }}
-            className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/10 backdrop-blur-md rounded-3xl p-4 sm:p-6 border-2 border-white/30 shadow-2xl"
+              whileHover={!isMobile ? { scale: 1.1, y: -10 } : {}}
+              className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-4 sm:p-6 border-2 border-white/30 shadow-2xl`}
           >
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Placeholder para logo iOS - Reemplazar con imagen real */}
@@ -149,8 +161,8 @@ export default function PreLaunchSection() {
 
           {/* Logo Android */}
           <motion.div
-            whileHover={{ scale: 1.1, y: -10 }}
-            className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/10 backdrop-blur-md rounded-3xl p-4 sm:p-6 border-2 border-white/30 shadow-2xl"
+              whileHover={!isMobile ? { scale: 1.1, y: -10 } : {}}
+              className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-4 sm:p-6 border-2 border-white/30 shadow-2xl`}
           >
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Placeholder para logo Android - Reemplazar con imagen real */}
@@ -209,8 +221,8 @@ export default function PreLaunchSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 text-center"
+              whileHover={!isMobile ? { scale: 1.05, y: -5 } : {}}
+              className={`bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-2xl p-4 sm:p-6 border border-white/20 text-center`}
             >
               <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
                 <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
@@ -233,7 +245,7 @@ export default function PreLaunchSection() {
           transition={{ delay: 0.7 }}
           className="max-w-2xl mx-auto"
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-white/30 shadow-2xl">
+          <div className={`bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-white/30 shadow-2xl`}>
             <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-4 sm:mb-6">
               Sé la primera en enterarte
             </h3>
@@ -265,7 +277,7 @@ export default function PreLaunchSection() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu@email.com"
                   required
-                  className="flex-1 px-5 sm:px-6 py-3 sm:py-4 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent text-base sm:text-lg text-neutral-900 placeholder-neutral-500 min-h-[48px]"
+                  className={`flex-1 px-5 sm:px-6 py-3 sm:py-4 bg-white/90 ${!isMobile ? 'backdrop-blur-sm' : ''} border-2 border-white/50 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent text-base sm:text-lg text-neutral-900 placeholder-neutral-500 min-h-[48px]`}
                 />
                 <motion.button
                   type="submit"
