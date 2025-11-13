@@ -85,6 +85,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     if (messages.length === 0 && !currentAgent) {
       assignAgent()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Scroll automático al final - Siempre mostrar los mensajes nuevos arriba
@@ -251,13 +252,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         
         if (shouldMakeTypo) {
           // Escribir un carácter incorrecto similar
-          const wrongChars = {
+          const wrongCharsMap: Record<string, string> = {
             'a': 's', 'e': 'r', 'i': 'o', 'o': 'p', 'u': 'y',
-            's': 'a', 'r': 'e', 'p': 'o', 'y': 'u',
-            'n': 'm', 'm': 'n', 't': 'r', 'r': 't',
+            's': 'a', 'r': 't', 'p': 'o', 'y': 'u',
+            'n': 'm', 'm': 'n', 't': 'r',
             'd': 'f', 'f': 'd', 'g': 'h', 'h': 'g',
           }
-          const wrongChar = wrongChars[nextChar.toLowerCase() as keyof typeof wrongChars] || 
+          const wrongChar = wrongCharsMap[nextChar.toLowerCase()] || 
                            String.fromCharCode(nextChar.charCodeAt(0) + 1) || 'x'
           const finalWrongChar = nextChar === nextChar.toUpperCase() 
             ? wrongChar.toUpperCase() 

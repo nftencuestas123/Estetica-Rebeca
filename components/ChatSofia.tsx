@@ -34,6 +34,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
     if (userId && isOpen) {
       loadConversationHistory()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, isOpen])
 
   // Scroll automático al final
