@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function RebecaSection() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-white via-rose-50/30 to-neutral-50 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-50/30 to-neutral-50 overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl" />
@@ -13,7 +13,7 @@ export default function RebecaSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Imagen de Rebeca */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -58,20 +58,20 @@ export default function RebecaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-light mb-6"
+                className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6"
               >
                 La Fundadora
               </motion.div>
-              <h2 className="text-5xl md:text-6xl font-light text-neutral-900 mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-neutral-900 mb-4 sm:mb-6 leading-tight">
                 Rebeca{' '}
                 <span className="font-normal text-primary">Barreto</span>
               </h2>
-              <p className="text-2xl font-light text-neutral-700 mb-4">
+              <p className="text-xl sm:text-2xl font-light text-neutral-700 mb-4">
                 Especialista en Estética y Belleza
               </p>
             </div>
 
-            <div className="space-y-6 text-lg text-neutral-600 leading-relaxed">
+            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-neutral-600 leading-relaxed">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

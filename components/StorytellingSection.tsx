@@ -46,7 +46,7 @@ export default function StorytellingSection() {
   const [activeStory, setActiveStory] = useState<number | null>(null)
 
   return (
-    <section className="py-32 bg-gradient-to-b from-neutral-50 via-white to-rose-50/30 relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-neutral-50 via-white to-rose-50/30 relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         <motion.div
@@ -64,21 +64,21 @@ export default function StorytellingSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-light mb-6">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
             Historias Reales
           </div>
-          <h2 className="text-5xl md:text-6xl font-light text-neutral-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-neutral-900 mb-4 sm:mb-6 px-4">
             Transformaciones que{' '}
             <span className="font-normal text-primary">cambian vidas</span>
           </h2>
-          <p className="text-xl font-light text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl font-light text-neutral-600 max-w-2xl mx-auto px-4">
             Cada historia es única. Cada transformación es personal. Conocé las experiencias reales de mujeres que recuperaron su confianza.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {stories.map((story, index) => (
             <motion.div
               key={story.id}

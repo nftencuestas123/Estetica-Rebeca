@@ -10,6 +10,21 @@ export const metadata: Metadata = {
   title: 'Rebeca Barreto Estética y Belleza | Tu Belleza Auténtica, Elevada',
   description: 'Centro de estética y belleza en Ciudad del Este, Paraguay. Tratamientos personalizados con tecnología avanzada y atención premium.',
   keywords: 'estética, belleza, Paraguay, Ciudad del Este, tratamientos faciales, botox, rellenos',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  themeColor: '#FF6B9D',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Rebeca Barreto',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 }
 
 export default function RootLayout({
@@ -19,7 +34,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-PY" className={inter.variable}>
-      <body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="theme-color" content="#FF6B9D" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Rebeca Barreto" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+      <body className="touch-manipulation">
         <Providers>
           <ScrollToTop />
           {children}

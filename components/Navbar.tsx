@@ -42,7 +42,7 @@ export default function Navbar() {
         scrolled
           ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-rose-200/50'
           : 'bg-white/80 backdrop-blur-md border-b border-rose-100/30'
-      }`}
+      } safe-area-top`}
     >
       {/* Efecto de fondo animado */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -220,7 +220,7 @@ export default function Navbar() {
             {/* Nombre con efecto gradiente */}
             <div className="flex flex-col">
               <motion.span
-                className="font-bold text-2xl bg-gradient-to-r from-rose-600 via-gold-500 to-rose-600 bg-clip-text text-transparent"
+                className="font-bold text-lg sm:text-xl md:text-2xl bg-gradient-to-r from-rose-600 via-gold-500 to-rose-600 bg-clip-text text-transparent"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
@@ -232,7 +232,7 @@ export default function Navbar() {
                 Rebeca Barreto
               </motion.span>
               <motion.span
-                className="text-xs font-light text-neutral-600"
+                className="hidden sm:block text-xs font-light text-neutral-600"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -243,7 +243,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu - Dinámico */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-8">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.href}
@@ -320,12 +320,12 @@ export default function Navbar() {
                   Iniciar Sesión
                 </Link>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/register"
-                    className="px-5 py-2.5 bg-gradient-to-r from-rose-500 to-gold-500 text-white rounded-full font-semibold hover:shadow-lg transition-all shadow-md"
-                  >
-                    Registrarse
-                  </Link>
+                <Link
+                  href="/register"
+                  className="px-4 py-2.5 sm:px-5 bg-gradient-to-r from-rose-500 to-gold-500 text-white rounded-full font-semibold hover:shadow-lg transition-all shadow-md text-sm sm:text-base"
+                >
+                  Registrarse
+                </Link>
                 </motion.div>
               </motion.div>
             )}

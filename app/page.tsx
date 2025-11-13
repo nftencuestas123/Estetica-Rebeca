@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <div className="pt-20">
+      <div className="pt-16 sm:pt-20">
         <PremiumHero />
 
       {/* Sección: Rebeca Barreto */}
@@ -24,7 +24,7 @@ export default function Home() {
       <SofiaSection />
 
       {/* Sección: ¿Qué buscás? - Premium */}
-      <section className="py-32 bg-gradient-to-b from-rose-50 via-white to-gold-50/30 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-rose-50 via-white to-gold-50/30 relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-rose-400/20 to-gold-400/20 rounded-full blur-3xl"
@@ -70,13 +70,13 @@ export default function Home() {
                 Tratamientos Personalizados
               </span>
             </motion.div>
-            <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6">
               ¿Qué{' '}
               <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
                 buscás
               </span>?
             </h2>
-            <p className="text-xl font-light text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl font-light text-neutral-600 max-w-2xl mx-auto px-4">
               Cada tratamiento está diseñado pensando en vos y en tus necesidades únicas
             </p>
           </motion.div>
@@ -188,7 +188,7 @@ export default function Home() {
       </section>
 
       {/* Sección: Tratamientos Destacados - Premium */}
-      <section className="py-32 bg-gradient-to-b from-white via-rose-100/40 to-gold-50/40 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-100/40 to-gold-50/40 relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-rose-400/30 via-gold-400/20 to-accent-400/20 rounded-full blur-3xl"
@@ -232,7 +232,7 @@ export default function Home() {
                 Los Más Elegidos
               </span>
             </motion.div>
-            <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6">
               Tratamientos{' '}
               <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
                 destacados

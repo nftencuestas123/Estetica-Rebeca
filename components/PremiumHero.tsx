@@ -27,7 +27,7 @@ export default function PremiumHero() {
   }, [controls])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background animado con gradiente dinámico */}
       <motion.div
         className="absolute inset-0"
@@ -109,14 +109,14 @@ export default function PremiumHero() {
       />
 
       {/* Contenido principal */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto w-full py-16 sm:py-24 md:py-32">
         <div className="text-center max-w-5xl mx-auto">
           {/* Badge premium animado */}
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md border-2 border-rose-400/50 rounded-full mb-8 shadow-lg"
+            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 backdrop-blur-md border-2 border-rose-400/50 rounded-full mb-6 sm:mb-8 shadow-lg text-xs sm:text-sm"
           >
             <motion.div
               className="w-3 h-3 bg-rose-500 rounded-full"
@@ -136,7 +136,7 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, type: 'spring' }}
-            className="text-6xl md:text-8xl font-bold text-neutral-900 mb-8 leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-neutral-900 mb-6 sm:mb-8 leading-[1.1] tracking-tight"
             style={{
               textShadow: '0 0 30px rgba(255,107,157,0.3)',
             }}
@@ -186,7 +186,7 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-2xl md:text-3xl font-light text-neutral-800 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-neutral-800 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
           >
             No estás sola. Miles de mujeres como vos recuperaron su{' '}
             <motion.span
@@ -228,7 +228,7 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 px-4"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -236,7 +236,7 @@ export default function PremiumHero() {
             >
               <Link
                 href="/tratamientos"
-                className="group relative px-10 py-5 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 text-white rounded-full font-semibold text-lg tracking-wide overflow-hidden shadow-2xl"
+                className="group relative px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 text-white rounded-full font-semibold text-base sm:text-lg tracking-wide overflow-hidden shadow-2xl w-full sm:w-auto min-h-[48px] flex items-center justify-center"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-gold-400 via-rose-500 to-accent-400"
@@ -262,7 +262,7 @@ export default function PremiumHero() {
             >
               <Link
                 href="/contacto"
-                className="px-10 py-5 bg-white/90 backdrop-blur-sm text-rose-600 rounded-full font-semibold text-lg border-2 border-rose-400 hover:border-rose-500 hover:bg-white transition-all shadow-lg"
+                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-white/90 backdrop-blur-sm text-rose-600 rounded-full font-semibold text-base sm:text-lg border-2 border-rose-400 hover:border-rose-500 hover:bg-white transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
               >
                 Hablá con nosotras
               </Link>
@@ -274,7 +274,7 @@ export default function PremiumHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16 border-t border-rose-200/50"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 pt-12 sm:pt-16 border-t border-rose-200/50 px-4"
           >
             {[
               { number: '2,500+', label: 'Transformaciones completadas', sublabel: 'Mujeres que recuperaron su confianza', color: 'rose' },

@@ -512,7 +512,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   }
 
   return (
-    <section className="py-32 bg-gradient-to-b from-white via-rose-50/30 to-gold-50/20 relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-50/30 to-gold-50/20 relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         <motion.div
@@ -541,7 +541,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
           className="text-center mb-16"
         >
           <motion.div
-            className="inline-block px-6 py-3 bg-gradient-to-r from-rose-400/30 to-gold-400/30 backdrop-blur-sm border-2 border-rose-400/40 rounded-full text-sm font-bold mb-6"
+            className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-rose-400/30 to-gold-400/30 backdrop-blur-sm border-2 border-rose-400/40 rounded-full text-xs sm:text-sm font-bold mb-4 sm:mb-6"
             animate={{
               boxShadow: [
                 '0 0 30px rgba(255,107,157,0.4)',
@@ -555,13 +555,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
               Atención al Cliente en Vivo
             </span>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6 px-4">
             Nuestro{' '}
             <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
               Equipo
             </span>
           </h2>
-          <p className="text-xl font-light text-neutral-700 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl font-light text-neutral-700 max-w-2xl mx-auto px-4">
             Cinco especialistas disponibles para ayudarte con cualquier consulta sobre tratamientos, citas y más.
           </p>
         </motion.div>
@@ -573,7 +573,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 px-4">
             {agents.map((agent, index) => (
               <motion.div
                 key={agent.id}
@@ -623,7 +623,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     />
                     
                     {/* Imagen principal - MUY GRANDE */}
-                    <div className="relative w-32 h-32 rounded-full overflow-hidden border-5 border-white shadow-2xl ring-4 ring-rose-200/60 bg-white">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-3 md:border-4 lg:border-5 border-white shadow-xl sm:shadow-2xl ring-2 sm:ring-3 md:ring-4 ring-rose-200/60 bg-white">
                       <Image
                         src={agent.image}
                         alt={agent.name}
@@ -645,7 +645,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
 
                     {/* Estado en vivo - Más grande y visible */}
                     <motion.div
-                      className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full border-4 border-white shadow-xl flex items-center justify-center ${
+                      className={`absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full border-2 sm:border-3 md:border-4 border-white shadow-lg sm:shadow-xl flex items-center justify-center ${
                         agent.status === 'available'
                           ? 'bg-gradient-to-br from-green-400 to-green-500'
                           : agent.status === 'in-conversation'
@@ -696,7 +696,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 </div>
 
                 {/* Nombre - Más grande */}
-                <h3 className="text-center font-bold text-neutral-900 text-lg mb-2">{agent.name}</h3>
+                <h3 className="text-center font-bold text-neutral-900 text-sm sm:text-base md:text-lg mb-2">{agent.name}</h3>
 
                 {/* Estado dinámico - Mejorado */}
                 <div className="text-center">
@@ -807,7 +807,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 whileHover={{ scale: 1.15, rotate: 5 }}
               >
                 <div className="relative">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-5 border-white shadow-2xl ring-4 ring-rose-400/80 bg-white">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-3 md:border-4 lg:border-5 border-white shadow-xl sm:shadow-2xl ring-2 sm:ring-3 md:ring-4 ring-rose-400/80 bg-white">
                     <Image
                       src={currentAgent.image}
                       alt={currentAgent.name}
@@ -890,7 +890,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             {/* Messages area - Rectangular - Más pequeño */}
             <div 
               ref={messagesContainerRef}
-              className="h-[350px] overflow-y-auto p-6 bg-gradient-to-b from-neutral-50 to-white space-y-4 custom-scrollbar"
+              className="h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-gradient-to-b from-neutral-50 to-white space-y-3 sm:space-y-4 custom-scrollbar"
               style={{ scrollBehavior: 'smooth' }}
             >
               {messages.length === 0 && (
@@ -903,10 +903,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   >
                     <span className="text-4xl">👋</span>
                   </motion.div>
-                  <p className="text-lg font-medium text-neutral-900 mb-2">
+                  <p className="text-base sm:text-lg font-medium text-neutral-900 mb-2">
                     {currentAgent ? `¡Hola! Soy ${currentAgent.name}` : 'Selecciona un agente'}
                   </p>
-                  <p className="text-neutral-600 font-light">
+                  <p className="text-sm sm:text-base text-neutral-600 font-light px-4">
                     {currentAgent
                       ? 'Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?'
                       : 'Elige una especialista disponible arriba para comenzar'}
@@ -933,7 +933,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     </div>
                   )}
                   <div
-                    className={`max-w-[75%] rounded-2xl px-5 py-3 ${
+                    className={`max-w-[85%] sm:max-w-[75%] rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 ${
                       message.role === 'user'
                         ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white'
                         : 'bg-white border-2 border-rose-200 text-neutral-800 shadow-md'
@@ -998,8 +998,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             </div>
 
             {/* Input area */}
-            <div className="p-6 bg-white border-t-2 border-rose-100">
-              <div className="flex gap-3">
+            <div className="p-4 sm:p-6 bg-white border-t-2 border-rose-100">
+              <div className="flex gap-2 sm:gap-3">
                 <input
                   ref={inputRef}
                   type="text"
@@ -1016,7 +1016,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     }
                   }}
                   placeholder={currentAgent ? `Escribí tu mensaje para ${currentAgent.name}...` : 'Selecciona un agente primero...'}
-                  className="flex-1 px-5 py-4 border-2 border-rose-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-neutral-800 placeholder-neutral-400"
+                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-rose-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-base sm:text-lg text-neutral-800 placeholder-neutral-400 min-h-[48px]"
                   disabled={loading || !currentAgent}
                   autoComplete="off"
                 />
@@ -1031,7 +1031,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   disabled={loading || !input.trim() || !currentAgent}
                   whileHover={{ scale: loading || !input.trim() || !currentAgent ? 1 : 1.05 }}
                   whileTap={{ scale: loading || !input.trim() || !currentAgent ? 1 : 0.95 }}
-                  className="px-6 py-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-2xl font-semibold hover:from-rose-600 hover:to-rose-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg transition-all touch-manipulation"
+                  className="px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl sm:rounded-2xl font-semibold hover:from-rose-600 hover:to-rose-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg transition-all touch-manipulation min-h-[48px] min-w-[48px]"
                 >
                   {loading ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
@@ -1043,7 +1043,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   )}
                 </motion.button>
               </div>
-              <p className="text-xs text-neutral-500 mt-3 text-center font-light">
+              <p className="text-xs sm:text-sm text-neutral-500 mt-2 sm:mt-3 text-center font-light px-2">
                 {currentAgent
                   ? `${currentAgent.name} está disponible ahora para ayudarte`
                   : 'Selecciona una especialista disponible arriba'}

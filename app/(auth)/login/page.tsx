@@ -41,23 +41,23 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       <Navbar />
-      <div className="flex items-center justify-center py-20 px-4">
+      <div className="flex items-center justify-center py-12 sm:py-16 md:py-20 px-4">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-3xl font-bold text-neutral-900 mb-2">
+          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
               Iniciar Sesión
             </h1>
-            <p className="text-neutral-600 mb-8">
+            <p className="text-sm sm:text-base text-neutral-600 mb-6 sm:mb-8">
               Ingresá a tu cuenta para continuar
             </p>
 
             {error && (
-              <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+              <div className="mb-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-xs sm:text-sm">
                 {error}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
                   Email
@@ -68,7 +68,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="tu@email.com"
                 />
               </div>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="••••••••"
                 />
               </div>
@@ -91,7 +91,7 @@ export default function LoginPage() {
               <div className="flex items-center justify-between">
                 <Link
                   href="/reset-password"
-                  className="text-sm text-primary hover:underline"
+                  className="text-xs sm:text-sm text-primary hover:underline min-h-[44px] flex items-center"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
@@ -100,7 +100,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-4 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full px-4 py-3.5 sm:py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-base sm:text-lg"
               >
                 {loading ? (
                   <>
@@ -113,9 +113,9 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-6 text-center text-sm text-neutral-600">
+            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-neutral-600">
               ¿No tenés cuenta?{' '}
-              <Link href="/register" className="text-primary font-semibold hover:underline">
+              <Link href="/register" className="text-primary font-semibold hover:underline min-h-[44px] inline-flex items-center">
                 Registrate acá
               </Link>
             </div>
