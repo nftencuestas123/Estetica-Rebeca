@@ -26,8 +26,47 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [nombreUsuario, setNombreUsuario] = useState<string | undefined>()
+  const [showTooltip, setShowTooltip] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Bloquear scroll del body cuando el chat está abierto en móvil
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      // Guardar la posición actual del scroll
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+      
+      // Mostrar tooltip al abrir
+      setShowTooltip(true)
+      const timer = setTimeout(() => setShowTooltip(false), 4000)
+
+      return () => {
+        clearTimeout(timer)
+        // Restaurar scroll cuando se cierra
+        const scrollY = document.body.style.top
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.width = ''
+        document.body.style.overflow = ''
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      }
+    }
+  }, [isOpen, isMobile])
 
   // Cargar historial de conversación si hay userId
   useEffect(() => {
@@ -238,42 +277,81 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-primary text-white rounded-full shadow-lg hover:bg-primary-700 transition-all flex items-center justify-center z-50"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-primary text-white rounded-full shadow-lg hover:bg-primary-700 transition-all flex items-center justify-center z-50 touch-manipulation"
           aria-label="Abrir chat con Sofía"
         >
-          <MessageCircle className="w-8 h-8" />
+          <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8" />
         </button>
       )}
 
-      {/* Chat window */}
+      {/* Chat window - Fullscreen en móvil, ventana en desktop */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-cream-50 rounded-lg shadow-2xl flex flex-col z-50 border border-primary-200">
-          {/* Header */}
-          <div className="bg-primary text-white p-4 rounded-t-lg flex items-center justify-between">
+        <div className={cn(
+          "fixed flex flex-col z-[9999] bg-cream-50 shadow-2xl",
+          isMobile 
+            ? "inset-0 h-screen w-screen" // Fullscreen en móvil
+            : "bottom-6 right-6 w-96 h-[600px] rounded-lg border border-primary-200" // Ventana en desktop
+        )}>
+          {/* Header con tooltip mejorado */}
+          <div className="bg-primary text-white p-4 flex items-center justify-between relative">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-cream-100/20 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-cream-100/20 rounded-full flex items-center justify-center flex-shrink-0">
                 <MessageCircle className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-semibold">Sofía Barreto</h3>
+                <h3 className="font-semibold text-base sm:text-lg">Sofía Barreto</h3>
                 <p className="text-xs opacity-90">Estoy acá para ayudarte</p>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-cream-100/20 rounded-full p-1 transition-colors"
-              aria-label="Cerrar chat"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            
+            {/* Botón de cerrar con tooltip mejorado */}
+            <div className="relative">
+              <button
+                onClick={() => setIsOpen(false)}
+                onMouseEnter={() => !isMobile && setShowTooltip(true)}
+                onMouseLeave={() => !isMobile && setShowTooltip(false)}
+                className={cn(
+                  "hover:bg-cream-100/20 rounded-full p-2 transition-colors touch-manipulation",
+                  "flex items-center justify-center",
+                  isMobile ? "min-w-[44px] min-h-[44px]" : "min-w-[32px] min-h-[32px]"
+                )}
+                aria-label="Cerrar chat"
+              >
+                <X className={cn(isMobile ? "w-6 h-6" : "w-5 h-5")} />
+              </button>
+              
+              {/* Tooltip con animación */}
+              {showTooltip && (
+                <div className={cn(
+                  "absolute top-full right-0 mt-2 px-3 py-2 bg-neutral-900 text-white text-xs rounded-lg shadow-lg whitespace-nowrap z-[10000]",
+                  "animate-in fade-in slide-in-from-top-2 duration-200",
+                  isMobile ? "w-64 text-center" : ""
+                )}>
+                  {isMobile ? (
+                    <>
+                      <span className="font-semibold block mb-1">💡 Para salir del modo chat</span>
+                      <span className="block">Hacé clic en esta ✕ para volver a navegar</span>
+                    </>
+                  ) : (
+                    "Cerrar chat"
+                  )}
+                  {/* Flecha del tooltip */}
+                  <div className="absolute -top-1 right-4 w-2 h-2 bg-neutral-900 transform rotate-45"></div>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-cream-50">
+          {/* Messages - Con altura adecuada para móvil */}
+          <div className={cn(
+            "flex-1 overflow-y-auto p-4 space-y-4 bg-cream-50",
+            "overscroll-contain" // Previene scroll fuera del contenedor
+          )}>
             {messages.length === 0 && (
               <div className="text-center text-primary-300 py-8">
-                <p className="text-lg font-medium mb-2">Hola, soy Sofía</p>
-                <p className="text-sm">Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?</p>
+                <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-primary opacity-50" />
+                <p className="text-lg sm:text-xl font-medium mb-2">Hola, soy Sofía</p>
+                <p className="text-sm sm:text-base px-4">Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?</p>
               </div>
             )}
             {messages.map((message) => (
@@ -286,13 +364,13 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
               >
                 <div
                   className={cn(
-                    'max-w-[80%] rounded-lg px-4 py-2',
+                    'max-w-[85%] sm:max-w-[80%] rounded-lg px-4 py-3',
                     message.role === 'user'
                       ? 'bg-primary text-white'
                       : 'bg-cream-50 text-primary-200 border border-primary-200'
                   )}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                  <p className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">{message.content}</p>
                   <p className="text-xs mt-1 opacity-70">
                     {message.timestamp.toLocaleTimeString('es-PY', {
                       hour: '2-digit',
@@ -304,16 +382,19 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-cream-50 border border-primary-200 rounded-lg px-4 py-2">
-                  <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                <div className="bg-cream-50 border border-primary-200 rounded-lg px-4 py-3">
+                  <Loader2 className="w-5 h-5 animate-spin text-primary" />
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="border-t p-4 bg-cream-50 rounded-b-lg">
+          {/* Input - Optimizado para móvil */}
+          <div className={cn(
+            "border-t p-3 sm:p-4 bg-cream-50",
+            isMobile ? "" : "rounded-b-lg"
+          )}>
             <div className="flex gap-2">
               <input
                 ref={inputRef}
@@ -322,18 +403,24 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Escribí tu mensaje..."
-                className="flex-1 px-4 py-2 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                className={cn(
+                  "flex-1 px-4 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm sm:text-base",
+                  isMobile ? "py-3 text-base" : "py-2" // Input más grande en móvil
+                )}
                 disabled={loading}
               />
               <button
                 onClick={handleSend}
                 disabled={loading || !input.trim()}
-                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className={cn(
+                  "bg-primary text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors touch-manipulation",
+                  isMobile ? "px-5 py-3 min-w-[56px]" : "px-4 py-2" // Botón más grande en móvil
+                )}
               >
                 {loading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className={cn(isMobile ? "w-5 h-5" : "w-4 h-4", "animate-spin")} />
                 ) : (
-                  <Send className="w-4 h-4" />
+                  <Send className={cn(isMobile ? "w-5 h-5" : "w-4 h-4")} />
                 )}
               </button>
             </div>
