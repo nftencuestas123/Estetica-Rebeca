@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Send, Loader2 } from 'lucide-react'
+import { Send, Loader2, X, ArrowLeft } from 'lucide-react'
 import { chatWithSofia } from '@/lib/openrouter-service'
 import type { SofiaMessage } from '@/lib/openrouter-service'
 import { supabase } from '@/lib/supabase'
@@ -71,9 +71,56 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   const [currentAgent, setCurrentAgent] = useState<Agent | null>(null)
   const [agents, setAgents] = useState<Agent[]>(AGENTS)
   const [userName, setUserName] = useState<string | undefined>(undefined)
+  const [isMobile, setIsMobile] = useState(false)
+  const [showTooltip, setShowTooltip] = useState(false)
+  const [isChatMode, setIsChatMode] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const messagesContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Bloquear scroll del body cuando está en modo chat en móvil
+  useEffect(() => {
+    if (isChatMode && isMobile && currentAgent) {
+      // Guardar la posición actual del scroll
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+      
+      // Mostrar tooltip al entrar en modo chat
+      setShowTooltip(true)
+      const timer = setTimeout(() => setShowTooltip(false), 4000)
+
+      return () => {
+        clearTimeout(timer)
+        // Restaurar scroll cuando se cierra
+        const scrollY = document.body.style.top
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.width = ''
+        document.body.style.overflow = ''
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      }
+    }
+  }, [isChatMode, isMobile, currentAgent])
+
+  // Activar modo chat automáticamente cuando se selecciona un agente en móvil
+  useEffect(() => {
+    if (currentAgent && isMobile) {
+      setIsChatMode(true)
+    }
+  }, [currentAgent, isMobile])
 
   // Asignar agente al iniciar conversación
   useEffect(() => {
@@ -916,17 +963,21 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
           </div>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto relative">
+        <div className={isChatMode && isMobile ? "" : "max-w-5xl mx-auto relative"}>
           {/* Chat Interface Rectangular con imagen en esquina */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative bg-black md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-primary-400 overflow-visible"
+            className={
+              isChatMode && isMobile
+                ? "fixed inset-0 z-[9999] bg-black flex flex-col h-screen w-screen overflow-hidden"
+                : "relative bg-black md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-primary-400 overflow-visible"
+            }
           >
             {/* Imagen de perfil elegante en esquina izquierda - MUY VISIBLE */}
-            {currentAgent && (
+            {currentAgent && !(isChatMode && isMobile) && (
               <motion.div
                 className="absolute -left-8 top-6 z-50"
                 initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
@@ -979,8 +1030,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             )}
 
             {/* Header del chat */}
-            <div className="bg-black p-5 pl-40 border-b-2 border-primary-400/30 rounded-t-3xl">
-              <div className="flex items-center justify-between">
+            <div className={`bg-black p-5 border-b-2 border-primary-400/30 ${!(isChatMode && isMobile) ? 'pl-40 rounded-t-3xl' : ''}`}>
+              <div className="flex items-center justify-between relative">
                 <div>
                   {currentAgent ? (
                     <>
@@ -995,8 +1046,37 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   )}
                 </div>
 
-                {/* Estado disponible dinámico */}
-                {currentAgent && (
+                {/* Botón de salir del modo chat (móvil) */}
+                {isChatMode && isMobile && currentAgent && (
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsChatMode(false)}
+                      onMouseEnter={() => !isMobile && setShowTooltip(true)}
+                      onMouseLeave={() => !isMobile && setShowTooltip(false)}
+                      className="hover:bg-primary-400/20 rounded-full p-2 transition-colors touch-manipulation flex items-center justify-center min-w-[44px] min-h-[44px]"
+                      aria-label="Salir del modo chat"
+                    >
+                      <X className="w-6 h-6 text-primary-400" />
+                    </button>
+                    
+                    {/* Tooltip con animación */}
+                    {showTooltip && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="absolute top-full right-0 mt-2 px-3 py-2 bg-neutral-900 text-white text-xs rounded-lg shadow-lg z-[10000] w-64 text-center"
+                      >
+                        <span className="font-semibold block mb-1">💡 Para salir del modo chat</span>
+                        <span className="block">Hacé clic en esta ✕ para volver a navegar</span>
+                        {/* Flecha del tooltip */}
+                        <div className="absolute -top-1 right-4 w-2 h-2 bg-neutral-900 transform rotate-45"></div>
+                      </motion.div>
+                    )}
+                  </div>
+                )}
+
+                {/* Estado disponible dinámico (desktop) */}
+                {currentAgent && !(isChatMode && isMobile) && (
                   <motion.div
                     className="flex items-center gap-2 bg-primary-400/10 md:backdrop-blur-sm rounded-full px-4 py-2 border border-primary-400/20"
                     whileHover={{ scale: 1.05 }}
@@ -1018,7 +1098,11 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             {/* Messages area - Rectangular - Más pequeño */}
             <div 
               ref={messagesContainerRef}
-              className="h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-black space-y-3 sm:space-y-4 custom-scrollbar"
+              className={
+                isChatMode && isMobile
+                  ? "flex-1 overflow-y-auto p-4 bg-black space-y-4 overscroll-contain"
+                  : "h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-black space-y-3 sm:space-y-4 custom-scrollbar"
+              }
               style={{ scrollBehavior: 'smooth' }}
             >
               {messages.length === 0 && (
@@ -1129,7 +1213,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             </div>
 
             {/* Input area */}
-            <div className="p-4 sm:p-6 bg-black border-t-2 border-primary-400">
+            <div className={isChatMode && isMobile ? "p-3 bg-black border-t-2 border-primary-400" : "p-4 sm:p-6 bg-black border-t-2 border-primary-400"}>
               <div className="flex gap-2 sm:gap-3">
                 <input
                   ref={inputRef}
@@ -1147,7 +1231,11 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     }
                   }}
                   placeholder={currentAgent ? `Escribí tu mensaje para ${currentAgent.name}...` : 'Selecciona un agente primero...'}
-                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 bg-black border-2 border-primary-400 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-400 placeholder-primary-400/50 min-h-[48px]"
+                  className={
+                    isChatMode && isMobile
+                      ? "flex-1 px-4 py-3 bg-black border-2 border-primary-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base text-primary-400 placeholder-primary-400/50 min-h-[48px]"
+                      : "flex-1 px-4 sm:px-5 py-3 sm:py-4 bg-black border-2 border-primary-400 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-400 placeholder-primary-400/50 min-h-[48px]"
+                  }
                   disabled={loading || !currentAgent}
                   autoComplete="off"
                 />
@@ -1162,13 +1250,17 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   disabled={loading || !input.trim() || !currentAgent}
                   whileHover={{ scale: loading || !input.trim() || !currentAgent ? 1 : 1.05 }}
                   whileTap={{ scale: loading || !input.trim() || !currentAgent ? 1 : 0.95 }}
-                  className="px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl sm:rounded-2xl font-semibold hover:from-rose-600 hover:to-rose-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg transition-all touch-manipulation min-h-[48px] min-w-[48px]"
+                  className={
+                    isChatMode && isMobile
+                      ? "px-5 py-3 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl font-semibold hover:from-rose-600 hover:to-rose-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg transition-all touch-manipulation min-h-[48px] min-w-[56px]"
+                      : "px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl sm:rounded-2xl font-semibold hover:from-rose-600 hover:to-rose-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg transition-all touch-manipulation min-h-[48px] min-w-[48px]"
+                  }
                 >
                   {loading ? (
-                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <Loader2 className={isChatMode && isMobile ? "w-5 h-5 animate-spin" : "w-5 h-5 animate-spin"} />
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
+                      <Send className={isChatMode && isMobile ? "w-5 h-5" : "w-5 h-5"} />
                       <span className="hidden sm:inline">Enviar</span>
                     </>
                   )}
