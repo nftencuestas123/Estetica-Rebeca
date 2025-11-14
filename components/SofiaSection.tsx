@@ -452,24 +452,45 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
 
     const userMessage = input.trim()
     setInput('')
+    
+    // Verificar si hay mensajes siendo escritos
+    const hasTypingMessages = messages.some((m) => m.isTyping && m.role === 'assistant')
+    
+    if (hasTypingMessages) {
+      // Si hay mensajes siendo escritos, completarlos primero
+      const completedMessages = messages.map((m) =>
+        m.isTyping && m.role === 'assistant'
+          ? {
+              ...m,
+              isTyping: false,
+              displayedContent: m.content, // Mostrar el contenido completo
+              hasTypo: false,
+              typoChar: undefined,
+            }
+          : m
+      )
+
+      // Actualizar el estado para mostrar los mensajes completados
+      setMessages(completedMessages)
+      
+      // Esperar un momento para que el usuario vea el mensaje completo
+      await new Promise(resolve => setTimeout(resolve, 300))
+    }
+    
     setLoading(true)
 
-    // Completar inmediatamente cualquier mensaje anterior que esté siendo escrito
-    // y construir el historial con los mensajes completados
-    const completedMessages = messages.map((m) =>
+    // Obtener los mensajes actualizados (ya completados si había typing)
+    const currentMessages = messages.map((m) =>
       m.isTyping && m.role === 'assistant'
         ? {
             ...m,
             isTyping: false,
-            displayedContent: m.content, // Completar el contenido
+            displayedContent: m.content,
             hasTypo: false,
             typoChar: undefined,
           }
         : m
     )
-
-    // Actualizar el estado con los mensajes completados
-    setMessages(completedMessages)
 
     // Agregar mensaje del usuario
     const newUserMessage: Message = {
@@ -480,13 +501,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
       userName: userName, // Incluir nombre si ya lo tenemos
     }
     
-    const messagesWithUser = [...completedMessages, newUserMessage]
+    const messagesWithUser = [...currentMessages, newUserMessage]
     setMessages(messagesWithUser)
 
     try {
       // Construir historial para OpenRouter con el nombre del agente
       // Usar el contenido completo de los mensajes completados
-      const historial: SofiaMessage[] = completedMessages.map((msg) => ({
+      const historial: SofiaMessage[] = currentMessages.map((msg) => ({
         role: msg.role,
         content: msg.content, // Siempre usar el contenido completo
       }))
