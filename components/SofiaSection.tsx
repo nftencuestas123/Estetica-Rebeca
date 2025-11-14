@@ -62,13 +62,6 @@ const AGENTS: Agent[] = [
     status: 'available',
     currentConversations: 0,
   },
-  {
-    id: 'carmen',
-    name: 'Carmen',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=90',
-    status: 'available',
-    currentConversations: 0,
-  },
 ]
 
 export default function SofiaSection({ userId }: SofiaSectionProps) {
@@ -729,7 +722,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 px-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 px-4">
             {agents.map((agent, index) => (
               <motion.div
                 key={agent.id}
