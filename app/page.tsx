@@ -8,6 +8,7 @@ import RebecaSection from '@/components/RebecaSection'
 import StorytellingSection from '@/components/StorytellingSection'
 import PremiumTestimonials from '@/components/PremiumTestimonials'
 import SofiaSection from '@/components/SofiaSection'
+import LocationMap from '@/components/LocationMap'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -380,7 +381,10 @@ export default function Home() {
       {/* 8. Sofía - Atención al Cliente (Chat al final para contacto) */}
       <SofiaSection />
 
-      {/* 9. Footer Premium */}
+      {/* 9. Mapa de Ubicación - ¿Dónde encontrarnos? */}
+      <LocationMap />
+
+      {/* 10. Footer Premium */}
       <footer className="bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
