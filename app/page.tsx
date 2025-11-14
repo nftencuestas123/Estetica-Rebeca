@@ -368,11 +368,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Pre-Lanzamiento App - Descarga de aplicación */}
-      <PreLaunchSection />
-
-      {/* 6. Testimonios Premium - Prueba social */}
+      {/* 5. Testimonios Premium - Prueba social de la gente */}
       <PremiumTestimonials />
+
+      {/* 6. Pre-Lanzamiento App - Descarga de aplicación */}
+      <PreLaunchSection />
 
       {/* 7. Storytelling - Historia emocional */}
       <StorytellingSection />
