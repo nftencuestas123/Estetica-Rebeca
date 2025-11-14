@@ -558,13 +558,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
               Atención al Cliente en Vivo
             </span>
           </motion.div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6 px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-4 sm:mb-6 px-4">
             Nuestro{' '}
             <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
               Equipo
             </span>
           </h2>
-              <p className="text-base sm:text-lg md:text-xl font-light text-neutral-700 max-w-2xl mx-auto px-4">
+              <p className="text-base sm:text-lg md:text-xl font-light text-primary-700 max-w-2xl mx-auto px-4">
             Cinco especialistas disponibles para ayudarte con cualquier consulta sobre tratamientos, citas y más.
           </p>
         </motion.div>
@@ -588,7 +588,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 className={`relative p-6 rounded-3xl md:backdrop-blur-md border-3 transition-all cursor-pointer overflow-hidden ${
                   currentAgent?.id === agent.id
                     ? 'bg-gradient-to-br from-rose-100/90 via-gold-100/80 to-rose-100/90 border-rose-400 shadow-2xl'
-                    : 'bg-white/80 border-rose-200/60 hover:border-rose-400 hover:shadow-xl'
+                    : 'bg-cream-100/80 border-rose-200/60 hover:border-rose-400 hover:shadow-xl'
                 }`}
                 onClick={() => {
                   if (agent.status === 'available') {
@@ -626,7 +626,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     />
                     
                     {/* Imagen principal - MUY GRANDE */}
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-3 md:border-4 lg:border-5 border-white shadow-xl sm:shadow-2xl ring-2 sm:ring-3 md:ring-4 ring-rose-200/60 bg-white">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-3 md:border-4 lg:border-5 border-white shadow-xl sm:shadow-2xl ring-2 sm:ring-3 md:ring-4 ring-rose-200/60 bg-cream-50">
                       <Image
                         src={agent.image}
                         alt={agent.name}
@@ -666,7 +666,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       <motion.div
-                        className="w-3 h-3 bg-white rounded-full"
+                        className="w-3 h-3 bg-cream-50 rounded-full"
                         animate={{
                           opacity: [1, 0.4, 1],
                         }}
@@ -699,7 +699,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 </div>
 
                 {/* Nombre - Más grande */}
-                <h3 className="text-center font-bold text-neutral-900 text-sm sm:text-base md:text-lg mb-2">{agent.name}</h3>
+                <h3 className="text-center font-bold text-primary-900 text-sm sm:text-base md:text-lg mb-2">{agent.name}</h3>
 
                 {/* Estado dinámico - Mejorado */}
                 <div className="text-center">
@@ -798,7 +798,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative bg-white/95 md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-rose-200/50 overflow-visible"
+            className="relative bg-cream-100/95 md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-rose-200/50 overflow-visible"
           >
             {/* Imagen de perfil elegante en esquina izquierda - MUY VISIBLE */}
             {currentAgent && (
@@ -810,7 +810,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 whileHover={{ scale: 1.15, rotate: 5 }}
               >
                 <div className="relative">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-3 md:border-4 lg:border-5 border-white shadow-xl sm:shadow-2xl ring-2 sm:ring-3 md:ring-4 ring-rose-400/80 bg-white">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-3 md:border-4 lg:border-5 border-white shadow-xl sm:shadow-2xl ring-2 sm:ring-3 md:ring-4 ring-rose-400/80 bg-cream-50">
                     <Image
                       src={currentAgent.image}
                       alt={currentAgent.name}
@@ -834,7 +834,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     <motion.div
-                      className="w-2.5 h-2.5 bg-white rounded-full"
+                      className="w-2.5 h-2.5 bg-cream-50 rounded-full"
                       animate={{
                         opacity: [1, 0.4, 1],
                       }}
@@ -873,7 +873,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 {/* Estado disponible dinámico */}
                 {currentAgent && (
                   <motion.div
-                    className="flex items-center gap-2 bg-white/20 md:backdrop-blur-sm rounded-full px-4 py-2"
+                    className="flex items-center gap-2 bg-cream-100/20 md:backdrop-blur-sm rounded-full px-4 py-2"
                     whileHover={{ scale: 1.05 }}
                   >
                     <motion.div
@@ -893,7 +893,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             {/* Messages area - Rectangular - Más pequeño */}
             <div 
               ref={messagesContainerRef}
-              className="h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-gradient-to-b from-neutral-50 to-white space-y-3 sm:space-y-4 custom-scrollbar"
+              className="h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-gradient-to-b from-cream-50 to-white space-y-3 sm:space-y-4 custom-scrollbar"
               style={{ scrollBehavior: 'smooth' }}
             >
               {messages.length === 0 && (
@@ -906,10 +906,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   >
                     <span className="text-4xl">👋</span>
                   </motion.div>
-                  <p className="text-base sm:text-lg font-medium text-neutral-900 mb-2">
+                  <p className="text-base sm:text-lg font-medium text-primary-900 mb-2">
                     {currentAgent ? `¡Hola! Soy ${currentAgent.name}` : 'Selecciona un agente'}
                   </p>
-                  <p className="text-sm sm:text-base text-neutral-600 font-light px-4">
+                  <p className="text-sm sm:text-base text-primary-600 font-light px-4">
                     {currentAgent
                       ? 'Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?'
                       : 'Elige una especialista disponible arriba para comenzar'}
@@ -939,11 +939,11 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     className={`max-w-[85%] sm:max-w-[75%] rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 ${
                       message.role === 'user'
                         ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white'
-                        : 'bg-white border-2 border-rose-200 text-neutral-800 shadow-md'
+                        : 'bg-cream-50 border-2 border-rose-200 text-primary-800 shadow-md'
                     }`}
                   >
                     {message.role === 'assistant' && message.agentName && (
-                      <p className="text-xs font-semibold text-rose-600 mb-1">{message.agentName}</p>
+                      <p className="text-xs font-semibold text-primary-600 mb-1">{message.agentName}</p>
                     )}
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {message.isTyping && message.displayedContent !== undefined
@@ -960,7 +960,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     {!message.isTyping && (
                       <p
                         className={`text-xs mt-2 ${
-                          message.role === 'user' ? 'text-white/70' : 'text-neutral-500'
+                          message.role === 'user' ? 'text-white/70' : 'text-primary-500'
                         }`}
                       >
                         {message.timestamp.toLocaleTimeString('es-PY', {
@@ -989,10 +989,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                       className="object-cover"
                     />
                   </div>
-                  <div className="bg-white border-2 border-rose-200 rounded-2xl px-5 py-3 shadow-md">
+                  <div className="bg-cream-50 border-2 border-rose-200 rounded-2xl px-5 py-3 shadow-md">
                     <div className="flex items-center gap-2">
-                      <Loader2 className="w-5 h-5 animate-spin text-rose-500" />
-                      <span className="text-xs text-neutral-500">{currentAgent.name} está escribiendo...</span>
+                      <Loader2 className="w-5 h-5 animate-spin text-primary-500" />
+                      <span className="text-xs text-primary-500">{currentAgent.name} está escribiendo...</span>
                     </div>
                   </div>
                 </div>
@@ -1001,7 +1001,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             </div>
 
             {/* Input area */}
-            <div className="p-4 sm:p-6 bg-white border-t-2 border-rose-100">
+            <div className="p-4 sm:p-6 bg-cream-50 border-t-2 border-rose-100">
               <div className="flex gap-2 sm:gap-3">
                 <input
                   ref={inputRef}
@@ -1019,7 +1019,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     }
                   }}
                   placeholder={currentAgent ? `Escribí tu mensaje para ${currentAgent.name}...` : 'Selecciona un agente primero...'}
-                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-rose-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-base sm:text-lg text-neutral-800 placeholder-neutral-400 min-h-[48px]"
+                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-primary-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-800 placeholder-primary-400 min-h-[48px]"
                   disabled={loading || !currentAgent}
                   autoComplete="off"
                 />
@@ -1046,7 +1046,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   )}
                 </motion.button>
               </div>
-              <p className="text-xs sm:text-sm text-neutral-500 mt-2 sm:mt-3 text-center font-light px-2">
+              <p className="text-xs sm:text-sm text-primary-500 mt-2 sm:mt-3 text-center font-light px-2">
                 {currentAgent
                   ? `${currentAgent.name} está disponible ahora para ayudarte`
                   : 'Selecciona una especialista disponible arriba'}
@@ -1060,7 +1060,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-8 flex items-center justify-center gap-4 bg-white/50 backdrop-blur-sm rounded-2xl p-4 border border-rose-200/50"
+            className="mt-8 flex items-center justify-center gap-4 bg-cream-100/50 backdrop-blur-sm rounded-2xl p-4 border border-rose-200/50"
           >
             <motion.div
               className="w-3 h-3 bg-green-400 rounded-full"
@@ -1070,12 +1070,12 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <p className="text-sm text-neutral-700 font-light">
-              <span className="font-semibold text-rose-600">
+            <p className="text-sm text-primary-700 font-light">
+              <span className="font-semibold text-primary-600">
                 {agents.filter((a) => a.status === 'available').length} agentes
               </span>{' '}
               disponibles ahora • Tiempo de respuesta:{' '}
-              <span className="font-semibold text-rose-600">menos de 2 minutos</span>
+              <span className="font-semibold text-primary-600">menos de 2 minutos</span>
             </p>
           </motion.div>
         </div>
@@ -1083,3 +1083,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     </section>
   )
 }
+
+
+
+

@@ -64,7 +64,7 @@ export default function AdminPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-neutral-600">Cargando...</p>
+          <p className="text-primary-600">Cargando...</p>
         </div>
       </div>
     )
@@ -75,24 +75,24 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-cream-50">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-primary-900 mb-2">
             Panel de Administración
           </h1>
-          <p className="text-sm sm:text-base text-neutral-600">
+          <p className="text-sm sm:text-base text-primary-600">
             Gestión completa del negocio
           </p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+          <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-neutral-600 mb-1">Total Usuarios</p>
+                <p className="text-xs sm:text-sm text-primary-600 mb-1">Total Usuarios</p>
                 <p className="text-xl sm:text-2xl font-bold text-primary">
                   {stats.totalUsuarios}
                 </p>
@@ -101,10 +101,10 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+          <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-neutral-600 mb-1">Citas Hoy</p>
+                <p className="text-xs sm:text-sm text-primary-600 mb-1">Citas Hoy</p>
                 <p className="text-xl sm:text-2xl font-bold text-accent">
                   {stats.citasHoy}
                 </p>
@@ -113,10 +113,10 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+          <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-neutral-600 mb-1">Ingresos del Mes</p>
+                <p className="text-xs sm:text-sm text-primary-600 mb-1">Ingresos del Mes</p>
                 <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                   ${stats.ingresosMes} USD
                 </p>
@@ -125,10 +125,10 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+          <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-neutral-600 mb-1">Crecimiento</p>
+                <p className="text-xs sm:text-sm text-primary-600 mb-1">Crecimiento</p>
                 <p className="text-xl sm:text-2xl font-bold text-accent">
                   +{stats.crecimiento}%
                 </p>
@@ -142,72 +142,72 @@ export default function AdminPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <Link
             href="/admin/clientes"
-            className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
+            className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <Users className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 mb-2">CRM - Clientes</h3>
-            <p className="text-xs sm:text-sm text-neutral-600">
+            <h3 className="font-semibold text-sm sm:text-base text-primary-900 mb-2">CRM - Clientes</h3>
+            <p className="text-xs sm:text-sm text-primary-600">
               Gestionar base de datos de clientes
             </p>
           </Link>
 
           <Link
             href="/admin/citas"
-            className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
+            className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 mb-2">Gestión de Citas</h3>
-            <p className="text-xs sm:text-sm text-neutral-600">
+            <h3 className="font-semibold text-sm sm:text-base text-primary-900 mb-2">Gestión de Citas</h3>
+            <p className="text-xs sm:text-sm text-primary-600">
               Ver y gestionar todas las citas
             </p>
           </Link>
 
           <Link
             href="/admin/tratamientos"
-            className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
+            className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">💆</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 mb-2">Tratamientos</h3>
-            <p className="text-xs sm:text-sm text-neutral-600">
+            <h3 className="font-semibold text-sm sm:text-base text-primary-900 mb-2">Tratamientos</h3>
+            <p className="text-xs sm:text-sm text-primary-600">
               Gestionar catálogo de tratamientos
             </p>
           </Link>
 
           <Link
             href="/admin/sofia"
-            className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
+            className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">🤖</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 mb-2">Sofía IA</h3>
-            <p className="text-xs sm:text-sm text-neutral-600">
+            <h3 className="font-semibold text-sm sm:text-base text-primary-900 mb-2">Sofía IA</h3>
+            <p className="text-xs sm:text-sm text-primary-600">
               Ver conversaciones y analytics
             </p>
           </Link>
 
           <Link
             href="/admin/productos"
-            className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
+            className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">🛍️</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 mb-2">Productos</h3>
-            <p className="text-xs sm:text-sm text-neutral-600">
+            <h3 className="font-semibold text-sm sm:text-base text-primary-900 mb-2">Productos</h3>
+            <p className="text-xs sm:text-sm text-primary-600">
               Gestionar inventario y productos
             </p>
           </Link>
 
           <Link
             href="/admin/reportes"
-            className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
+            className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 mb-2">Reportes</h3>
-            <p className="text-xs sm:text-sm text-neutral-600">
+            <h3 className="font-semibold text-sm sm:text-base text-primary-900 mb-2">Reportes</h3>
+            <p className="text-xs sm:text-sm text-primary-600">
               Analytics y métricas del negocio
             </p>
           </Link>
@@ -216,4 +216,7 @@ export default function AdminPage() {
     </div>
   )
 }
+
+
+
 

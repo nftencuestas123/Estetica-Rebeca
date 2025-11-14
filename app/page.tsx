@@ -13,7 +13,7 @@ import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-cream-50">
       <Navbar />
       <div className="pt-16 sm:pt-20">
         <PremiumHero />
@@ -28,10 +28,10 @@ export default function Home() {
       <SofiaSection />
 
       {/* Sección: ¿Qué buscás? - Premium */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-rose-50 via-white to-gold-50/30 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
-            className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-rose-400/20 to-gold-400/20 rounded-full blur-3xl"
+            className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.5, 1],
               opacity: [0.4, 0.7, 0.4],
@@ -41,7 +41,7 @@ export default function Home() {
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-l from-accent-400/20 to-rose-400/20 rounded-full blur-3xl"
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-l from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -60,27 +60,27 @@ export default function Home() {
             className="text-center mb-16"
           >
             <motion.div
-              className="inline-block px-6 py-3 bg-gradient-to-r from-rose-400/20 to-gold-400/20 backdrop-blur-sm border-2 border-rose-400/30 rounded-full text-sm font-medium mb-6"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 backdrop-blur-sm border-2 border-primary-200/50 rounded-full text-sm font-medium mb-6"
               animate={{
                 boxShadow: [
-                  '0 0 20px rgba(255,107,157,0.3)',
-                  '0 0 40px rgba(255,107,157,0.5)',
-                  '0 0 20px rgba(255,107,157,0.3)',
+                  '0 0 25px rgba(201,163,71,0.35)',
+                  '0 0 45px rgba(201,163,71,0.55)',
+                  '0 0 25px rgba(201,163,71,0.35)',
                 ],
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <span className="bg-gradient-to-r from-rose-600 to-gold-600 bg-clip-text text-transparent font-semibold">
+              <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent font-semibold">
                 Tratamientos Personalizados
               </span>
             </motion.div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-4 sm:mb-6">
               ¿Qué{' '}
-              <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
+              <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 buscás
               </span>?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl font-light text-neutral-600 max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl font-light text-primary-600 max-w-2xl mx-auto px-4">
               Cada tratamiento está diseñado pensando en vos y en tus necesidades únicas
             </p>
           </motion.div>
@@ -90,37 +90,37 @@ export default function Home() {
               { 
                 name: 'Tratamientos Faciales', 
                 description: 'Renovación y cuidado profundo de tu piel',
-                gradient: 'from-rose-100/30 to-amber-50/20',
+                gradient: 'from-primary-100/30 to-cream-100/20',
                 image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=80'
               },
               { 
                 name: 'Anti-Aging', 
                 description: 'Recuperá la juventud que sentís perdida',
-                gradient: 'from-primary/20 to-rose-100/20',
+                gradient: 'from-primary-100/25 to-primary-200/25',
                 image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80'
               },
               { 
                 name: 'Tratamientos Corporales', 
                 description: 'Moldeá y cuida tu cuerpo con amor',
-                gradient: 'from-amber-100/30 to-primary/10',
+                gradient: 'from-primary-100/30 to-primary-200/20',
                 image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=80'
               },
               { 
                 name: 'Depilación Láser', 
                 description: 'Libertad y suavidad duradera',
-                gradient: 'from-rose-50/40 to-amber-50/30',
+                gradient: 'from-cream-100/40 to-primary-100/30',
                 image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80'
               },
               { 
                 name: 'Tratamientos Capilares', 
                 description: 'Cabello saludable y brillante',
-                gradient: 'from-primary/15 to-rose-100/25',
+                gradient: 'from-primary-100/20 to-primary-200/30',
                 image: 'https://images.unsplash.com/photo-1560869713-7d5633c5db33?auto=format&fit=crop&w=900&q=80'
               },
               { 
                 name: 'Consultas Personalizadas', 
                 description: 'Encontrá el tratamiento perfecto para vos',
-                gradient: 'from-amber-100/20 to-primary/15',
+                gradient: 'from-cream-100/25 to-primary-100/20',
                 image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80'
               },
             ].map((category, index) => (
@@ -137,7 +137,7 @@ export default function Home() {
                 >
                   <Link
                     href={`/tratamientos?categoria=${category.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="group block h-full p-8 bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-rose-200/50 hover:border-rose-400 hover:shadow-2xl transition-all relative overflow-hidden"
+                  className="group block h-full p-8 bg-cream-100/80 backdrop-blur-sm rounded-2xl border-2 border-primary-200/60 hover:border-primary-400 hover:shadow-2xl transition-all relative overflow-hidden"
                   >
                     <div className="relative h-48 rounded-2xl overflow-hidden mb-6">
                       <Image
@@ -147,10 +147,10 @@ export default function Home() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/50 via-neutral-900/10 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary-900/45 via-primary-900/15 to-transparent" />
                     </div>
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-rose-400/10 via-gold-400/10 to-accent-400/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-primary-300/20 to-primary-400/20 opacity-0 group-hover:opacity-100 transition-opacity"
                       animate={{
                         backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
                       }}
@@ -161,23 +161,23 @@ export default function Home() {
                       whileHover={{ scale: 1.2, rotate: 5 }}
                       animate={{
                         boxShadow: [
-                          '0 0 20px rgba(255,107,157,0.3)',
-                          '0 0 40px rgba(255,107,157,0.6)',
-                          '0 0 20px rgba(255,107,157,0.3)',
+                          '0 0 20px rgba(201,163,71,0.35)',
+                          '0 0 40px rgba(201,163,71,0.55)',
+                          '0 0 20px rgba(201,163,71,0.35)',
                         ],
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      <div className="w-8 h-8 bg-white/50 rounded-lg backdrop-blur-sm" />
+                      <div className="w-8 h-8 bg-cream-100/50 rounded-lg backdrop-blur-sm" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-neutral-900 mb-3 relative z-10 group-hover:bg-gradient-to-r group-hover:from-rose-600 group-hover:to-gold-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                    <h3 className="text-xl font-bold text-primary-900 mb-3 relative z-10 group-hover:bg-gradient-to-r group-hover:from-primary-400 group-hover:to-primary-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
                       {category.name}
                     </h3>
-                    <p className="text-neutral-700 font-medium leading-relaxed relative z-10">
+                    <p className="text-primary-700 font-medium leading-relaxed relative z-10">
                       {category.description}
                     </p>
                     <motion.div
-                      className="mt-6 text-rose-600 text-sm font-bold relative z-10"
+                      className="mt-6 text-primary-600 text-sm font-bold relative z-10"
                       initial={{ opacity: 0, x: -10 }}
                       whileHover={{ opacity: 1, x: 0 }}
                     >
@@ -192,10 +192,10 @@ export default function Home() {
       </section>
 
       {/* Sección: Tratamientos Destacados - Premium */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-100/40 to-gold-50/40 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
-            className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-rose-400/30 via-gold-400/20 to-accent-400/20 rounded-full blur-3xl"
+            className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-primary-200/30 via-primary-300/25 to-primary-400/25 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.4, 1],
               opacity: [0.4, 0.7, 0.4],
@@ -204,7 +204,7 @@ export default function Home() {
             transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
           />
           <motion.div
-            className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-gradient-to-r from-accent-400/20 to-rose-400/20 rounded-full blur-3xl"
+            className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-gradient-to-r from-primary-200/25 via-primary-300/25 to-primary-400/25 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -222,7 +222,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <motion.div
-              className="inline-block px-6 py-3 bg-gradient-to-r from-gold-400/30 to-rose-400/30 backdrop-blur-sm border-2 border-gold-400/40 rounded-full text-sm font-bold mb-6"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 backdrop-blur-sm border-2 border-primary-200/50 rounded-full text-sm font-bold mb-6"
               animate={{
                 boxShadow: [
                   '0 0 30px rgba(255,215,0,0.4)',
@@ -232,17 +232,17 @@ export default function Home() {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <span className="bg-gradient-to-r from-gold-600 to-rose-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent">
                 Los Más Elegidos
               </span>
             </motion.div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-4 sm:mb-6">
               Tratamientos{' '}
-              <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
+              <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 destacados
               </span>
             </h2>
-            <p className="text-xl font-light text-neutral-600">
+            <p className="text-xl font-light text-primary-600">
               Los tratamientos que más transforman vidas
             </p>
           </motion.div>
@@ -301,7 +301,7 @@ export default function Home() {
               >
                 <Link
                   href={`/tratamientos/${tratamiento.nombre.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="group block h-full bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-neutral-100"
+                  className="group block h-full bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-primary-100"
                 >
                   <div className="relative h-64 overflow-hidden">
                     <Image
@@ -310,7 +310,7 @@ export default function Home() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-900/60 via-primary-900/15 to-transparent" />
                     {tratamiento.popular && (
                       <div className="absolute top-4 right-4 px-3 py-1 bg-primary text-white rounded-full text-xs font-light">
                         Más Popular
@@ -318,16 +318,16 @@ export default function Home() {
                     )}
                   </div>
                   <div className="p-8">
-                    <h3 className="text-2xl font-light text-neutral-900 mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-light text-primary-900 mb-3 group-hover:text-primary transition-colors">
                       {tratamiento.nombre}
                     </h3>
-                    <p className="text-neutral-600 mb-6 font-light leading-relaxed">
+                    <p className="text-primary-600 mb-6 font-light leading-relaxed">
                       {tratamiento.descripcion}
                     </p>
-                    <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
+                    <div className="flex items-center justify-between pt-6 border-t border-primary-100">
                       <span className="text-3xl font-light text-primary">
                         ${tratamiento.precio}
-                        <span className="text-lg text-neutral-500"> USD</span>
+                        <span className="text-lg text-primary-500"> USD</span>
                       </span>
                       <span className="text-primary text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity">
                         Ver más →
@@ -347,7 +347,7 @@ export default function Home() {
           >
             <Link
               href="/tratamientos"
-              className="inline-block px-10 py-5 bg-gradient-to-r from-primary via-primary-dark to-primary text-white rounded-full font-light text-lg hover:shadow-xl transition-all"
+              className="inline-block px-10 py-5 bg-gradient-to-r from-primary via-primary-700 to-primary text-white rounded-full font-light text-lg hover:shadow-xl transition-all"
             >
               Ver Todos los Tratamientos
             </Link>
@@ -365,20 +365,20 @@ export default function Home() {
       <footer className="bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
               <h3 className="font-light text-2xl mb-4 text-primary">Rebeca Barreto</h3>
-              <p className="text-neutral-400 text-sm font-light leading-relaxed">
+              <p className="text-primary-400 text-sm font-light leading-relaxed">
                 Tu belleza auténtica, elevada. Transformando vidas desde 2010.
               </p>
             </div>
             <div>
               <h4 className="font-light mb-6">Enlaces</h4>
-              <ul className="space-y-3 text-sm text-neutral-400 font-light">
+              <ul className="space-y-3 text-sm text-primary-400 font-light">
                 <li>
                   <Link href="/tratamientos" className="hover:text-primary transition-colors">
                     Tratamientos
@@ -403,7 +403,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-light mb-6">Contacto</h4>
-              <ul className="space-y-3 text-sm text-neutral-400 font-light">
+              <ul className="space-y-3 text-sm text-primary-400 font-light">
                 <li>Ciudad del Este, Paraguay</li>
                 <li>+595 987 123 456</li>
                 <li>info@rebecabarreto.com</li>
@@ -411,7 +411,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-light mb-6">Seguinos</h4>
-              <ul className="space-y-3 text-sm text-neutral-400 font-light">
+              <ul className="space-y-3 text-sm text-primary-400 font-light">
                 <li>
                   <Link href="#" className="hover:text-primary transition-colors">
                     Instagram
@@ -430,7 +430,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-neutral-700 pt-8 text-center text-sm text-neutral-500 font-light">
+          <div className="border-t border-primary-700 pt-8 text-center text-sm text-primary-500 font-light">
             <p>© 2025 Rebeca Barreto Estética y Belleza. Todos los derechos reservados.</p>
           </div>
         </div>
@@ -439,3 +439,8 @@ export default function Home() {
     </main>
   )
 }
+
+
+
+
+

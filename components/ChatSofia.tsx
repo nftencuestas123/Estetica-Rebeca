@@ -162,7 +162,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
       <div className="flex flex-col h-full">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.length === 0 && (
-            <div className="text-center text-neutral-600 py-8">
+            <div className="text-center text-primary-600 py-8">
               <MessageCircle className="w-12 h-12 mx-auto mb-4 text-primary" />
               <p className="text-lg font-medium mb-2">Hola, soy Sofía</p>
               <p className="text-sm">Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?</p>
@@ -181,7 +181,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
                   'max-w-[80%] rounded-lg px-4 py-2',
                   message.role === 'user'
                     ? 'bg-primary text-white'
-                    : 'bg-neutral-200 text-neutral-800'
+                    : 'bg-cream-200 text-primary-800'
                 )}
               >
                 <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -196,7 +196,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
           ))}
           {loading && (
             <div className="flex justify-start">
-              <div className="bg-neutral-200 rounded-lg px-4 py-2">
+              <div className="bg-cream-200 rounded-lg px-4 py-2">
                 <Loader2 className="w-4 h-4 animate-spin" />
               </div>
             </div>
@@ -212,13 +212,13 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Escribí tu mensaje..."
-              className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="flex-1 px-4 py-2 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               disabled={loading}
             />
             <button
               onClick={handleSend}
               disabled={loading || !input.trim()}
-              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -238,7 +238,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-primary text-white rounded-full shadow-lg hover:bg-primary-dark transition-all flex items-center justify-center z-50"
+          className="fixed bottom-6 right-6 w-16 h-16 bg-primary text-white rounded-full shadow-lg hover:bg-primary-700 transition-all flex items-center justify-center z-50"
           aria-label="Abrir chat con Sofía"
         >
           <MessageCircle className="w-8 h-8" />
@@ -247,11 +247,11 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
 
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col z-50 border border-neutral-200">
+        <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-cream-50 rounded-lg shadow-2xl flex flex-col z-50 border border-primary-200">
           {/* Header */}
           <div className="bg-primary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-cream-100/20 rounded-full flex items-center justify-center">
                 <MessageCircle className="w-6 h-6" />
               </div>
               <div>
@@ -261,7 +261,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-full p-1 transition-colors"
+              className="hover:bg-cream-100/20 rounded-full p-1 transition-colors"
               aria-label="Cerrar chat"
             >
               <X className="w-5 h-5" />
@@ -269,9 +269,9 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-neutral-50">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-cream-50">
             {messages.length === 0 && (
-              <div className="text-center text-neutral-600 py-8">
+              <div className="text-center text-primary-600 py-8">
                 <p className="text-lg font-medium mb-2">Hola, soy Sofía</p>
                 <p className="text-sm">Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?</p>
               </div>
@@ -289,7 +289,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
                     'max-w-[80%] rounded-lg px-4 py-2',
                     message.role === 'user'
                       ? 'bg-primary text-white'
-                      : 'bg-white text-neutral-800 border border-neutral-200'
+                      : 'bg-cream-50 text-primary-800 border border-primary-200'
                   )}
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -304,7 +304,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-white border border-neutral-200 rounded-lg px-4 py-2">
+                <div className="bg-cream-50 border border-primary-200 rounded-lg px-4 py-2">
                   <Loader2 className="w-4 h-4 animate-spin text-primary" />
                 </div>
               </div>
@@ -313,7 +313,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
           </div>
 
           {/* Input */}
-          <div className="border-t p-4 bg-white rounded-b-lg">
+          <div className="border-t p-4 bg-cream-50 rounded-b-lg">
             <div className="flex gap-2">
               <input
                 ref={inputRef}
@@ -322,13 +322,13 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Escribí tu mensaje..."
-                className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                className="flex-1 px-4 py-2 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                 disabled={loading}
               />
               <button
                 onClick={handleSend}
                 disabled={loading || !input.trim()}
-                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -343,4 +343,10 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
     </>
   )
 }
+
+
+
+
+
+
 

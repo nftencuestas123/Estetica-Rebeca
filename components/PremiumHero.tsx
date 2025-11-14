@@ -41,16 +41,16 @@ export default function PremiumHero() {
   }, [controls, isMobile])
 
   return (
-    <section className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200">
       {/* Background animado con gradiente dinámico */}
       <motion.div
         className="absolute inset-0"
         animate={{
           background: [
-            'linear-gradient(135deg, #FF6B9D 0%, #FFD700 50%, #C77DFF 100%)',
-            'linear-gradient(225deg, #C77DFF 0%, #FF6B9D 50%, #FFD700 100%)',
-            'linear-gradient(315deg, #FFD700 0%, #C77DFF 50%, #FF6B9D 100%)',
-            'linear-gradient(135deg, #FF6B9D 0%, #FFD700 50%, #C77DFF 100%)',
+            'linear-gradient(135deg, #FFF4DB 0%, #F1D6A1 40%, #C9A347 100%)',
+            'linear-gradient(225deg, #FFF8ED 0%, #F1D6A1 50%, #B68633 100%)',
+            'linear-gradient(315deg, #FFF1D1 0%, #E4C17D 50%, #A7712A 100%)',
+            'linear-gradient(135deg, #FFF4DB 0%, #F1D6A1 40%, #C9A347 100%)',
           ],
         }}
         transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
@@ -83,9 +83,15 @@ export default function PremiumHero() {
               ease: 'easeInOut',
             } : {}}
           >
-            <div className={`w-full h-full rounded-full ${
-              i % 3 === 0 ? 'bg-rose-400' : i % 3 === 1 ? 'bg-gold-400' : 'bg-accent-400'
-            } ${!isMobile ? 'blur-sm' : ''}`} />
+            <div
+              className={`w-full h-full rounded-full ${
+                i % 3 === 0
+                  ? 'bg-primary-300'
+                  : i % 3 === 1
+                  ? 'bg-primary-400'
+                  : 'bg-primary-500'
+              } ${!isMobile ? 'blur-sm' : ''}`}
+            />
           </motion.div>
         ))}
       </div>
@@ -97,10 +103,10 @@ export default function PremiumHero() {
             className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
             animate={{
               background: [
-                'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
-                'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
-                'radial-gradient(circle, rgba(199,125,255,0.4) 0%, transparent 70%)',
-                'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(232,195,120,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(201,163,71,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(167,129,57,0.35) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(232,195,120,0.4) 0%, transparent 70%)',
               ],
               x: [0, 100, -50, 0],
               y: [0, -100, 50, 0],
@@ -112,10 +118,10 @@ export default function PremiumHero() {
             className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl"
             animate={{
               background: [
-                'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
-                'radial-gradient(circle, rgba(199,125,255,0.4) 0%, transparent 70%)',
-                'radial-gradient(circle, rgba(255,107,157,0.4) 0%, transparent 70%)',
-                'radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,236,199,0.45) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(244,208,137,0.4) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(223,179,93,0.35) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,236,199,0.45) 0%, transparent 70%)',
               ],
               x: [0, -80, 60, 0],
               y: [0, 80, -40, 0],
@@ -134,17 +140,17 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 md:backdrop-blur-md border-2 border-rose-400/50 rounded-full mb-6 sm:mb-8 shadow-lg text-xs sm:text-sm"
+            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-cream-100/40 md:backdrop-blur-md border-2 border-primary-200/60 rounded-full mb-6 sm:mb-8 shadow-lg text-xs sm:text-sm"
           >
             <motion.div
-              className="w-3 h-3 bg-rose-500 rounded-full"
+              className="w-3 h-3 bg-primary-500 rounded-full"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [1, 0.7, 1],
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="text-sm font-medium text-rose-600 uppercase tracking-wider">
+            <span className="text-sm font-medium text-primary-700 uppercase tracking-wider">
               Beauty • Innovation • Premium
             </span>
           </motion.div>
@@ -154,9 +160,9 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, type: 'spring' }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-neutral-900 mb-6 sm:mb-8 leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-900 mb-6 sm:mb-8 leading-[1.1] tracking-tight"
             style={{
-              textShadow: '0 0 30px rgba(255,107,157,0.3)',
+              textShadow: '0 0 30px rgba(201,163,71,0.25)',
             }}
           >
             <motion.span
@@ -177,12 +183,12 @@ export default function PremiumHero() {
               } : {}}
               transition={!isMobile ? { type: 'spring', stiffness: 50 } : {}}
             >
-              <span className="font-bold bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
+              <span className="font-bold bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 invisible
               </span>
               {!isMobile && (
                 <motion.span
-                  className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 rounded-full"
+                  className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-primary-300 via-primary-500 to-primary-600 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 1, delay: 1, type: 'spring' }}
@@ -206,16 +212,16 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-neutral-800 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-primary-800 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
           >
             No estás sola. Miles de mujeres como vos recuperaron su{' '}
             <motion.span
-              className="font-bold text-rose-600"
+              className="font-bold text-primary-600"
               animate={{
                 textShadow: [
-                  '0 0 10px rgba(255,107,157,0.5)',
-                  '0 0 20px rgba(255,107,157,0.8)',
-                  '0 0 10px rgba(255,107,157,0.5)',
+                  '0 0 10px rgba(201,163,71,0.4)',
+                  '0 0 20px rgba(201,163,71,0.7)',
+                  '0 0 10px rgba(201,163,71,0.4)',
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -224,12 +230,12 @@ export default function PremiumHero() {
             </motion.span>{' '}
             y{' '}
             <motion.span
-              className="font-bold text-gold-600"
+              className="font-bold text-primary-500"
               animate={{
                 textShadow: [
-                  '0 0 10px rgba(255,215,0,0.5)',
-                  '0 0 20px rgba(255,215,0,0.8)',
-                  '0 0 10px rgba(255,215,0,0.5)',
+                  '0 0 10px rgba(255,215,109,0.5)',
+                  '0 0 20px rgba(223,179,93,0.8)',
+                  '0 0 10px rgba(255,215,109,0.5)',
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
@@ -238,7 +244,7 @@ export default function PremiumHero() {
             </motion.span>{' '}
             con nosotros.
             <br />
-            <span className="text-lg mt-4 block text-neutral-700 font-medium">
+            <span className="text-lg mt-4 block text-primary-700 font-medium">
               Tu transformación empieza acá.
             </span>
           </motion.p>
@@ -256,10 +262,10 @@ export default function PremiumHero() {
             >
               <Link
                 href="/tratamientos"
-                className="group relative px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 text-white rounded-full font-semibold text-base sm:text-lg tracking-wide overflow-hidden shadow-2xl w-full sm:w-auto min-h-[48px] flex items-center justify-center"
+                className="group relative px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white rounded-full font-semibold text-base sm:text-lg tracking-wide overflow-hidden shadow-2xl w-full sm:w-auto min-h-[48px] flex items-center justify-center"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-gold-400 via-rose-500 to-accent-400"
+                  className="absolute inset-0 bg-gradient-to-r from-primary-300 via-primary-500 to-primary-600"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -282,7 +288,7 @@ export default function PremiumHero() {
             >
               <Link
                 href="/contacto"
-                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-white/90 md:backdrop-blur-sm text-rose-600 rounded-full font-semibold text-base sm:text-lg border-2 border-rose-400 hover:border-rose-500 hover:bg-white transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
+                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-cream-100/90 md:backdrop-blur-sm text-primary-700 rounded-full font-semibold text-base sm:text-lg border-2 border-primary-300/70 hover:border-primary-400 hover:bg-cream-50 transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
               >
                 Hablá con nosotras
               </Link>
@@ -307,13 +313,15 @@ export default function PremiumHero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.9 + index * 0.1, type: 'spring' }}
                 whileHover={{ scale: 1.1, y: -5 }}
-                className="text-center p-6 rounded-2xl bg-white/30 md:backdrop-blur-sm border border-rose-200/30 hover:border-rose-400/50 transition-all cursor-pointer"
+                className="text-center p-6 rounded-2xl bg-cream-100/40 md:backdrop-blur-sm border border-primary-200/40 hover:border-primary-400/60 transition-all cursor-pointer"
               >
                 <motion.div
                   className={`text-5xl font-bold mb-2 bg-gradient-to-r ${
-                    stat.color === 'rose' ? 'from-rose-500 to-rose-600' :
-                    stat.color === 'gold' ? 'from-gold-400 to-gold-500' :
-                    'from-accent-400 to-accent-500'
+                    stat.color === 'rose'
+                      ? 'from-primary-400 to-primary-500'
+                      : stat.color === 'gold'
+                      ? 'from-primary-500 to-primary-600'
+                      : 'from-primary-300 to-primary-500'
                   } bg-clip-text text-transparent`}
                   animate={{
                     scale: [1, 1.05, 1],
@@ -322,8 +330,8 @@ export default function PremiumHero() {
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-neutral-800 font-medium mb-1">{stat.label}</div>
-                <div className="text-sm text-neutral-600">{stat.sublabel}</div>
+                <div className="text-primary-800 font-medium mb-1">{stat.label}</div>
+                <div className="text-sm text-primary-600">{stat.sublabel}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -336,9 +344,9 @@ export default function PremiumHero() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-rose-400 rounded-full flex justify-center shadow-lg">
+        <div className="w-6 h-10 border-2 border-primary-300 rounded-full flex justify-center shadow-lg bg-cream-50/60 backdrop-blur">
           <motion.div
-            className="w-1 h-3 bg-gradient-to-b from-rose-500 to-gold-400 rounded-full mt-2"
+            className="w-1 h-3 bg-gradient-to-b from-primary-400 to-primary-600 rounded-full mt-2"
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
@@ -347,3 +355,6 @@ export default function PremiumHero() {
     </section>
   )
 }
+
+
+

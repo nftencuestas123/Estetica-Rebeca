@@ -46,7 +46,7 @@ export default function StorytellingSection() {
   const [activeStory, setActiveStory] = useState<number | null>(null)
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-neutral-50 via-white to-rose-50/30 relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         <motion.div
@@ -66,14 +66,14 @@ export default function StorytellingSection() {
           viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-primary-700 rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
             Historias Reales
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-neutral-900 mb-4 sm:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-primary-900 mb-4 sm:mb-6 px-4">
             Transformaciones que{' '}
             <span className="font-normal text-primary">cambian vidas</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl font-light text-neutral-600 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl font-light text-primary-600 max-w-2xl mx-auto px-4">
             Cada historia es única. Cada transformación es personal. Conocé las experiencias reales de mujeres que recuperaron su confianza.
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export default function StorytellingSection() {
               transition={{ delay: index * 0.2 }}
               className="relative"
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-neutral-100">
+              <div className="bg-cream-50 rounded-2xl shadow-lg overflow-hidden border border-primary-100/60">
                 {story.image && (
                   <div className="relative h-56 overflow-hidden">
                     <Image
@@ -97,18 +97,18 @@ export default function StorytellingSection() {
                       fill
                       className="object-cover transition-transform duration-700 hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/70 via-neutral-900/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/20 to-transparent" />
                   </div>
                 )}
                 {/* Header de la historia */}
-                <div className="p-8 bg-gradient-to-br from-primary/5 via-rose-50/30 to-transparent">
+                <div className="p-8 bg-gradient-to-br from-primary-100/40 via-primary-200/40 to-transparent">
                   <div className="text-sm text-primary font-light mb-2">
                     Historia #{story.id}
                   </div>
-                  <h3 className="text-2xl font-light text-neutral-900 mb-2">
+                  <h3 className="text-2xl font-light text-primary-900 mb-2">
                     {story.title}
                   </h3>
-                  <p className="text-neutral-600 font-light">{story.subtitle}</p>
+                  <p className="text-primary-600 font-light">{story.subtitle}</p>
                 </div>
 
                 {/* Contenido expandible */}
@@ -128,7 +128,7 @@ export default function StorytellingSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: pIndex * 0.1 }}
-                            className="text-neutral-700 leading-relaxed font-light"
+                            className="text-primary-700 leading-relaxed font-light"
                           >
                             {paragraph}
                           </motion.p>
@@ -137,7 +137,7 @@ export default function StorytellingSection() {
                     </motion.div>
                   ) : (
                     <div className="p-8">
-                      <p className="text-neutral-600 font-light mb-6 line-clamp-3">
+                      <p className="text-primary-600 font-light mb-6 line-clamp-3">
                         {story.content[0]}
                       </p>
                     </div>
@@ -148,7 +148,7 @@ export default function StorytellingSection() {
                 <div className="p-8 pt-0">
                   <button
                     onClick={() => setActiveStory(activeStory === story.id ? null : story.id)}
-                    className="w-full px-6 py-4 bg-gradient-to-r from-primary/10 to-rose-100/30 hover:from-primary/20 hover:to-rose-200/40 text-primary rounded-full font-light transition-all border border-primary/20"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-primary-100/40 to-primary-200/60 hover:from-primary-200/50 hover:to-primary-300/60 text-primary-800 rounded-full font-light transition-all border border-primary-200/50"
                   >
                     {activeStory === story.id ? 'Ocultar historia completa' : 'Leer historia completa'}
                   </button>
@@ -161,4 +161,6 @@ export default function StorytellingSection() {
     </section>
   )
 }
+
+
 

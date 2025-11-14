@@ -32,7 +32,7 @@ export default function PreLaunchSection() {
   }
 
   return (
-    <section className="relative py-20 sm:py-28 md:py-36 bg-gradient-to-br from-rose-500 via-rose-600 to-gold-500 overflow-hidden">
+    <section className="relative py-20 sm:py-28 md:py-36 bg-gradient-to-br from-cream-50 via-cream-100 to-cream-200 overflow-hidden">
       {/* Background animado espectacular - Reducido en móvil */}
       <div className="absolute inset-0">
         {!isMobile && (
@@ -54,7 +54,7 @@ export default function PreLaunchSection() {
         {[...Array(isMobile ? 5 : 20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white/30 rounded-full"
+            className="absolute w-2 h-2 bg-cream-100/30 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -81,17 +81,17 @@ export default function PreLaunchSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className={`inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/20 ${!isMobile ? 'backdrop-blur-md' : ''} border-2 border-white/40 rounded-full mb-6 sm:mb-8`}
+            className={`inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-cream-100/20 ${!isMobile ? 'backdrop-blur-md' : ''} border-2 border-white/40 rounded-full mb-6 sm:mb-8`}
           >
             <motion.div
-              className="w-2 h-2 bg-white rounded-full"
+              className="w-2 h-2 bg-cream-50 rounded-full"
               animate={!isMobile ? {
                 scale: [1, 1.3, 1],
                 opacity: [1, 0.7, 1],
               } : {}}
               transition={!isMobile ? { duration: 2, repeat: Infinity } : {}}
             />
-            <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-wider">
+            <span className="text-primary-700 text-xs sm:text-sm font-bold uppercase tracking-wider">
               Próximamente
             </span>
           </motion.div>
@@ -102,10 +102,10 @@ export default function PreLaunchSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-900 mb-4 sm:mb-6 leading-tight"
           >
             La Revolución de la{' '}
-            <span className="bg-gradient-to-r from-gold-200 via-white to-gold-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent">
               Estética
             </span>
             <br />
@@ -118,7 +118,7 @@ export default function PreLaunchSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 sm:mb-12 px-4"
+            className="text-lg sm:text-xl md:text-2xl text-primary-700 max-w-3xl mx-auto mb-8 sm:mb-12 px-4"
           >
             Próximamente: La aplicación móvil más avanzada de estética y belleza en Ciudad del Este.
             <br className="hidden sm:block" />
@@ -137,12 +137,12 @@ export default function PreLaunchSection() {
           {/* Logo iOS */}
           <motion.div
               whileHover={!isMobile ? { scale: 1.1, y: -10 } : {}}
-              className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-4 sm:p-6 border-2 border-white/30 shadow-2xl`}
+              className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-cream-100/60 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-4 sm:p-6 border-2 border-primary-200/60 shadow-2xl`}
           >
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Placeholder para logo iOS - Reemplazar con imagen real */}
-              <div className="w-full h-full bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center">
-                <Smartphone className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-white" />
+              <div className="w-full h-full bg-gradient-to-br from-primary-100/80 to-primary-200/50 rounded-2xl flex items-center justify-center">
+                <Smartphone className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-primary-600" />
               </div>
               {/* Descomentar cuando tengas el logo real:
               <Image
@@ -154,20 +154,20 @@ export default function PreLaunchSection() {
               />
               */}
             </div>
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-              <span className="text-xs sm:text-sm font-bold text-rose-600">iOS</span>
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-cream-50/90 backdrop-blur-sm px-3 py-1 rounded-full border border-primary-200/60">
+              <span className="text-xs sm:text-sm font-bold text-primary-700">iOS</span>
             </div>
           </motion.div>
 
           {/* Logo Android */}
           <motion.div
               whileHover={!isMobile ? { scale: 1.1, y: -10 } : {}}
-              className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-4 sm:p-6 border-2 border-white/30 shadow-2xl`}
+              className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-cream-100/60 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-4 sm:p-6 border-2 border-primary-200/60 shadow-2xl`}
           >
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Placeholder para logo Android - Reemplazar con imagen real */}
-              <div className="w-full h-full bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center">
-                <Smartphone className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-white" />
+              <div className="w-full h-full bg-gradient-to-br from-primary-100/80 to-primary-200/50 rounded-2xl flex items-center justify-center">
+                <Smartphone className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-primary-600" />
               </div>
               {/* Descomentar cuando tengas el logo real:
               <Image
@@ -179,8 +179,8 @@ export default function PreLaunchSection() {
               />
               */}
             </div>
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-              <span className="text-xs sm:text-sm font-bold text-rose-600">Android</span>
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-cream-50/90 backdrop-blur-sm px-3 py-1 rounded-full border border-primary-200/60">
+              <span className="text-xs sm:text-sm font-bold text-primary-700">Android</span>
             </div>
           </motion.div>
         </motion.div>
@@ -222,15 +222,15 @@ export default function PreLaunchSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.6 + index * 0.1 }}
               whileHover={!isMobile ? { scale: 1.05, y: -5 } : {}}
-              className={`bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-2xl p-4 sm:p-6 border border-white/20 text-center`}
+              className={`bg-cream-100/70 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-2xl p-4 sm:p-6 border border-primary-200/60 text-center`}
             >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
-                <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-primary-100/80 rounded-full flex items-center justify-center">
+                <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white mb-2">
+              <h3 className="text-base sm:text-lg font-bold text-primary-800 mb-2">
                 {feature.title}
               </h3>
-              <p className="text-xs sm:text-sm text-white/80">
+              <p className="text-xs sm:text-sm text-primary-700">
                 {feature.description}
               </p>
             </motion.div>
@@ -245,11 +245,11 @@ export default function PreLaunchSection() {
           transition={{ delay: 0.7 }}
           className="max-w-2xl mx-auto"
         >
-          <div className={`bg-white/10 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-white/30 shadow-2xl`}>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-4 sm:mb-6">
+          <div className={`bg-cream-100/70 ${!isMobile ? 'backdrop-blur-md' : ''} rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-primary-200/60 shadow-2xl`}>
+            <h3 className="text-2xl sm:text-3xl font-bold text-primary-900 text-center mb-4 sm:mb-6">
               Sé la primera en enterarte
             </h3>
-            <p className="text-sm sm:text-base text-white/90 text-center mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-primary-700 text-center mb-6 sm:mb-8">
               Dejá tu email y te notificaremos cuando la app esté disponible
             </p>
             
@@ -259,14 +259,14 @@ export default function PreLaunchSection() {
                 animate={{ scale: 1, opacity: 1 }}
                 className="text-center py-4"
               >
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 rounded-full">
+                <div className="inline-flex items-center gap-2 px-6 py-3 bg-cream-50/90 border border-primary-200/60 rounded-full">
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                   >
                     ✓
                   </motion.div>
-                  <span className="text-white font-semibold">¡Gracias! Te notificaremos pronto</span>
+                  <span className="text-primary-700 font-semibold">¡Gracias! Te notificaremos pronto</span>
                 </div>
               </motion.div>
             ) : (
@@ -277,13 +277,13 @@ export default function PreLaunchSection() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu@email.com"
                   required
-                  className={`flex-1 px-5 sm:px-6 py-3 sm:py-4 bg-white/90 ${!isMobile ? 'backdrop-blur-sm' : ''} border-2 border-white/50 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent text-base sm:text-lg text-neutral-900 placeholder-neutral-500 min-h-[48px]`}
+                  className={`flex-1 px-5 sm:px-6 py-3 sm:py-4 bg-cream-50 ${!isMobile ? 'backdrop-blur-sm' : ''} border-2 border-primary-200/70 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-900 placeholder-primary-400 min-h-[48px]`}
                 />
                 <motion.button
                   type="submit"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-gold-400 to-gold-500 text-white rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all min-h-[48px] flex items-center justify-center gap-2"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-white rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all min-h-[48px] flex items-center justify-center gap-2"
                 >
                   <Bell className="w-5 h-5" />
                   <span>Notificarme</span>
@@ -299,14 +299,17 @@ export default function PreLaunchSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
-          className="text-center text-sm sm:text-base text-white/80 mt-8 sm:mt-12 px-4"
+          className="text-center text-sm sm:text-base text-primary-700 mt-8 sm:mt-12 px-4"
         >
           Una experiencia revolucionaria que transformará la forma en que te conectás con la estética y la belleza.
           <br className="hidden sm:block" />
-          <span className="font-semibold"> Próximamente en App Store y Google Play</span>
+          <span className="font-semibold text-primary-800"> Próximamente en App Store y Google Play</span>
         </motion.p>
       </div>
     </section>
   )
 }
+
+
+
 

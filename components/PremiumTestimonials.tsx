@@ -76,11 +76,11 @@ const testimonials: Testimonial[] = [
 
 export default function PremiumTestimonials() {
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-50/20 to-neutral-50 relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-primary/5 via-rose-100/10 to-transparent rounded-full blur-3xl"
+          className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-primary-100/30 via-primary-200/20 to-transparent rounded-full blur-3xl"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -96,14 +96,14 @@ export default function PremiumTestimonials() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-primary-700 rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
             Testimonios Verificados
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-neutral-900 mb-4 sm:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-primary-900 mb-4 sm:mb-6 px-4">
             Mujeres reales.{' '}
             <span className="font-normal text-primary">Resultados reales.</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl font-light text-neutral-600 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl font-light text-primary-600 max-w-2xl mx-auto px-4">
             Conocé las experiencias de clientas que transformaron no solo su apariencia, sino su vida.
           </p>
         </motion.div>
@@ -116,7 +116,7 @@ export default function PremiumTestimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden border border-neutral-100 hover:shadow-xl transition-all group"
+              className="bg-cream-50 rounded-2xl shadow-lg overflow-hidden border border-primary-100/60 hover:shadow-xl transition-all group"
             >
               {/* Imagen del testimonio */}
               <div className="relative h-64 overflow-hidden">
@@ -129,7 +129,7 @@ export default function PremiumTestimonials() {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/70 via-neutral-900/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/30 to-transparent" />
               </div>
 
               {/* Contenido */}
@@ -142,16 +142,16 @@ export default function PremiumTestimonials() {
                 </div>
 
                 {/* Comentario */}
-                <p className="text-neutral-700 mb-6 leading-relaxed font-light italic">
+                <p className="text-primary-700 mb-6 leading-relaxed font-light italic">
                   "{testimonial.comentario}"
                 </p>
 
                 {/* Info */}
-                <div className="pt-6 border-t border-neutral-100">
-                  <div className="font-light text-neutral-900 mb-1">
+                <div className="pt-6 border-t border-primary-100/60">
+                  <div className="font-light text-primary-900 mb-1">
                     {testimonial.nombre}
                   </div>
-                  <div className="text-sm text-neutral-500 mb-1">
+                  <div className="text-sm text-primary-500 mb-1">
                     {testimonial.edad} años
                   </div>
                   <div className="text-sm text-primary font-light">
@@ -170,12 +170,12 @@ export default function PremiumTestimonials() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-neutral-600 mb-6 font-light">
+          <p className="text-primary-600 mb-6 font-light">
             ¿Lista para tu propia transformación?
           </p>
           <a
             href="/tratamientos"
-            className="inline-block px-10 py-5 bg-gradient-to-r from-primary via-primary-dark to-primary text-white rounded-full font-light text-lg hover:shadow-xl transition-all"
+            className="inline-block px-10 py-5 bg-gradient-to-r from-primary via-primary-700 to-primary text-white rounded-full font-light text-lg hover:shadow-xl transition-all"
           >
             Agendá tu consulta gratuita
           </a>
@@ -184,4 +184,7 @@ export default function PremiumTestimonials() {
     </section>
   )
 }
+
+
+
 

@@ -48,14 +48,14 @@ export default function TratamientosPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-cream-50">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-neutral-900 mb-4">
+          <h1 className="text-4xl font-bold text-primary-900 mb-4">
             Nuestros Tratamientos
           </h1>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-600 max-w-2xl mx-auto">
             Descubrí nuestros tratamientos personalizados diseñados para realzar tu belleza natural
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function TratamientosPage() {
             <Link
               key={tratamiento.slug}
               href={`/tratamientos/${tratamiento.slug}`}
-              className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
+              className="group bg-cream-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
             >
               <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                 <Sparkles className="w-16 h-16 text-primary opacity-50 group-hover:scale-110 transition-transform" />
@@ -75,12 +75,12 @@ export default function TratamientosPage() {
                   <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
                     {tratamiento.categoria}
                   </span>
-                  <span className="text-xs text-neutral-500">{tratamiento.duracion}</span>
+                  <span className="text-xs text-primary-500">{tratamiento.duracion}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-primary transition-colors">
                   {tratamiento.nombre}
                 </h3>
-                <p className="text-neutral-600 mb-4 text-sm">
+                <p className="text-primary-600 mb-4 text-sm">
                   {tratamiento.descripcion}
                 </p>
                 <div className="flex items-center justify-between">
@@ -100,4 +100,7 @@ export default function TratamientosPage() {
     </div>
   )
 }
+
+
+
 

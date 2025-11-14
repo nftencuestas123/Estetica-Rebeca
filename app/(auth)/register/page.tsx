@@ -80,15 +80,15 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-cream-50">
       <Navbar />
       <div className="flex items-center justify-center py-12 sm:py-16 md:py-20 px-4">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+          <div className="bg-cream-50 rounded-lg shadow-lg p-6 sm:p-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-primary-900 mb-2">
               Crear Cuenta
             </h1>
-            <p className="text-sm sm:text-base text-neutral-600 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-primary-600 mb-6 sm:mb-8">
               Registrate para acceder a todos nuestros servicios
             </p>
 
@@ -100,7 +100,7 @@ export default function RegisterPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
-                <label htmlFor="nombre" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="nombre" className="block text-sm font-medium text-primary-700 mb-2">
                   Nombre Completo
                 </label>
                 <input
@@ -110,13 +110,13 @@ export default function RegisterPage() {
                   value={formData.nombre}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="María González"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
                   Email
                 </label>
                 <input
@@ -126,13 +126,13 @@ export default function RegisterPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="tu@email.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="whatsapp" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="whatsapp" className="block text-sm font-medium text-primary-700 mb-2">
                   WhatsApp (opcional)
                 </label>
                 <input
@@ -141,13 +141,13 @@ export default function RegisterPage() {
                   type="tel"
                   value={formData.whatsapp}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="+595 987 123 456"
                 />
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-primary-700 mb-2">
                   Contraseña
                 </label>
                 <input
@@ -158,13 +158,13 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   required
                   minLength={6}
-                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="Mínimo 6 caracteres"
                 />
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-700 mb-2">
                   Confirmar Contraseña
                 </label>
                 <input
@@ -174,7 +174,7 @@ export default function RegisterPage() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 sm:py-3.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
+                  className="w-full px-4 py-3 sm:py-3.5 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base sm:text-lg min-h-[48px]"
                   placeholder="Repetí tu contraseña"
                 />
               </div>
@@ -182,7 +182,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-4 py-3.5 sm:py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-base sm:text-lg"
+                className="w-full px-4 py-3.5 sm:py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-base sm:text-lg"
               >
                 {loading ? (
                   <>
@@ -195,7 +195,7 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-neutral-600">
+            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-primary-600">
               ¿Ya tenés cuenta?{' '}
               <Link href="/login" className="text-primary font-semibold hover:underline min-h-[44px] inline-flex items-center">
                 Iniciá sesión acá
@@ -207,4 +207,9 @@ export default function RegisterPage() {
     </div>
   )
 }
+
+
+
+
+
 

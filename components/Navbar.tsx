@@ -40,14 +40,14 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 md:backdrop-blur-xl shadow-lg border-b border-rose-200/50'
-          : 'bg-white/80 md:backdrop-blur-md border-b border-rose-100/30'
+          ? 'bg-cream-100/95 md:backdrop-blur-xl shadow-lg border-b border-primary-200/60'
+          : 'bg-cream-100/80 md:backdrop-blur-md border-b border-primary-100/40'
       } safe-area-top`}
     >
       {/* Efecto de fondo animado */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-rose-400/10 to-gold-400/10 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-200/20 via-primary-300/20 to-primary-400/20 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -56,7 +56,7 @@ export default function Navbar() {
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute top-0 right-1/4 w-80 h-80 bg-gradient-to-bl from-gold-400/10 to-accent-400/10 rounded-full blur-3xl"
+          className="absolute top-0 right-1/4 w-80 h-80 bg-gradient-to-bl from-primary-200/20 via-primary-300/20 to-primary-400/20 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -79,7 +79,7 @@ export default function Navbar() {
               <div className="relative w-16 h-16">
                 {/* Fondo circular con gradiente animado */}
                 <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-rose-400 via-rose-500 to-gold-400"
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-300 via-primary-500 to-primary-700"
                   animate={{
                     backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
                     rotate: [0, 360],
@@ -187,7 +187,7 @@ export default function Navbar() {
                 
                 {/* Efecto de resplandor al hover */}
                 <motion.div
-                  className="absolute -inset-3 rounded-full bg-gradient-to-r from-rose-400/30 to-gold-400/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute -inset-3 rounded-full bg-gradient-to-r from-primary-300/40 via-primary-400/40 to-primary-500/40 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   animate={{
                     scale: [1, 1.2, 1],
                   }}
@@ -220,7 +220,7 @@ export default function Navbar() {
             {/* Nombre con efecto gradiente */}
             <div className="flex flex-col">
               <motion.span
-                className="font-bold text-lg sm:text-xl md:text-2xl bg-gradient-to-r from-rose-600 via-gold-500 to-rose-600 bg-clip-text text-transparent"
+                className="font-bold text-lg sm:text-xl md:text-2xl bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
@@ -232,7 +232,7 @@ export default function Navbar() {
                 Rebeca Barreto
               </motion.span>
               <motion.span
-                className="hidden sm:block text-xs font-light text-neutral-600"
+                className="hidden sm:block text-xs font-light text-primary-600"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -253,7 +253,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="relative group text-neutral-700 font-medium text-sm"
+                  className="relative group text-primary-700 font-medium text-sm"
                 >
                   <motion.span
                     whileHover={{ y: -2 }}
@@ -263,14 +263,14 @@ export default function Navbar() {
                   </motion.span>
                   {/* Línea animada debajo */}
                   <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-rose-500 to-gold-500"
+                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600"
                     initial={{ width: 0 }}
                     whileHover={{ width: '100%' }}
                     transition={{ duration: 0.3 }}
                   />
                   {/* Efecto de brillo al hover */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-rose-400/20 to-gold-400/20 rounded-lg opacity-0 group-hover:opacity-100 blur-sm"
+                    className="absolute inset-0 bg-gradient-to-r from-primary-300/20 via-primary-400/20 to-primary-500/20 rounded-lg opacity-0 group-hover:opacity-100 blur-sm"
                     transition={{ duration: 0.3 }}
                   />
                 </Link>
@@ -282,15 +282,15 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex items-center gap-4 ml-6 pl-6 border-l border-rose-200/50"
+                className="flex items-center gap-4 ml-6 pl-6 border-l border-primary-200/50"
               >
                 <Link
                   href="/dashboard"
-                  className="flex items-center gap-2 text-neutral-700 hover:text-rose-600 transition-colors group"
+                  className="flex items-center gap-2 text-primary-700 hover:text-primary-500 transition-colors group"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="p-2 rounded-lg bg-rose-50 group-hover:bg-rose-100 transition-colors"
+                    className="p-2 rounded-lg bg-cream-100 group-hover:bg-cream-200 transition-colors"
                   >
                     <User className="w-4 h-4" />
                   </motion.div>
@@ -300,7 +300,7 @@ export default function Navbar() {
                   onClick={handleSignOut}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2 text-neutral-700 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50"
+                  className="flex items-center gap-2 px-4 py-2 text-primary-700 hover:text-primary-500 transition-colors rounded-lg hover:bg-cream-200"
                 >
                   <LogOut className="w-4 h-4" />
                   <span className="font-medium">Salir</span>
@@ -311,18 +311,18 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex items-center gap-3 ml-6 pl-6 border-l border-rose-200/50"
+                className="flex items-center gap-3 ml-6 pl-6 border-l border-primary-200/50"
               >
                 <Link
                   href="/login"
-                  className="text-neutral-700 hover:text-rose-600 transition-colors font-medium"
+                  className="text-primary-700 hover:text-primary-500 transition-colors font-medium"
                 >
                   Iniciar Sesión
                 </Link>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href="/register"
-                  className="px-4 py-2.5 sm:px-5 bg-gradient-to-r from-rose-500 to-gold-500 text-white rounded-full font-semibold hover:shadow-lg transition-all shadow-md text-sm sm:text-base"
+                  className="px-4 py-2.5 sm:px-5 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white rounded-full font-semibold hover:shadow-lg transition-all shadow-md text-sm sm:text-base"
                 >
                   Registrarse
                 </Link>
@@ -334,7 +334,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-neutral-700 relative z-50"
+            className="md:hidden p-2 text-primary-700 relative z-50"
             whileTap={{ scale: 0.9 }}
             aria-label="Toggle menu"
           >
@@ -372,7 +372,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden py-6 border-t border-rose-200/50"
+              className="md:hidden py-6 border-t border-primary-200/50"
             >
               <div className="flex flex-col gap-4">
                 {navLinks.map((link, index) => (
@@ -384,7 +384,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className="text-neutral-700 hover:text-rose-600 transition-colors font-medium py-2"
+                      className="text-primary-700 hover:text-primary-500 transition-colors font-medium py-2"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.label}
@@ -400,7 +400,7 @@ export default function Navbar() {
                     >
                       <Link
                         href="/dashboard"
-                        className="flex items-center gap-2 text-neutral-700 hover:text-rose-600 transition-colors py-2"
+                        className="flex items-center gap-2 text-primary-700 hover:text-primary-500 transition-colors py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <User className="w-5 h-5" />
@@ -415,7 +415,7 @@ export default function Navbar() {
                         handleSignOut()
                         setMobileMenuOpen(false)
                       }}
-                      className="flex items-center gap-2 text-neutral-700 hover:text-red-600 transition-colors text-left py-2"
+                      className="flex items-center gap-2 text-primary-700 hover:text-primary-500 transition-colors text-left py-2"
                     >
                       <LogOut className="w-5 h-5" />
                       <span className="font-medium">Salir</span>
@@ -430,7 +430,7 @@ export default function Navbar() {
                     >
                       <Link
                         href="/login"
-                        className="text-neutral-700 hover:text-rose-600 transition-colors font-medium py-2"
+                        className="text-primary-700 hover:text-primary-500 transition-colors font-medium py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Iniciar Sesión
@@ -443,7 +443,7 @@ export default function Navbar() {
                     >
                       <Link
                         href="/register"
-                        className="block px-4 py-2.5 bg-gradient-to-r from-rose-500 to-gold-500 text-white rounded-full font-semibold text-center shadow-md"
+                        className="block px-4 py-2.5 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white rounded-full font-semibold text-center shadow-md"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Registrarse
@@ -459,3 +459,5 @@ export default function Navbar() {
     </motion.nav>
   )
 }
+
+
