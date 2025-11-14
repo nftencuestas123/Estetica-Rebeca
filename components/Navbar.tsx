@@ -68,75 +68,57 @@ export default function Navbar() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo Premium Profesional */}
+          {/* Logo Elegante y Profesional */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
-              className="relative"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.96 }}
+              className="relative w-14 h-14"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {/* Logo SVG Profesional */}
-              <svg 
-                width="48" 
-                height="48" 
-                viewBox="0 0 100 100" 
-                xmlns="http://www.w3.org/2000/svg"
-                className="drop-shadow-lg"
-              >
-                <defs>
-                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{stopColor: '#D4AF37', stopOpacity: 1}} />
-                    <stop offset="50%" style={{stopColor: '#FFD700', stopOpacity: 1}} />
-                    <stop offset="100%" style={{stopColor: '#C9A347', stopOpacity: 1}} />
-                  </linearGradient>
-                  <filter id="shadow">
-                    <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
-                  </filter>
-                </defs>
-                
-                {/* Marco exterior elegante */}
-                <circle cx="50" cy="50" r="48" fill="url(#goldGradient)" filter="url(#shadow)"/>
-                <circle cx="50" cy="50" r="44" fill="#000000" opacity="0.95"/>
-                
-                {/* Detalles decorativos - Corona superior */}
-                <path d="M 45 15 L 50 10 L 55 15 L 52 18 L 50 16 L 48 18 Z" fill="url(#goldGradient)"/>
-                
-                {/* Letra R artística */}
-                <path 
-                  d="M 30 35 L 30 70 M 30 35 L 42 35 C 48 35 48 42 48 45 C 48 48 48 50 42 50 L 30 50 M 40 50 L 50 70" 
-                  stroke="url(#goldGradient)" 
-                  strokeWidth="3.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  fill="none"
-                />
-                
-                {/* Letra B artística */}
-                <path 
-                  d="M 58 35 L 58 70 M 58 35 L 68 35 C 74 35 74 42 74 45 C 74 48 70 50 68 50 L 58 50 M 58 50 L 68 50 C 74 50 74 63 74 67 C 74 70 70 70 68 70 L 58 70" 
-                  stroke="url(#goldGradient)" 
-                  strokeWidth="3.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  fill="none"
-                />
-                
-                {/* Línea decorativa inferior */}
-                <line x1="25" y1="80" x2="75" y2="80" stroke="url(#goldGradient)" strokeWidth="1" opacity="0.6"/>
-                <circle cx="25" cy="80" r="1.5" fill="url(#goldGradient)"/>
-                <circle cx="75" cy="80" r="1.5" fill="url(#goldGradient)"/>
-                
-                {/* Detalles de brillo */}
-                <circle cx="50" cy="50" r="46" fill="none" stroke="#FFD700" strokeWidth="0.5" opacity="0.3"/>
-              </svg>
+              {/* Círculo exterior dorado con gradiente */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-xl"></div>
+              
+              {/* Círculo interior negro */}
+              <div className="absolute inset-[3px] rounded-full bg-gradient-to-br from-neutral-900 to-black"></div>
+              
+              {/* Letras RB estilizadas */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative">
+                  <span className="text-2xl font-serif font-bold bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent" style={{
+                    fontFamily: 'Georgia, serif',
+                    textShadow: '0 0 20px rgba(251, 191, 36, 0.5)'
+                  }}>
+                    RB
+                  </span>
+                </div>
+              </div>
+              
+              {/* Corona decorativa superior */}
+              <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
+                <div className="text-amber-400 text-xs">♕</div>
+              </div>
+              
+              {/* Brillo animado */}
+              <motion.div
+                className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent"
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              />
+              
+              {/* Resplandor al hover */}
+              <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-amber-400/30 blur-xl"></div>
             </motion.div>
             
-            {/* Texto premium */}
+            {/* Texto elegante */}
             <div className="flex flex-col">
-              <span className="font-semibold text-lg sm:text-xl text-white tracking-wide">
+              <span className="font-bold text-lg sm:text-xl text-white tracking-wide" style={{
+                fontFamily: 'Georgia, serif'
+              }}>
                 Rebeca Barreto
               </span>
-              <span className="hidden sm:block text-xs text-white/80 tracking-widest uppercase" style={{letterSpacing: '0.15em'}}>
+              <span className="hidden sm:block text-[10px] text-white/70 tracking-[0.2em] uppercase font-light">
                 Estética y Belleza
               </span>
             </div>
