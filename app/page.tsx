@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import PremiumHero from '@/components/PremiumHero'
 import PreLaunchSection from '@/components/PreLaunchSection'
@@ -12,6 +13,17 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <main className="relative min-h-screen bg-transparent dynamic-stellar">
       <Navbar />
@@ -29,28 +41,31 @@ export default function Home() {
 
       {/* Sección: ¿Qué buscás? - Premium */}
       <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.4, 0.7, 0.4],
-              x: [0, 50, -30, 0],
-              y: [0, -50, 30, 0],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-l from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.3, 0.6, 0.3],
-              x: [0, -40, 20, 0],
-              y: [0, 40, -20, 0],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </div>
+        {/* Animaciones de fondo deshabilitadas en móvil para mejor performance */}
+        {!isMobile && (
+          <div className="absolute inset-0">
+            <motion.div
+              className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.4, 0.7, 0.4],
+                x: [0, 50, -30, 0],
+                y: [0, -50, 30, 0],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-l from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.3, 0.6, 0.3],
+                x: [0, -40, 20, 0],
+                y: [0, 40, -20, 0],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </div>
+        )}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -61,14 +76,14 @@ export default function Home() {
           >
             <motion.div
               className="inline-block px-6 py-3 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 backdrop-blur-sm border-2 border-primary-200/50 rounded-full text-sm font-medium mb-6"
-              animate={{
+              animate={!isMobile ? {
                 boxShadow: [
                   '0 0 25px rgba(201,163,71,0.35)',
                   '0 0 45px rgba(201,163,71,0.55)',
                   '0 0 25px rgba(201,163,71,0.35)',
                 ],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
+              } : {}}
+              transition={!isMobile ? { duration: 3, repeat: Infinity } : {}}
             >
               <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent font-semibold">
                 Tratamientos Personalizados
@@ -144,6 +159,7 @@ export default function Home() {
                         src={category.image}
                         alt={category.name}
                         fill
+                        loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
@@ -308,6 +324,8 @@ export default function Home() {
                       src={tratamiento.imagen}
                       alt={tratamiento.nombre}
                       fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary-900/60 via-primary-900/15 to-transparent" />
