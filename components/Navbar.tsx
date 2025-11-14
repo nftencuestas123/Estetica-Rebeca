@@ -68,36 +68,75 @@ export default function Navbar() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo Emblemático Minimalista */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+          {/* Logo Premium Profesional */}
+          <Link href="/" className="flex items-center gap-3 group">
             <motion.div
-              className="relative flex items-center gap-2 sm:gap-3"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              className="relative"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.96 }}
             >
-              {/* Icono RB Emblemático */}
-              <div className="relative w-12 h-12 sm:w-14 sm:h-14">
-                {/* Círculo dorado con borde */}
-                <div className="absolute inset-0 rounded-full border-2 border-primary-400 bg-gradient-to-br from-primary-400 to-primary-600 shadow-lg" />
+              {/* Logo SVG Profesional */}
+              <svg 
+                width="48" 
+                height="48" 
+                viewBox="0 0 100 100" 
+                xmlns="http://www.w3.org/2000/svg"
+                className="drop-shadow-lg"
+              >
+                <defs>
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{stopColor: '#D4AF37', stopOpacity: 1}} />
+                    <stop offset="50%" style={{stopColor: '#FFD700', stopOpacity: 1}} />
+                    <stop offset="100%" style={{stopColor: '#C9A347', stopOpacity: 1}} />
+                  </linearGradient>
+                  <filter id="shadow">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+                  </filter>
+                </defs>
                 
-                {/* Letras RB minimalistas */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-white font-bold text-xl sm:text-2xl tracking-tighter">
-                    RB
-                  </span>
-                </div>
+                {/* Marco exterior elegante */}
+                <circle cx="50" cy="50" r="48" fill="url(#goldGradient)" filter="url(#shadow)"/>
+                <circle cx="50" cy="50" r="44" fill="#000000" opacity="0.95"/>
                 
-                {/* Brillo sutil */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/20 via-transparent to-transparent" />
-              </div>
+                {/* Detalles decorativos - Corona superior */}
+                <path d="M 45 15 L 50 10 L 55 15 L 52 18 L 50 16 L 48 18 Z" fill="url(#goldGradient)"/>
+                
+                {/* Letra R artística */}
+                <path 
+                  d="M 30 35 L 30 70 M 30 35 L 42 35 C 48 35 48 42 48 45 C 48 48 48 50 42 50 L 30 50 M 40 50 L 50 70" 
+                  stroke="url(#goldGradient)" 
+                  strokeWidth="3.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+                
+                {/* Letra B artística */}
+                <path 
+                  d="M 58 35 L 58 70 M 58 35 L 68 35 C 74 35 74 42 74 45 C 74 48 70 50 68 50 L 58 50 M 58 50 L 68 50 C 74 50 74 63 74 67 C 74 70 70 70 68 70 L 58 70" 
+                  stroke="url(#goldGradient)" 
+                  strokeWidth="3.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+                
+                {/* Línea decorativa inferior */}
+                <line x1="25" y1="80" x2="75" y2="80" stroke="url(#goldGradient)" strokeWidth="1" opacity="0.6"/>
+                <circle cx="25" cy="80" r="1.5" fill="url(#goldGradient)"/>
+                <circle cx="75" cy="80" r="1.5" fill="url(#goldGradient)"/>
+                
+                {/* Detalles de brillo */}
+                <circle cx="50" cy="50" r="46" fill="none" stroke="#FFD700" strokeWidth="0.5" opacity="0.3"/>
+              </svg>
             </motion.div>
             
-            {/* Texto del logo */}
+            {/* Texto premium */}
             <div className="flex flex-col">
-              <span className="font-bold text-base sm:text-lg md:text-xl text-white">
+              <span className="font-semibold text-lg sm:text-xl text-white tracking-wide">
                 Rebeca Barreto
               </span>
-              <span className="hidden sm:block text-xs font-light text-white opacity-80">
+              <span className="hidden sm:block text-xs text-white/80 tracking-widest uppercase" style={{letterSpacing: '0.15em'}}>
                 Estética y Belleza
               </span>
             </div>
