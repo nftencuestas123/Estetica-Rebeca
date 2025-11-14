@@ -1007,7 +1007,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             )}
 
             {/* Header del chat */}
-            <div className="bg-black p-5 pl-40 border-b-2 border-primary-400/30">
+            <div className="bg-black p-5 pl-40 border-b-2 border-primary-400/30 rounded-t-3xl">
               <div className="flex items-center justify-between">
                 <div>
                   {currentAgent ? (
