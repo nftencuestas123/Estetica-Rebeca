@@ -23,35 +23,38 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Optimizaciones de rendimiento móvil */
+/* OPTIMIZACIÓN AGRESIVA PARA MÓVIL - MÁXIMA VELOCIDAD */
 @media (max-width: 768px) {
-  /* Optimizar scroll - más suave */
+  /* Desactivar TODAS las animaciones en móvil */
   * {
-    -webkit-overflow-scrolling: touch;
-    will-change: auto;
+    animation: none !important;
+    transition: none !important;
   }
   
-  /* Reducir efectos costosos en móvil */
+  /* Eliminar efectos costosos */
   * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    will-change: auto !important;
   }
   
-  /* Optimizar renders con GPU */
-  body {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+  /* Scroll ultra optimizado */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
   
-  /* Reducir animaciones complejas */
-  [class*="animate-"] {
-    animation-duration: 0.3s !important;
-  }
-  
-  /* Optimizar imágenes */
+  /* Imágenes optimizadas */
   img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+  }
+  
+  /* Simplificar renders */
+  body {
+    transform: none;
   }
 }
 

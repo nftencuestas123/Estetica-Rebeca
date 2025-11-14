@@ -88,38 +88,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Bloquear scroll del body cuando está en modo chat en móvil
-  useEffect(() => {
-    if (isChatMode && isMobile && currentAgent) {
-      // Guardar la posición actual del scroll
-      const scrollY = window.scrollY
-      document.body.style.position = 'fixed'
-      document.body.style.top = `-${scrollY}px`
-      document.body.style.width = '100%'
-      document.body.style.overflow = 'hidden'
-      
-      // Mostrar tooltip al entrar en modo chat
-      setShowTooltip(true)
-      const timer = setTimeout(() => setShowTooltip(false), 4000)
-
-      return () => {
-        clearTimeout(timer)
-        // Restaurar scroll cuando se cierra
-        const scrollY = document.body.style.top
-        document.body.style.position = ''
-        document.body.style.top = ''
-        document.body.style.width = ''
-        document.body.style.overflow = ''
-        window.scrollTo(0, parseInt(scrollY || '0') * -1)
-      }
-    } else {
-      // Asegurar que el scroll esté desbloqueado cuando NO está en modo chat
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
-      document.body.style.overflow = ''
-    }
-  }, [isChatMode, isMobile, currentAgent])
+  // REMOVIDO: Sistema de bloqueo de scroll que causaba problemas
+  // El chat ahora funciona de forma más simple sin bloquear el body
 
   // Activar modo chat automáticamente cuando se selecciona un agente en móvil
   useEffect(() => {
@@ -973,13 +943,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         <div className={isChatMode && isMobile ? "" : "max-w-5xl mx-auto relative"}>
           {/* Chat Interface Rectangular con imagen en esquina */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? {} : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? {} : { duration: 0.8 }}
             className={
               isChatMode && isMobile
-                ? "fixed inset-0 z-[9999] bg-black flex flex-col h-screen w-screen overflow-hidden"
+                ? "relative bg-black flex flex-col min-h-screen w-full"
                 : "relative bg-black md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-primary-400 overflow-visible"
             }
           >
