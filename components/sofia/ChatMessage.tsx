@@ -22,7 +22,7 @@ export function ChatMessage({ message, index }: ChatMessageProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-3 sm:mb-4 ${
-        isUser ? 'bg-black rounded-2xl p-3' : ''
+        isUser ? 'bg-black rounded-2xl p-3 border-2 border-primary-400' : ''
       }`}
     >
       <div

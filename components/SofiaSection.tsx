@@ -923,7 +923,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} gap-3 ${
-                    message.role === 'user' ? 'bg-black rounded-2xl p-3' : ''
+                    message.role === 'user' ? 'bg-black rounded-2xl p-3 border-2 border-primary-400' : ''
                   }`}
                 >
                   {message.role === 'assistant' && currentAgent && (
