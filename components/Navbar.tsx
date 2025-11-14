@@ -118,7 +118,7 @@ export default function Navbar() {
               }}>
                 Rebeca Barreto
               </span>
-              <span className="hidden sm:block text-[10px] text-white/70 tracking-[0.2em] uppercase font-light">
+              <span className="text-[9px] sm:text-[10px] text-white/70 tracking-[0.15em] sm:tracking-[0.2em] uppercase font-light">
                 Estética y Belleza
               </span>
             </div>

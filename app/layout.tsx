@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
-  themeColor: '#FF6B9D',
+  themeColor: '#D4AF37',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="es-PY" className={inter.variable}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta name="theme-color" content="#FF6B9D" />
+        <meta name="theme-color" content="#D4AF37" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Rebeca Barreto" />

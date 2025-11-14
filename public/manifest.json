@@ -4,8 +4,8 @@
   "description": "Centro de estética y belleza en Ciudad del Este, Paraguay",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAFAF8",
-  "theme_color": "#FF6B9D",
+  "background_color": "#000000",
+  "theme_color": "#D4AF37",
   "orientation": "portrait-primary",
   "icons": [
     {
