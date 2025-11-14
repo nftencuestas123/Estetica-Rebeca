@@ -943,10 +943,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         <div className={isChatMode && isMobile ? "" : "max-w-5xl mx-auto relative"}>
           {/* Chat Interface Rectangular con imagen en esquina */}
           <motion.div
-            initial={isMobile ? {} : { opacity: 0, y: 30 }}
-            whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={isMobile ? {} : { duration: 0.8 }}
+            transition={{ duration: isMobile ? 0.3 : 0.6 }}
             className={
               isChatMode && isMobile
                 ? "relative bg-black flex flex-col min-h-screen w-full"

@@ -384,23 +384,25 @@ export default function Home() {
       {/* 9. Mapa de Ubicación - ¿Dónde encontrarnos? */}
       <LocationMap />
 
-      {/* 10. Footer Premium */}
-      <footer className="bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900 text-white py-20 relative overflow-hidden">
+      {/* 10. Footer Premium Elegante */}
+      <footer className="bg-gradient-to-b from-black via-neutral-950 to-black text-white py-16 sm:py-20 relative overflow-hidden border-t border-primary-500/20">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary-400/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-primary-500/10 to-transparent rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
-              <h3 className="font-light text-2xl mb-4 text-primary">Rebeca Barreto</h3>
-              <p className="text-white text-sm font-light leading-relaxed">
+              <h3 className="font-semibold text-xl sm:text-2xl mb-4 bg-gradient-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
+                Rebeca Barreto
+              </h3>
+              <p className="text-white/80 text-sm font-light leading-relaxed">
                 Tu belleza auténtica, elevada. Transformando vidas desde 2010.
               </p>
             </div>
             <div>
-              <h4 className="font-light mb-6">Enlaces</h4>
+              <h4 className="font-semibold mb-6 text-primary-400">Enlaces</h4>
               <ul className="space-y-3 text-sm text-white font-light">
                 <li>
                   <Link href="/tratamientos" className="hover:text-primary transition-colors">
@@ -425,15 +427,15 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-light mb-6">Contacto</h4>
-              <ul className="space-y-3 text-sm text-white font-light">
+              <h4 className="font-semibold mb-6 text-primary-400">Contacto</h4>
+              <ul className="space-y-3 text-sm text-white/80 font-light">
                 <li>Ciudad del Este, Paraguay</li>
                 <li>+595 987 123 456</li>
                 <li>info@rebecabarreto.com</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-light mb-6">Seguinos</h4>
+              <h4 className="font-semibold mb-6 text-primary-400">Seguinos</h4>
               <ul className="space-y-3 text-sm text-white font-light">
                 <li>
                   <Link href="#" className="hover:text-primary transition-colors">
@@ -453,7 +455,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-primary-700 pt-8 text-center text-sm text-white font-light">
+          <div className="border-t border-primary-500/30 pt-8 text-center text-sm text-white/60 font-light">
             <p>© 2025 Rebeca Barreto Estética y Belleza. Todos los derechos reservados.</p>
           </div>
         </div>

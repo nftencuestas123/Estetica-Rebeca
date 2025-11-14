@@ -23,23 +23,29 @@ html {
   scroll-behavior: smooth;
 }
 
-/* OPTIMIZACIÓN AGRESIVA PARA MÓVIL - MÁXIMA VELOCIDAD */
+/* OPTIMIZACIÓN EQUILIBRADA PARA MÓVIL - RÁPIDA Y HERMOSA */
 @media (max-width: 768px) {
-  /* Desactivar TODAS las animaciones en móvil */
-  * {
+  /* Desactivar solo animaciones PESADAS */
+  [class*="animate-"][class*="float"],
+  [class*="animate-"][class*="spin"],
+  [class*="animate-"][class*="bounce"] {
     animation: none !important;
-    transition: none !important;
   }
   
-  /* Eliminar efectos costosos */
+  /* Transiciones rápidas pero presentes */
+  * {
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Eliminar solo efectos MUY costosos */
   * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    filter: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
     will-change: auto !important;
   }
+  
+  /* Mantener sombras simples para profundidad */
+  /* box-shadow y text-shadow se permiten */
   
   /* Scroll ultra optimizado */
   * {
@@ -48,13 +54,7 @@ html {
   
   /* Imágenes optimizadas */
   img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-  
-  /* Simplificar renders */
-  body {
-    transform: none;
+    image-rendering: auto;
   }
 }
 
