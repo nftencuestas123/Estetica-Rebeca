@@ -223,8 +223,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         const progress = currentDisplayed.length / fullText.length
         const nextChar = fullText[currentDisplayed.length]
         
-        // Velocidad base variable (40-80ms por carácter)
-        let typingSpeed = 40 + Math.random() * 40
+        // Velocidad base variable (20-40ms por carácter) - 50% más rápido
+        let typingSpeed = 20 + Math.random() * 20
         
         // Ajustar velocidad según progreso
         if (progress < 0.1) typingSpeed *= 1.8 // Más lento al inicio (pensando)
@@ -232,14 +232,14 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         else typingSpeed *= 0.7 // Más rápido en el medio
         
         // Pausas aleatorias ocasionales (como si estuviera pensando)
-        // 5% de probabilidad de pausa larga (300-800ms)
+        // 5% de probabilidad de pausa larga (150-400ms) - 50% más rápido
         if (Math.random() < 0.05 && progress > 0.2 && progress < 0.8) {
-          typingSpeed += 300 + Math.random() * 500
+          typingSpeed += 150 + Math.random() * 250
         }
         
-        // 15% de probabilidad de pausa corta (100-300ms)
+        // 15% de probabilidad de pausa corta (50-150ms) - 50% más rápido
         if (Math.random() < 0.15) {
-          typingSpeed += 100 + Math.random() * 200
+          typingSpeed += 50 + Math.random() * 100
         }
         
         // 8% de probabilidad de escribir un error (solo en letras, no en espacios o puntuación)

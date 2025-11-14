@@ -43,7 +43,7 @@ export const AGENTS: Agent[] = [
   },
 ]
 
-export const TYPING_SPEED = 30 // ms por carácter
+export const TYPING_SPEED = 15 // ms por carácter (50% más rápido)
 export const TYPO_PROBABILITY = 0.03 // 3% de probabilidad de error
 export const CORRECTION_DELAY = 200 // ms antes de corregir
 
