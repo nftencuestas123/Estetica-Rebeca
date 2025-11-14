@@ -13,7 +13,7 @@ export function Logo() {
     <Link href="/" className="flex items-center group">
       <LogoComponent 
         variant="gradient" 
-        size="md" 
+        size="lg" 
         showText={true}
         animated={true}
       />
