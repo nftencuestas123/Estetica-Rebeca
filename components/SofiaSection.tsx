@@ -938,7 +938,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   <div
                     className={`max-w-[85%] sm:max-w-[75%] rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 ${
                       message.role === 'user'
-                        ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white'
+                        ? 'bg-black-90 border-2 border-primary-400/50 text-primary-400'
                         : 'bg-cream-50 border-2 border-rose-200 text-primary-200 shadow-md'
                     }`}
                   >
@@ -960,7 +960,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     {!message.isTyping && (
                       <p
                         className={`text-xs mt-2 ${
-                          message.role === 'user' ? 'text-white/70' : 'text-primary-200'
+                          message.role === 'user' ? 'text-primary-500/70' : 'text-primary-200'
                         }`}
                       >
                         {message.timestamp.toLocaleTimeString('es-PY', {

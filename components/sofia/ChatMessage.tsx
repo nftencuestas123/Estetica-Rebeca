@@ -26,7 +26,7 @@ export function ChatMessage({ message, index }: ChatMessageProps) {
       <div
         className={`max-w-[85%] sm:max-w-[75%] md:max-w-[70%] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-md ${
           isUser
-            ? 'bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-transparent'
+            ? 'bg-black-90 border-2 border-primary-400/50 text-primary-400'
             : 'bg-cream-50 border-2 border-primary-200 text-primary-200 shadow-md'
         }`}
       >
@@ -35,7 +35,7 @@ export function ChatMessage({ message, index }: ChatMessageProps) {
         )}
         <p
           className={`text-sm sm:text-base leading-relaxed ${
-            message.role === 'user' ? 'text-transparent' : 'text-primary-200'
+            message.role === 'user' ? 'text-primary-400 font-medium' : 'text-primary-200'
           }`}
         >
           {message.isTyping ? message.displayedContent : message.content}
@@ -51,7 +51,7 @@ export function ChatMessage({ message, index }: ChatMessageProps) {
         </p>
         <p
           className={`text-xs mt-2 ${
-            message.role === 'user' ? 'text-transparent' : 'text-primary-300'
+            message.role === 'user' ? 'text-primary-500/70' : 'text-primary-300'
           }`}
         >
           {message.timestamp.toLocaleTimeString('es-ES', {
