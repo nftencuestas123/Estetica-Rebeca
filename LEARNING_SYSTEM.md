@@ -10,11 +10,17 @@ Sistema inteligente que permite a Sofía y las agentes aprender continuamente de
 
 El sistema detecta y aprende automáticamente modismos y expresiones locales:
 
-- **"Marcarme"** = Agendar/Anotar una cita (NO llamar por teléfono)
+- **"Marcarme/Marcame"** (del cliente) = Agendar/Anotar una cita (NO llamar por teléfono)
+- **"Te agendo/anoto"** (del agente) = Voy a registrar tu cita (NUNCA "te marco")
 - **"Nomás"** = Solamente, simplemente
 - **"Sos"** = Eres
 - **"Querés"** = Quieres
 - **"Mirá"** = Mira
+
+**⚠️ IMPORTANTE**: 
+- Cliente dice "marcame" → Agente responde "te agendo/anoto"
+- Agente NUNCA dice "te marco la cita" (suena a que va a llamar)
+- Si pide número, es para CONFIRMAR o RECORDAR, no para "marcar"
 
 ### 2. 🔄 Patrones de Conversación
 
@@ -22,7 +28,9 @@ Aprende patrones efectivos de entrada-respuesta:
 
 ```
 Cliente: "Marcame para el viernes a las 3"
-Sofía: "Perfecto! Te marco para el viernes a las 3 de la tarde..."
+Sofía: "Perfecto! Te agendo para el viernes a las 3 de la tarde. ¿Me pasás tu número?"
+Cliente: "Juan Pérez, 0981-123456"
+Sofía: "Perfecto Juan! Ya te anoté. Te voy a llamar ese día para recordarte."
 ```
 
 ### 3. 📊 Feedback Continuo
@@ -210,22 +218,35 @@ Sofía (antes): "Entiendo que querés agendar, pero no puedo hacer llamadas..."
 
 ❌ Sofía interpretó "marcarme" como "llamarme por teléfono"
 
+### Problema Secundario Detectado
+
+Cliente: "Juan Pérez, 0981-123456"
+Sofía (versión 1): "Perfecto! Te marco la cita para el viernes a las 3..."
+
+❌ "Te marco la cita" suena a que va a LLAMAR, genera confusión
+
 ### Solución Implementada
 
 1. **Entrenamiento en el prompt**:
-   - Agregado vocabulario paraguayo específico
-   - Ejemplos claros de uso
+   - Cliente dice "marcame" = quiere que le AGENDEN
+   - Agente dice "te agendo/anoto" = va a REGISTRAR en el sistema
+   - Agente NUNCA dice "te marco" (evita confusión)
 
 2. **Base de datos**:
    - "Marcarme" registrado con significado correcto
-   - Patrones de conversación para agendamiento
+   - Patrones de conversación actualizados
+   - Vocabulario diferenciado: cliente vs agente
 
-3. **Resultado**:
+3. **Resultado Final**:
 
 Cliente: "Marcame para el viernes a las 3"
-Sofía (ahora): "Perfecto! Te marco para el viernes a las 3 de la tarde. ¿Me pasás tu nombre completo y número de teléfono para confirmar tu cita?"
+Sofía: "Perfecto! Te agendo para el viernes a las 3 de la tarde. ¿Me pasás tu número?"
+Cliente: "Juan Pérez, 0981-123456"
+Sofía: "Perfecto Juan! Ya te anoté para el viernes a las 3. Te voy a llamar ese día para recordarte."
 
 ✅ Sofía entiende correctamente el vocabulario paraguayo
+✅ Sofía usa el lenguaje apropiado según el contexto
+✅ No hay confusión entre "agendar" y "llamar"
 
 ## Mantenimiento
 

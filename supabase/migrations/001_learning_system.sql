@@ -102,14 +102,17 @@ ON CONFLICT (palabra_o_frase) DO UPDATE SET
 -- Insertar patrones iniciales de agendamiento
 INSERT INTO patrones_conversacion (patron_entrada, patron_respuesta, categoria, efectividad, veces_usado) VALUES
 ('marcar|agendar|reservar.*viernes.*3.*tarde', 
- 'Perfecto! Te marco para el viernes a las 3 de la tarde. ¿Me pasás tu nombre completo y número de teléfono para confirmar tu cita?',
+ 'Perfecto! Te agendo para el viernes a las 3 de la tarde. ¿Me pasás tu nombre completo y número de teléfono para confirmar tu cita?',
  'agendamiento', 0.95, 0),
 ('qué hora.*marcar|agendar|disponible', 
  'Tenemos disponibilidad de lunes a viernes de 9 a 18hs, y sábados de 9 a 13hs. ¿Qué día y horario te viene mejor?',
  'consulta_horarios', 0.90, 0),
 ('marcame|agendame.*mañana', 
  'Perfecto! Te agendo para mañana. ¿A qué hora te viene mejor? Tenemos disponibilidad de 9 a 18hs.',
- 'agendamiento', 0.92, 0);
+ 'agendamiento', 0.92, 0),
+('.*nombre.*número.*teléfono.*', 
+ 'Perfecto [nombre]! Ya te anoté para [día] a las [hora]. Te voy a llamar ese día para recordarte. ¿Hay algo más en lo que pueda ayudarte?',
+ 'confirmacion_cita', 0.93, 0);
 
 -- Función para actualizar frecuencia de uso
 CREATE OR REPLACE FUNCTION actualizar_frecuencia_vocabulario()
