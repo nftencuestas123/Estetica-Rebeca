@@ -173,6 +173,89 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     }
   }, [messages, userName])
 
+  // Procesar mensajes pendientes cuando termine de escribir
+  useEffect(() => {
+    const hasTypingMessages = messages.some((m) => m.isTyping && m.role === 'assistant')
+    
+    if (!hasTypingMessages && !loading && messages.length > 0) {
+      // No hay mensajes escribiéndose y no está cargando
+      // Buscar si hay mensajes del usuario sin responder
+      const lastMessage = messages[messages.length - 1]
+      const secondLastMessage = messages.length > 1 ? messages[messages.length - 2] : null
+      
+      // Si el último mensaje es del usuario y el anterior es del asistente (ya terminó de escribir)
+      // O si el último mensaje es del usuario y no hay loading, procesar
+      if (lastMessage.role === 'user' && secondLastMessage?.role === 'assistant' && !secondLastMessage.isTyping) {
+        // Hay un mensaje del usuario sin responder, procesarlo
+        const processMessage = async () => {
+          setLoading(true)
+          
+          const userMessage = lastMessage.content
+          
+          try {
+            // Construir historial excluyendo el último mensaje del usuario (ya lo tenemos)
+            const historial: SofiaMessage[] = messages
+              .slice(0, -1)
+              .map((msg) => ({
+                role: msg.role,
+                content: msg.content,
+              }))
+
+            // Llamar a la API
+            const apiResponse = await fetch('/api/sofia/chat', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                mensaje: userMessage,
+                usuario_id: userId,
+                historial: historial,
+                nombreAgente: currentAgent?.name,
+              }),
+            })
+
+            if (!apiResponse.ok) {
+              throw new Error(`API error: ${apiResponse.status}`)
+            }
+
+            const response = await apiResponse.json()
+
+            // Agregar respuesta con efecto de typing
+            const fullContent = response.respuesta || 'Lo siento, no pude procesar tu mensaje.'
+            const agentMessage: Message = {
+              id: `assistant-${Date.now()}`,
+              role: 'assistant',
+              content: fullContent,
+              timestamp: new Date(),
+              agentName: currentAgent?.name,
+              isTyping: true,
+              displayedContent: '',
+            }
+            setMessages((prev) => [...prev, agentMessage])
+          } catch (error) {
+            console.error('Error en chat:', error)
+            const errorContent = `Hola! Soy ${currentAgent?.name}. Disculpame, parece que hubo un problema técnico. ¿Podrías intentar de nuevo en un momento?`
+            const errorMessage: Message = {
+              id: `error-${Date.now()}`,
+              role: 'assistant',
+              content: errorContent,
+              timestamp: new Date(),
+              agentName: currentAgent?.name,
+              isTyping: true,
+              displayedContent: '',
+            }
+            setMessages((prev) => [...prev, errorMessage])
+          } finally {
+            setLoading(false)
+          }
+        }
+        
+        processMessage()
+      }
+    }
+  }, [messages, loading, currentAgent, userId])
+
   // Simular cambios de estado de agentes (muy dinámico)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -448,7 +531,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   }
 
   const handleSend = async () => {
-    if (!input.trim() || loading || !currentAgent) return
+    if (!input.trim() || !currentAgent) return
+    
+    // Si ya está cargando (procesando otro mensaje), no hacer nada
+    if (loading) return
 
     const userMessage = input.trim()
     setInput('')
@@ -457,24 +543,23 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     const hasTypingMessages = messages.some((m) => m.isTyping && m.role === 'assistant')
     
     if (hasTypingMessages) {
-      // Si hay mensajes siendo escritos, completarlos primero
-      const completedMessages = messages.map((m) =>
-        m.isTyping && m.role === 'assistant'
-          ? {
-              ...m,
-              isTyping: false,
-              displayedContent: m.content, // Mostrar el contenido completo
-              hasTypo: false,
-              typoChar: undefined,
-            }
-          : m
-      )
-
-      // Actualizar el estado para mostrar los mensajes completados
-      setMessages(completedMessages)
+      // Si hay mensajes siendo escritos, NO interrumpir
+      // Guardar el mensaje del usuario para procesarlo después
+      const newUserMessage: Message = {
+        id: `user-${Date.now()}`,
+        role: 'user',
+        content: userMessage,
+        timestamp: new Date(),
+        userName: userName,
+      }
       
-      // Esperar un momento para que el usuario vea el mensaje completo
-      await new Promise(resolve => setTimeout(resolve, 300))
+      // Agregar el mensaje del usuario pero NO procesarlo todavía
+      setMessages((prev) => [...prev, newUserMessage])
+      
+      // Esperar a que termine de escribir el mensaje anterior
+      // El efecto de typing se encargará de completarlo
+      // Cuando termine, se procesará este nuevo mensaje automáticamente
+      return
     }
     
     setLoading(true)
