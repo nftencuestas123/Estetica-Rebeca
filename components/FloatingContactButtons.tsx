@@ -28,7 +28,7 @@ export default function FloatingContactButtons() {
   const handleLiveCall = () => {
     // Aquí se integrará VAPI para llamada en vivo
     console.log('Iniciando llamada en vivo con VAPI...')
-    alert('🎙️ Llamada en Vivo: Próximamente con asistente de IA VAPI')
+    alert('📞 ¡Te llamamos gratis! Servicio próximamente con asistente de IA')
   }
 
   const handleChat = () => {
@@ -57,7 +57,7 @@ export default function FloatingContactButtons() {
               <X className="w-3 h-3" />
             </button>
             <p className="font-medium">¡Contactanos ahora!</p>
-            <p className="text-xs text-white/70 mt-1">Llamada en vivo o chat</p>
+            <p className="text-xs text-white/70 mt-1">Te llamamos gratis o chatea</p>
             <div className="absolute -bottom-2 right-8 w-4 h-4 bg-neutral-900 transform rotate-45"></div>
           </motion.div>
         )}
@@ -92,14 +92,14 @@ export default function FloatingContactButtons() {
         
         <Phone className="w-7 h-7 text-white z-10" />
         
-        {/* Badge "LIVE" */}
-        <div className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
-          LIVE
+        {/* Badge "GRATIS" */}
+        <div className="absolute -top-1 -right-1 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+          GRATIS
         </div>
         
         {/* Texto descriptivo */}
-        <div className="absolute -left-24 top-1/2 -translate-y-1/2 bg-neutral-900 text-white px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-xs font-medium">
-          Llamada en Vivo
+        <div className="absolute -left-32 top-1/2 -translate-y-1/2 bg-neutral-900 text-white px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-xs font-medium">
+          Te Llamamos Gratis
         </div>
       </motion.button>
 
@@ -144,8 +144,8 @@ export default function FloatingContactButtons() {
         </motion.div>
         
         {/* Texto descriptivo */}
-        <div className="absolute -left-20 top-1/2 -translate-y-1/2 bg-neutral-900 text-white px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-xs font-medium">
-          Chat Directo
+        <div className="absolute -left-24 top-1/2 -translate-y-1/2 bg-neutral-900 text-white px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-xs font-medium">
+          Chatea con Nosotros
         </div>
       </motion.button>
 
