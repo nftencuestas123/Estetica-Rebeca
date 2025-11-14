@@ -798,7 +798,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative bg-cream-100/95 md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-rose-200/50 overflow-visible"
+            className="relative bg-black md:backdrop-blur-md rounded-3xl shadow-2xl border-2 border-primary-400 overflow-visible"
           >
             {/* Imagen de perfil elegante en esquina izquierda - MUY VISIBLE */}
             {currentAgent && (
@@ -1001,7 +1001,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             </div>
 
             {/* Input area */}
-            <div className="p-4 sm:p-6 bg-cream-50 border-t-2 border-rose-100">
+            <div className="p-4 sm:p-6 bg-black border-t-2 border-primary-400">
               <div className="flex gap-2 sm:gap-3">
                 <input
                   ref={inputRef}
@@ -1019,7 +1019,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     }
                   }}
                   placeholder={currentAgent ? `Escribí tu mensaje para ${currentAgent.name}...` : 'Selecciona un agente primero...'}
-                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-primary-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-200 placeholder-primary-400 min-h-[48px]"
+                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 bg-black border-2 border-primary-400 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-400 placeholder-primary-400/50 min-h-[48px]"
                   disabled={loading || !currentAgent}
                   autoComplete="off"
                 />
