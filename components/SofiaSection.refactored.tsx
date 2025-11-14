@@ -75,14 +75,14 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             </span>
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 px-4">
             Hablá con{' '}
             <span className="bg-gradient-to-r from-primary-300 via-primary-400 to-primary-500 bg-clip-text text-transparent animate-gradient">
               Nuestro Equipo
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl font-light text-primary-200 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl font-light text-white max-w-2xl mx-auto px-4">
             Nuestras especialistas están acá para ayudarte. Elegí con quién querés hablar.
           </p>
         </motion.div>
@@ -117,10 +117,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             <div className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 p-5 pl-40">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-primary-100">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">
                     {currentAgent.name}
                   </h3>
-                  <p className="text-sm text-primary-200">
+                  <p className="text-sm text-white">
                     {currentAgent.status === 'available' ? 'Disponible' : 'En conversación'}
                   </p>
                 </div>
@@ -145,10 +145,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary-200/20 via-primary-300/20 to-primary-400/20 flex items-center justify-center">
                     <span className="text-3xl">💬</span>
                   </div>
-                  <p className="text-base sm:text-lg font-medium text-primary-100 mb-2">
+                  <p className="text-base sm:text-lg font-medium text-white mb-2">
                     ¡Hola! Soy {currentAgent.name}
                   </p>
-                  <p className="text-sm sm:text-base text-primary-200 font-light px-4">
+                  <p className="text-sm sm:text-base text-white font-light px-4">
                     Estoy acá para ayudarte con lo que necesites. ¿En qué puedo asistirte hoy?
                   </p>
                 </div>
@@ -180,9 +180,9 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
           viewport={{ once: true }}
           className="mt-8 flex items-center justify-center gap-4 bg-cream-100/50 backdrop-blur-sm rounded-2xl p-4 border border-primary-200/50"
         >
-          <p className="text-xs sm:text-sm text-primary-200 font-light">
-            <span className="font-semibold text-primary-300">Tiempo de respuesta:</span>{' '}
-            <span className="font-semibold text-primary-300">menos de 2 minutos</span>
+          <p className="text-xs sm:text-sm text-white font-light">
+            <span className="font-semibold text-white">Tiempo de respuesta:</span>{' '}
+            <span className="font-semibold text-white">menos de 2 minutos</span>
           </p>
         </motion.div>
       </div>

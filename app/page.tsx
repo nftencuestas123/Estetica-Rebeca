@@ -89,13 +89,13 @@ export default function Home() {
                 Tratamientos Personalizados
               </span>
             </motion.div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
               ¿Qué{' '}
               <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 buscás
               </span>?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl font-light text-primary-300 max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl font-light text-white max-w-2xl mx-auto px-4">
               Cada tratamiento está diseñado pensando en vos y en tus necesidades únicas
             </p>
           </motion.div>
@@ -186,14 +186,14 @@ export default function Home() {
                     >
                       <div className="w-8 h-8 bg-cream-100/50 rounded-lg backdrop-blur-sm" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-primary-100 mb-3 relative z-10 group-hover:bg-gradient-to-r group-hover:from-primary-400 group-hover:to-primary-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10 group-hover:bg-gradient-to-r group-hover:from-primary-400 group-hover:to-primary-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
                       {category.name}
                     </h3>
-                    <p className="text-primary-200 font-medium leading-relaxed relative z-10">
+                    <p className="text-white font-medium leading-relaxed relative z-10">
                       {category.description}
                     </p>
                     <motion.div
-                      className="mt-6 text-primary-300 text-sm font-bold relative z-10"
+                      className="mt-6 text-white text-sm font-bold relative z-10"
                       initial={{ opacity: 0, x: -10 }}
                       whileHover={{ opacity: 1, x: 0 }}
                     >
@@ -252,13 +252,13 @@ export default function Home() {
                 Los Más Elegidos
               </span>
             </motion.div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
               Tratamientos{' '}
               <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 destacados
               </span>
             </h2>
-            <p className="text-xl font-light text-primary-300">
+            <p className="text-xl font-light text-white">
               Los tratamientos que más transforman vidas
             </p>
           </motion.div>
@@ -336,16 +336,16 @@ export default function Home() {
                     )}
                   </div>
                   <div className="p-8">
-                    <h3 className="text-2xl font-light text-primary-100 mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-light text-white mb-3 group-hover:text-primary transition-colors">
                       {tratamiento.nombre}
                     </h3>
-                    <p className="text-primary-300 mb-6 font-light leading-relaxed">
+                    <p className="text-white mb-6 font-light leading-relaxed">
                       {tratamiento.descripcion}
                     </p>
                     <div className="flex items-center justify-between pt-6 border-t border-primary-100">
                       <span className="text-3xl font-light text-primary">
                         ${tratamiento.precio}
-                        <span className="text-lg text-primary-200"> USD</span>
+                        <span className="text-lg text-white"> USD</span>
                       </span>
                       <span className="text-primary text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity">
                         Ver más →
@@ -390,13 +390,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
               <h3 className="font-light text-2xl mb-4 text-primary">Rebeca Barreto</h3>
-              <p className="text-primary-300 text-sm font-light leading-relaxed">
+              <p className="text-white text-sm font-light leading-relaxed">
                 Tu belleza auténtica, elevada. Transformando vidas desde 2010.
               </p>
             </div>
             <div>
               <h4 className="font-light mb-6">Enlaces</h4>
-              <ul className="space-y-3 text-sm text-primary-300 font-light">
+              <ul className="space-y-3 text-sm text-white font-light">
                 <li>
                   <Link href="/tratamientos" className="hover:text-primary transition-colors">
                     Tratamientos
@@ -421,7 +421,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-light mb-6">Contacto</h4>
-              <ul className="space-y-3 text-sm text-primary-300 font-light">
+              <ul className="space-y-3 text-sm text-white font-light">
                 <li>Ciudad del Este, Paraguay</li>
                 <li>+595 987 123 456</li>
                 <li>info@rebecabarreto.com</li>
@@ -429,7 +429,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-light mb-6">Seguinos</h4>
-              <ul className="space-y-3 text-sm text-primary-300 font-light">
+              <ul className="space-y-3 text-sm text-white font-light">
                 <li>
                   <Link href="#" className="hover:text-primary transition-colors">
                     Instagram
@@ -448,7 +448,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-primary-700 pt-8 text-center text-sm text-primary-200 font-light">
+          <div className="border-t border-primary-700 pt-8 text-center text-sm text-white font-light">
             <p>© 2025 Rebeca Barreto Estética y Belleza. Todos los derechos reservados.</p>
           </div>
         </div>

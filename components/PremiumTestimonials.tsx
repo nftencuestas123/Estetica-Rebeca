@@ -96,14 +96,14 @@ export default function PremiumTestimonials() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-primary-200 rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-white rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
             Testimonios Verificados
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-primary-100 mb-4 sm:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 sm:mb-6 px-4">
             Mujeres reales.{' '}
             <span className="font-normal text-primary">Resultados reales.</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl font-light text-primary-300 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl font-light text-white max-w-2xl mx-auto px-4">
             Conocé las experiencias de clientas que transformaron no solo su apariencia, sino su vida.
           </p>
         </motion.div>
@@ -142,16 +142,16 @@ export default function PremiumTestimonials() {
                 </div>
 
                 {/* Comentario */}
-                <p className="text-primary-200 mb-6 leading-relaxed font-light italic">
+                <p className="text-white mb-6 leading-relaxed font-light italic">
                   "{testimonial.comentario}"
                 </p>
 
                 {/* Info */}
                 <div className="pt-6 border-t border-primary-100/60">
-                  <div className="font-light text-primary-100 mb-1">
+                  <div className="font-light text-white mb-1">
                     {testimonial.nombre}
                   </div>
-                  <div className="text-sm text-primary-200 mb-1">
+                  <div className="text-sm text-white mb-1">
                     {testimonial.edad} años
                   </div>
                   <div className="text-sm text-primary font-light">
@@ -170,7 +170,7 @@ export default function PremiumTestimonials() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-primary-300 mb-6 font-light">
+          <p className="text-white mb-6 font-light">
             ¿Lista para tu propia transformación?
           </p>
           <a

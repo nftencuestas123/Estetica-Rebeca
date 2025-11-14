@@ -36,11 +36,11 @@ export function TestimonialCard({
     >
       {/* Quote icon */}
       <div className="mb-4">
-        <Quote className="w-8 h-8 text-primary-300 opacity-50" />
+        <Quote className="w-8 h-8 text-white opacity-50" />
       </div>
 
       {/* Testimonial */}
-      <p className="text-primary-200 leading-relaxed mb-6 italic">"{testimonial}"</p>
+      <p className="text-white leading-relaxed mb-6 italic">"{testimonial}"</p>
 
       {/* Rating */}
       <div className="flex items-center gap-1 mb-4">
@@ -48,7 +48,7 @@ export function TestimonialCard({
           <Star
             key={i}
             className={`w-4 h-4 ${
-              i < rating ? 'text-primary-400 fill-primary-400' : 'text-primary-200'
+              i < rating ? 'text-primary-400 fill-primary-400' : 'text-white'
             }`}
           />
         ))}
@@ -62,8 +62,8 @@ export function TestimonialCard({
           </div>
         )}
         <div>
-          <p className="font-semibold text-primary-100">{name}</p>
-          <p className="text-sm text-primary-300">{treatment}</p>
+          <p className="font-semibold text-white">{name}</p>
+          <p className="text-sm text-white">{treatment}</p>
         </div>
       </div>
     </motion.div>

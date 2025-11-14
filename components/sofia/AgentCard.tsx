@@ -64,10 +64,10 @@ export function AgentCard({ agent, isActive, onClick }: AgentCardProps) {
           />
         )}
 
-        <h3 className="text-center font-bold text-primary-100 text-sm sm:text-base md:text-lg mb-2 mt-3 sm:mt-4">
+        <h3 className="text-center font-bold text-white text-sm sm:text-base md:text-lg mb-2 mt-3 sm:mt-4">
           {agent.name}
         </h3>
-        <p className="text-xs sm:text-sm text-primary-200 text-center">
+        <p className="text-xs sm:text-sm text-white text-center">
           {agent.status === 'available' ? 'Disponible' : 'En conversación'}
         </p>
       </div>

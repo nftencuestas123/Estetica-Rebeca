@@ -66,14 +66,14 @@ export default function StorytellingSection() {
           viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-primary-200 rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-white rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6">
             Historias Reales
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-primary-100 mb-4 sm:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 sm:mb-6 px-4">
             Transformaciones que{' '}
             <span className="font-normal text-primary">cambian vidas</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl font-light text-primary-300 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl font-light text-white max-w-2xl mx-auto px-4">
             Cada historia es única. Cada transformación es personal. Conocé las experiencias reales de mujeres que recuperaron su confianza.
           </p>
         </motion.div>
@@ -105,10 +105,10 @@ export default function StorytellingSection() {
                   <div className="text-sm text-primary font-light mb-2">
                     Historia #{story.id}
                   </div>
-                  <h3 className="text-2xl font-light text-primary-100 mb-2">
+                  <h3 className="text-2xl font-light text-white mb-2">
                     {story.title}
                   </h3>
-                  <p className="text-primary-300 font-light">{story.subtitle}</p>
+                  <p className="text-white font-light">{story.subtitle}</p>
                 </div>
 
                 {/* Contenido expandible */}
@@ -128,7 +128,7 @@ export default function StorytellingSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: pIndex * 0.1 }}
-                            className="text-primary-200 leading-relaxed font-light"
+                            className="text-white leading-relaxed font-light"
                           >
                             {paragraph}
                           </motion.p>
@@ -137,7 +137,7 @@ export default function StorytellingSection() {
                     </motion.div>
                   ) : (
                     <div className="p-8">
-                      <p className="text-primary-300 font-light mb-6 line-clamp-3">
+                      <p className="text-white font-light mb-6 line-clamp-3">
                         {story.content[0]}
                       </p>
                     </div>
@@ -148,7 +148,7 @@ export default function StorytellingSection() {
                 <div className="p-8 pt-0">
                   <button
                     onClick={() => setActiveStory(activeStory === story.id ? null : story.id)}
-                    className="w-full px-6 py-4 bg-gradient-to-r from-primary-100/40 to-primary-200/60 hover:from-primary-200/50 hover:to-primary-300/60 text-primary-200 rounded-full font-light transition-all border border-primary-200/50"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-primary-100/40 to-primary-200/60 hover:from-primary-200/50 hover:to-primary-300/60 text-white rounded-full font-light transition-all border border-primary-200/50"
                   >
                     {activeStory === story.id ? 'Ocultar historia completa' : 'Leer historia completa'}
                   </button>

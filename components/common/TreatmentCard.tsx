@@ -28,13 +28,13 @@ export function TreatmentCard({ treatment, index = 0, onSelect }: TreatmentCardP
     >
       {/* Header */}
       <div className="mb-4">
-        <h3 className="text-xl font-bold text-primary-100 mb-2">{treatment.name}</h3>
-        <p className="text-sm text-primary-200 leading-relaxed">{treatment.description}</p>
+        <h3 className="text-xl font-bold text-white mb-2">{treatment.name}</h3>
+        <p className="text-sm text-white leading-relaxed">{treatment.description}</p>
       </div>
 
       {/* Info */}
       <div className="flex items-center gap-4 mb-4 text-sm">
-        <div className="flex items-center gap-2 text-primary-300">
+        <div className="flex items-center gap-2 text-white">
           <Clock className="w-4 h-4" />
           <span>{treatment.duration}</span>
         </div>
@@ -47,7 +47,7 @@ export function TreatmentCard({ treatment, index = 0, onSelect }: TreatmentCardP
       {/* Benefits */}
       <div className="space-y-2">
         {treatment.benefits.map((benefit, i) => (
-          <div key={i} className="flex items-start gap-2 text-sm text-primary-200">
+          <div key={i} className="flex items-start gap-2 text-sm text-white">
             <Check className="w-4 h-4 text-primary-400 mt-0.5 flex-shrink-0" />
             <span>{benefit}</span>
           </div>
@@ -58,7 +58,7 @@ export function TreatmentCard({ treatment, index = 0, onSelect }: TreatmentCardP
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="w-full mt-6 px-4 py-3 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-primary-100 rounded-xl font-semibold hover:shadow-lg transition-all"
+        className="w-full mt-6 px-4 py-3 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all"
       >
         Reservar Ahora
       </motion.button>

@@ -49,7 +49,7 @@ export function ChatInput({
         onKeyPress={handleKeyPress}
         placeholder={placeholder}
         disabled={loading}
-        className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-primary-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent text-base sm:text-lg text-primary-200 placeholder-primary-300 min-h-[48px]"
+        className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-primary-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent text-base sm:text-lg text-white placeholder-primary-300 min-h-[48px]"
       />
       <motion.button
         type="submit"
@@ -59,9 +59,9 @@ export function ChatInput({
         className="px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-transparent rounded-xl sm:rounded-2xl font-semibold hover:from-primary-500 hover:to-primary-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg transition-all touch-manipulation min-h-[48px] min-w-[48px]"
       >
         {loading ? (
-          <Loader2 className="w-5 h-5 animate-spin text-primary-100" />
+          <Loader2 className="w-5 h-5 animate-spin text-white" />
         ) : (
-          <Send className="w-5 h-5 text-primary-100" />
+          <Send className="w-5 h-5 text-white" />
         )}
       </motion.button>
     </form>

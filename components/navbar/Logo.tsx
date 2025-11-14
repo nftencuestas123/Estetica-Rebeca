@@ -173,7 +173,7 @@ export function Logo() {
           Rebeca Barreto
         </motion.span>
         <motion.span
-          className="hidden sm:block text-xs font-light text-primary-200"
+          className="hidden sm:block text-xs font-light text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}

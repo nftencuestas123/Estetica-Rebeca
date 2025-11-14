@@ -49,7 +49,7 @@ export function SectionHeader({
       )}
 
       {/* Title */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
         {title}
         {subtitle && (
           <>
@@ -63,7 +63,7 @@ export function SectionHeader({
 
       {/* Description */}
       {description && (
-        <p className="text-base sm:text-lg md:text-xl font-light text-primary-200 max-w-3xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl font-light text-white max-w-3xl mx-auto">
           {description}
         </p>
       )}

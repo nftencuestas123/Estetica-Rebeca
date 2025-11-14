@@ -64,7 +64,7 @@ export default function AdminPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-primary-300">Cargando...</p>
+          <p className="text-white">Cargando...</p>
         </div>
       </div>
     )
@@ -79,10 +79,10 @@ export default function AdminPage() {
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary-100 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             Panel de Administración
           </h1>
-          <p className="text-sm sm:text-base text-primary-300">
+          <p className="text-sm sm:text-base text-white">
             Gestión completa del negocio
           </p>
         </div>
@@ -92,7 +92,7 @@ export default function AdminPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Total Usuarios</p>
+                <p className="text-xs sm:text-sm text-white mb-1">Total Usuarios</p>
                 <p className="text-xl sm:text-2xl font-bold text-primary">
                   {stats.totalUsuarios}
                 </p>
@@ -104,7 +104,7 @@ export default function AdminPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Citas Hoy</p>
+                <p className="text-xs sm:text-sm text-white mb-1">Citas Hoy</p>
                 <p className="text-xl sm:text-2xl font-bold text-accent">
                   {stats.citasHoy}
                 </p>
@@ -116,7 +116,7 @@ export default function AdminPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Ingresos del Mes</p>
+                <p className="text-xs sm:text-sm text-white mb-1">Ingresos del Mes</p>
                 <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                   ${stats.ingresosMes} USD
                 </p>
@@ -128,7 +128,7 @@ export default function AdminPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Crecimiento</p>
+                <p className="text-xs sm:text-sm text-white mb-1">Crecimiento</p>
                 <p className="text-xl sm:text-2xl font-bold text-accent">
                   +{stats.crecimiento}%
                 </p>
@@ -145,8 +145,8 @@ export default function AdminPage() {
             className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <Users className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">CRM - Clientes</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">CRM - Clientes</h3>
+            <p className="text-xs sm:text-sm text-white">
               Gestionar base de datos de clientes
             </p>
           </Link>
@@ -156,8 +156,8 @@ export default function AdminPage() {
             className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Gestión de Citas</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Gestión de Citas</h3>
+            <p className="text-xs sm:text-sm text-white">
               Ver y gestionar todas las citas
             </p>
           </Link>
@@ -169,8 +169,8 @@ export default function AdminPage() {
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">💆</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Tratamientos</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Tratamientos</h3>
+            <p className="text-xs sm:text-sm text-white">
               Gestionar catálogo de tratamientos
             </p>
           </Link>
@@ -182,8 +182,8 @@ export default function AdminPage() {
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">🤖</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Sofía IA</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Sofía IA</h3>
+            <p className="text-xs sm:text-sm text-white">
               Ver conversaciones y analytics
             </p>
           </Link>
@@ -195,8 +195,8 @@ export default function AdminPage() {
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">🛍️</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Productos</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Productos</h3>
+            <p className="text-xs sm:text-sm text-white">
               Gestionar inventario y productos
             </p>
           </Link>
@@ -206,8 +206,8 @@ export default function AdminPage() {
             className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Reportes</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Reportes</h3>
+            <p className="text-xs sm:text-sm text-white">
               Analytics y métricas del negocio
             </p>
           </Link>

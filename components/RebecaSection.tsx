@@ -58,20 +58,20 @@ export default function RebecaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-              className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-primary-200 rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6"
+              className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100/60 text-white rounded-full text-xs sm:text-sm font-light mb-4 sm:mb-6"
               >
                 La Fundadora
               </motion.div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-primary-100 mb-4 sm:mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 sm:mb-6 leading-tight">
                 Rebeca{' '}
                 <span className="font-normal text-primary">Barreto</span>
               </h2>
-              <p className="text-xl sm:text-2xl font-light text-primary-200 mb-4">
+              <p className="text-xl sm:text-2xl font-light text-white mb-4">
                 Especialista en Estética y Belleza
               </p>
             </div>
 
-            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-primary-300 leading-relaxed">
+            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white leading-relaxed">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export default function RebecaSection() {
               ].map((cred, index) => (
                 <div key={index} className="text-center">
                   <div className="text-3xl font-light text-primary mb-1">{cred.value}</div>
-                  <div className="text-sm text-primary-300">{cred.title}</div>
+                  <div className="text-sm text-white">{cred.title}</div>
                 </div>
               ))}
             </motion.div>

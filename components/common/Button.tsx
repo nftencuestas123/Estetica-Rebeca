@@ -33,10 +33,10 @@ export function Button({
 
   const variantClasses = {
     primary:
-      'bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-primary-100 hover:shadow-lg',
-    secondary: 'bg-cream-200 text-primary-200 hover:bg-cream-300',
+      'bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 text-white hover:shadow-lg',
+    secondary: 'bg-cream-200 text-white hover:bg-cream-300',
     outline:
-      'bg-transparent border-2 border-primary-200 text-primary-200 hover:bg-cream-200 hover:border-primary-400',
+      'bg-transparent border-2 border-primary-200 text-white hover:bg-cream-200 hover:border-primary-400',
   }
 
   const sizeClasses = {

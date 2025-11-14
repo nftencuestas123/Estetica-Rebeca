@@ -42,13 +42,13 @@ export function MobileMenu({ isOpen, onClose, links, user, onSignOut }: MobileMe
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-primary-200/50">
-              <h3 className="text-xl font-bold text-primary-100">Menú</h3>
+              <h3 className="text-xl font-bold text-white">Menú</h3>
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={onClose}
                 className="p-2 rounded-lg hover:bg-cream-200 transition-colors"
               >
-                <X className="w-6 h-6 text-primary-200" />
+                <X className="w-6 h-6 text-white" />
               </motion.button>
             </div>
 
@@ -64,7 +64,7 @@ export function MobileMenu({ isOpen, onClose, links, user, onSignOut }: MobileMe
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className="block py-3 px-4 text-primary-200 hover:text-primary-400 hover:bg-cream-200 rounded-lg transition-all font-medium"
+                    className="block py-3 px-4 text-white hover:text-primary-400 hover:bg-cream-200 rounded-lg transition-all font-medium"
                   >
                     {link.label}
                   </Link>
@@ -85,7 +85,7 @@ export function MobileMenu({ isOpen, onClose, links, user, onSignOut }: MobileMe
                     <Link
                       href="/dashboard"
                       onClick={onClose}
-                      className="flex items-center gap-3 py-3 px-4 text-primary-200 hover:text-primary-400 hover:bg-cream-200 rounded-lg transition-all font-medium"
+                      className="flex items-center gap-3 py-3 px-4 text-white hover:text-primary-400 hover:bg-cream-200 rounded-lg transition-all font-medium"
                     >
                       <User className="w-5 h-5" />
                       Mi Panel
@@ -101,7 +101,7 @@ export function MobileMenu({ isOpen, onClose, links, user, onSignOut }: MobileMe
                         onSignOut()
                         onClose()
                       }}
-                      className="flex items-center gap-3 w-full py-3 px-4 text-primary-200 hover:text-primary-500 hover:bg-cream-200 rounded-lg transition-all font-medium"
+                      className="flex items-center gap-3 w-full py-3 px-4 text-white hover:text-primary-500 hover:bg-cream-200 rounded-lg transition-all font-medium"
                     >
                       <LogOut className="w-5 h-5" />
                       Cerrar Sesión
@@ -118,7 +118,7 @@ export function MobileMenu({ isOpen, onClose, links, user, onSignOut }: MobileMe
                     <Link
                       href="/login"
                       onClick={onClose}
-                      className="block py-3 px-4 text-center text-primary-200 hover:text-primary-400 hover:bg-cream-200 rounded-lg transition-all font-medium"
+                      className="block py-3 px-4 text-center text-white hover:text-primary-400 hover:bg-cream-200 rounded-lg transition-all font-medium"
                     >
                       Iniciar Sesión
                     </Link>

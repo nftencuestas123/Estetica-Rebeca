@@ -33,7 +33,7 @@ export function AuthButtons({ user, onSignOut }: AuthButtonsProps) {
       >
         <Link
           href="/dashboard"
-          className="flex items-center gap-2 text-primary-200 hover:text-primary-400 transition-colors group"
+          className="flex items-center gap-2 text-white hover:text-primary-400 transition-colors group"
         >
           <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
@@ -47,7 +47,7 @@ export function AuthButtons({ user, onSignOut }: AuthButtonsProps) {
           onClick={handleSignOut}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2 px-4 py-2 text-primary-200 hover:text-primary-500 transition-colors rounded-lg hover:bg-cream-200"
+          className="flex items-center gap-2 px-4 py-2 text-white hover:text-primary-500 transition-colors rounded-lg hover:bg-cream-200"
         >
           <LogOut className="w-4 h-4" />
           <span className="font-medium">Salir</span>
@@ -65,7 +65,7 @@ export function AuthButtons({ user, onSignOut }: AuthButtonsProps) {
     >
       <Link
         href="/login"
-        className="text-primary-200 hover:text-primary-400 transition-colors font-medium"
+        className="text-white hover:text-primary-400 transition-colors font-medium"
       >
         Iniciar Sesión
       </Link>

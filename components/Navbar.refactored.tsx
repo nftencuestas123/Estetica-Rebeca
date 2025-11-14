@@ -79,7 +79,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(true)}
               className="lg:hidden p-2 rounded-lg hover:bg-cream-200 transition-colors"
             >
-              <Menu className="w-6 h-6 text-primary-200" />
+              <Menu className="w-6 h-6 text-white" />
             </motion.button>
           </div>
         </div>

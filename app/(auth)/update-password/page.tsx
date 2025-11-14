@@ -74,10 +74,10 @@ export default function UpdatePasswordPage() {
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-red-600 text-2xl">✗</span>
               </div>
-              <h1 className="text-2xl font-bold text-primary-100 mb-4">
+              <h1 className="text-2xl font-bold text-white mb-4">
                 Enlace Inválido
               </h1>
-              <p className="text-primary-300 mb-6">{error}</p>
+              <p className="text-white mb-6">{error}</p>
               <Link
                 href="/reset-password"
                 className="inline-block px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-700 transition-colors"
@@ -101,10 +101,10 @@ export default function UpdatePasswordPage() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-green-600 text-2xl">✓</span>
               </div>
-              <h1 className="text-2xl font-bold text-primary-100 mb-4">
+              <h1 className="text-2xl font-bold text-white mb-4">
                 ¡Contraseña Actualizada!
               </h1>
-              <p className="text-primary-300 mb-6">
+              <p className="text-white mb-6">
                 Tu contraseña se actualizó correctamente. Serás redirigido al login en unos segundos...
               </p>
               <Link
@@ -126,10 +126,10 @@ export default function UpdatePasswordPage() {
       <div className="flex items-center justify-center py-12 sm:py-16 md:py-20 px-4">
         <div className="w-full max-w-md">
           <div className="bg-cream-50 rounded-lg shadow-lg p-6 sm:p-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary-100 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
               Nueva Contraseña
             </h1>
-            <p className="text-sm sm:text-base text-primary-300 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-white mb-6 sm:mb-8">
               Ingresá tu nueva contraseña
             </p>
 
@@ -141,7 +141,7 @@ export default function UpdatePasswordPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-primary-200 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
                   Nueva Contraseña
                 </label>
                 <input
@@ -157,7 +157,7 @@ export default function UpdatePasswordPage() {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-200 mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-2">
                   Confirmar Contraseña
                 </label>
                 <input
@@ -187,7 +187,7 @@ export default function UpdatePasswordPage() {
               </button>
             </form>
 
-            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-primary-300">
+            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-white">
               <Link href="/login" className="text-primary font-semibold hover:underline min-h-[44px] inline-flex items-center">
                 Volver al Login
               </Link>

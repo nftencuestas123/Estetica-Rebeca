@@ -66,7 +66,7 @@ export default function DashboardPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-primary-300">Cargando...</p>
+          <p className="text-white">Cargando...</p>
         </div>
       </div>
     )
@@ -81,10 +81,10 @@ export default function DashboardPage() {
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary-100 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             Hola, {userProfile?.nombre || 'Bienvenida'} 👋
           </h1>
-          <p className="text-sm sm:text-base text-primary-300">
+          <p className="text-sm sm:text-base text-white">
             Acá está tu panel personal
           </p>
         </div>
@@ -94,14 +94,14 @@ export default function DashboardPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Puntos de Lealtad</p>
+                <p className="text-xs sm:text-sm text-white mb-1">Puntos de Lealtad</p>
                 <p className="text-xl sm:text-2xl font-bold text-primary">
                   {userProfile?.puntos_lealtad || 0}
                 </p>
               </div>
               <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-primary opacity-50" />
             </div>
-            <p className="text-xs text-primary-200 mt-2">
+            <p className="text-xs text-white mt-2">
               Tier: {userProfile?.tier || 'Bronze'}
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function DashboardPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Próximas Citas</p>
+                <p className="text-xs sm:text-sm text-white mb-1">Próximas Citas</p>
                 <p className="text-xl sm:text-2xl font-bold text-accent">
                   {proximasCitas.length}
                 </p>
@@ -124,8 +124,8 @@ export default function DashboardPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Membresía</p>
-                <p className="text-base sm:text-lg font-bold text-primary-100">
+                <p className="text-xs sm:text-sm text-white mb-1">Membresía</p>
+                <p className="text-base sm:text-lg font-bold text-white">
                   {userProfile?.membresia_tipo || 'Sin membresía'}
                 </p>
               </div>
@@ -141,12 +141,12 @@ export default function DashboardPage() {
           <div className="bg-cream-50 rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm text-primary-300 mb-1">Mi Perfil</p>
-                <p className="text-xs sm:text-sm font-medium text-primary-100 truncate">
+                <p className="text-xs sm:text-sm text-white mb-1">Mi Perfil</p>
+                <p className="text-xs sm:text-sm font-medium text-white truncate">
                   {userProfile?.email || user.email}
                 </p>
               </div>
-              <UserIcon className="w-6 h-6 sm:w-8 sm:h-8 text-primary-300 opacity-50 flex-shrink-0" />
+              <UserIcon className="w-6 h-6 sm:w-8 sm:h-8 text-white opacity-50 flex-shrink-0" />
             </div>
             <Link href="/dashboard/perfil" className="text-xs text-primary hover:underline mt-2 block min-h-[44px] flex items-center">
               Editar →
@@ -157,15 +157,15 @@ export default function DashboardPage() {
         {/* Próximas Citas */}
         <div className="bg-cream-50 rounded-lg shadow mb-6 sm:mb-8">
           <div className="p-4 sm:p-6 border-b border-primary-200">
-            <h2 className="text-lg sm:text-xl font-semibold text-primary-100">
+            <h2 className="text-lg sm:text-xl font-semibold text-white">
               Próximas Citas
             </h2>
           </div>
           <div className="p-4 sm:p-6">
             {proximasCitas.length === 0 ? (
               <div className="text-center py-6 sm:py-8">
-                <Calendar className="w-10 h-10 sm:w-12 sm:h-12 text-primary-300 mx-auto mb-4" />
-                <p className="text-sm sm:text-base text-primary-300 mb-4">No tenés citas programadas</p>
+                <Calendar className="w-10 h-10 sm:w-12 sm:h-12 text-white mx-auto mb-4" />
+                <p className="text-sm sm:text-base text-white mb-4">No tenés citas programadas</p>
                 <Link
                   href="/tratamientos"
                   className="inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-primary text-white rounded-lg hover:bg-primary-700 transition-colors min-h-[48px] flex items-center justify-center text-sm sm:text-base font-semibold"
@@ -185,10 +185,10 @@ export default function DashboardPage() {
                         <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-sm sm:text-base text-primary-100 truncate">
+                        <p className="font-semibold text-sm sm:text-base text-white truncate">
                           {formatDateTime(cita.fecha_hora)}
                         </p>
-                        <p className="text-xs sm:text-sm text-primary-300">
+                        <p className="text-xs sm:text-sm text-white">
                           Estado: {cita.estado}
                         </p>
                       </div>
@@ -213,8 +213,8 @@ export default function DashboardPage() {
             className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Mis Citas</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Mis Citas</h3>
+            <p className="text-xs sm:text-sm text-white">
               Ver y gestionar todas tus citas
             </p>
           </Link>
@@ -226,8 +226,8 @@ export default function DashboardPage() {
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
               <span className="text-primary text-lg sm:text-xl">💬</span>
             </div>
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Chat con Sofía</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Chat con Sofía</h3>
+            <p className="text-xs sm:text-sm text-white">
               Conversá con nuestra asistente virtual
             </p>
           </Link>
@@ -237,8 +237,8 @@ export default function DashboardPage() {
             className="bg-cream-50 rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-all min-h-[44px]"
           >
             <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4" />
-            <h3 className="font-semibold text-sm sm:text-base text-primary-100 mb-2">Puntos de Lealtad</h3>
-            <p className="text-xs sm:text-sm text-primary-300">
+            <h3 className="font-semibold text-sm sm:text-base text-white mb-2">Puntos de Lealtad</h3>
+            <p className="text-xs sm:text-sm text-white">
               Canjeá tus puntos por recompensas
             </p>
           </Link>

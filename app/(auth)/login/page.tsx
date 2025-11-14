@@ -44,10 +44,10 @@ export default function LoginPage() {
       <div className="flex items-center justify-center py-12 sm:py-16 md:py-20 px-4">
         <div className="w-full max-w-md">
           <div className="bg-cream-50 rounded-lg shadow-lg p-6 sm:p-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary-100 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
               Iniciar Sesión
             </h1>
-            <p className="text-sm sm:text-base text-primary-300 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-white mb-6 sm:mb-8">
               Ingresá a tu cuenta para continuar
             </p>
 
@@ -59,7 +59,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary-200 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
                   Email
                 </label>
                 <input
@@ -74,7 +74,7 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-primary-200 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
                   Contraseña
                 </label>
                 <input
@@ -113,7 +113,7 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-primary-300">
+            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-white">
               ¿No tenés cuenta?{' '}
               <Link href="/register" className="text-primary font-semibold hover:underline min-h-[44px] inline-flex items-center">
                 Registrate acá

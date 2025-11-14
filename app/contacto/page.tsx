@@ -8,10 +8,10 @@ export default function ContactoPage() {
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-primary-100 mb-4">
+          <h1 className="text-4xl font-bold text-white mb-4">
             Contactanos
           </h1>
-          <p className="text-xl text-primary-300 max-w-2xl mx-auto">
+          <p className="text-xl text-white max-w-2xl mx-auto">
             Estamos acá para ayudarte. Contactanos de la forma que prefieras.
           </p>
         </div>
@@ -19,10 +19,10 @@ export default function ContactoPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div className="bg-cream-50 rounded-lg shadow-lg p-8">
             <MapPin className="w-8 h-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold text-primary-100 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Ubicación
             </h3>
-            <p className="text-primary-300">
+            <p className="text-white">
               Av. Principal, Ciudad del Este<br />
               Paraguay
             </p>
@@ -30,10 +30,10 @@ export default function ContactoPage() {
 
           <div className="bg-cream-50 rounded-lg shadow-lg p-8">
             <Phone className="w-8 h-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold text-primary-100 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Teléfono
             </h3>
-            <p className="text-primary-300">
+            <p className="text-white">
               +595 987 123 456<br />
               +595 212 123 456
             </p>
@@ -41,10 +41,10 @@ export default function ContactoPage() {
 
           <div className="bg-cream-50 rounded-lg shadow-lg p-8">
             <Mail className="w-8 h-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold text-primary-100 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Email
             </h3>
-            <p className="text-primary-300">
+            <p className="text-white">
               info@rebecabarreto.com<br />
               consultas@rebecabarreto.com
             </p>
@@ -52,10 +52,10 @@ export default function ContactoPage() {
 
           <div className="bg-cream-50 rounded-lg shadow-lg p-8">
             <Clock className="w-8 h-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold text-primary-100 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Horarios
             </h3>
-            <p className="text-primary-300">
+            <p className="text-white">
               Lunes - Sábado: 9:00 - 18:00<br />
               Domingo: Cerrado
             </p>
@@ -63,10 +63,10 @@ export default function ContactoPage() {
         </div>
 
         <div className="bg-cream-50 rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-semibold text-primary-100 mb-4">
+          <h2 className="text-2xl font-semibold text-white mb-4">
             ¿Tenés alguna pregunta?
           </h2>
-          <p className="text-primary-300 mb-6">
+          <p className="text-white mb-6">
             Hablá con Sofía, nuestra asistente virtual, o contactanos directamente.
             Estamos acá para ayudarte en cada paso.
           </p>

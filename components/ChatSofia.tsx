@@ -201,7 +201,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
       <div className="flex flex-col h-full">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.length === 0 && (
-            <div className="text-center text-primary-300 py-8">
+            <div className="text-center text-white py-8">
               <MessageCircle className="w-12 h-12 mx-auto mb-4 text-primary" />
               <p className="text-lg font-medium mb-2">Hola, soy Sofía</p>
               <p className="text-sm">Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?</p>
@@ -220,7 +220,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
                   'max-w-[80%] rounded-lg px-4 py-2',
                   message.role === 'user'
                     ? 'bg-primary text-white'
-                    : 'bg-cream-200 text-primary-200'
+                    : 'bg-cream-200 text-white'
                 )}
               >
                 <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -348,7 +348,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
             "overscroll-contain" // Previene scroll fuera del contenedor
           )}>
             {messages.length === 0 && (
-              <div className="text-center text-primary-300 py-8">
+              <div className="text-center text-white py-8">
                 <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-primary opacity-50" />
                 <p className="text-lg sm:text-xl font-medium mb-2">Hola, soy Sofía</p>
                 <p className="text-sm sm:text-base px-4">Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?</p>
@@ -367,7 +367,7 @@ export default function ChatSofia({ userId, initialMessage, position = 'floating
                     'max-w-[85%] sm:max-w-[80%] rounded-lg px-4 py-3',
                     message.role === 'user'
                       ? 'bg-primary text-white'
-                      : 'bg-cream-50 text-primary-200 border border-primary-200'
+                      : 'bg-cream-50 text-white border border-primary-200'
                   )}
                 >
                   <p className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">{message.content}</p>

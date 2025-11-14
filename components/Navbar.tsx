@@ -232,7 +232,7 @@ export default function Navbar() {
                 Rebeca Barreto
               </motion.span>
               <motion.span
-                className="hidden sm:block text-xs font-light text-primary-300"
+                className="hidden sm:block text-xs font-light text-white"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -253,7 +253,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="relative group text-primary-200 font-medium text-sm"
+                  className="relative group text-white font-medium text-sm"
                 >
                   <motion.span
                     whileHover={{ y: -2 }}
@@ -286,7 +286,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/dashboard"
-                  className="flex items-center gap-2 text-primary-200 hover:text-primary-200 transition-colors group"
+                  className="flex items-center gap-2 text-white hover:text-white transition-colors group"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -300,7 +300,7 @@ export default function Navbar() {
                   onClick={handleSignOut}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2 text-primary-200 hover:text-primary-200 transition-colors rounded-lg hover:bg-cream-200"
+                  className="flex items-center gap-2 px-4 py-2 text-white hover:text-white transition-colors rounded-lg hover:bg-cream-200"
                 >
                   <LogOut className="w-4 h-4" />
                   <span className="font-medium">Salir</span>
@@ -315,7 +315,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/login"
-                  className="text-primary-200 hover:text-primary-200 transition-colors font-medium"
+                  className="text-white hover:text-white transition-colors font-medium"
                 >
                   Iniciar Sesión
                 </Link>
@@ -334,7 +334,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-primary-200 relative z-50"
+            className="md:hidden p-2 text-white relative z-50"
             whileTap={{ scale: 0.9 }}
             aria-label="Toggle menu"
           >
@@ -384,7 +384,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className="text-primary-200 hover:text-primary-200 transition-colors font-medium py-2"
+                      className="text-white hover:text-white transition-colors font-medium py-2"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.label}
@@ -400,7 +400,7 @@ export default function Navbar() {
                     >
                       <Link
                         href="/dashboard"
-                        className="flex items-center gap-2 text-primary-200 hover:text-primary-200 transition-colors py-2"
+                        className="flex items-center gap-2 text-white hover:text-white transition-colors py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <User className="w-5 h-5" />
@@ -415,7 +415,7 @@ export default function Navbar() {
                         handleSignOut()
                         setMobileMenuOpen(false)
                       }}
-                      className="flex items-center gap-2 text-primary-200 hover:text-primary-200 transition-colors text-left py-2"
+                      className="flex items-center gap-2 text-white hover:text-white transition-colors text-left py-2"
                     >
                       <LogOut className="w-5 h-5" />
                       <span className="font-medium">Salir</span>
@@ -430,7 +430,7 @@ export default function Navbar() {
                     >
                       <Link
                         href="/login"
-                        className="text-primary-200 hover:text-primary-200 transition-colors font-medium py-2"
+                        className="text-white hover:text-white transition-colors font-medium py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Iniciar Sesión

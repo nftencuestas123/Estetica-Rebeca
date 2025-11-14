@@ -23,7 +23,7 @@ export function NavLinks({ links }: NavLinksProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 + 0.2 }}
         >
-          <Link href={link.href} className="relative group text-primary-200 font-medium text-sm">
+          <Link href={link.href} className="relative group text-white font-medium text-sm">
             <motion.span whileHover={{ y: -2 }} className="relative z-10">
               {link.label}
             </motion.span>
