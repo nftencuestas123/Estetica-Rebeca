@@ -924,27 +924,6 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         </motion.div>
 
         <div className="max-w-5xl mx-auto relative">
-          {/* Fondo dinámico de oficina - MÁS VISIBLE */}
-          <motion.div
-            className="absolute inset-0 rounded-3xl overflow-hidden"
-            animate={{
-              scale: [1, 1.02, 1],
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
-          >
-            <div className="relative w-full h-full">
-              <Image
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=90"
-                alt="Oficina"
-                fill
-                sizes="(max-width: 768px) 100vw, 1200px"
-                className="object-cover opacity-60"
-              />
-              {/* Overlay para mejor visibilidad */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-rose-50/40" />
-            </div>
-          </motion.div>
-
           {/* Chat Interface Rectangular con imagen en esquina */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
