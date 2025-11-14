@@ -1025,7 +1025,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             {/* Messages area - Rectangular - Más pequeño */}
             <div 
               ref={messagesContainerRef}
-              className="h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-gradient-to-b from-cream-50 to-white space-y-3 sm:space-y-4 custom-scrollbar"
+              className="h-[300px] sm:h-[350px] md:h-[400px] overflow-y-auto p-4 sm:p-6 bg-black space-y-3 sm:space-y-4 custom-scrollbar"
               style={{ scrollBehavior: 'smooth' }}
             >
               {messages.length === 0 && (
