@@ -923,7 +923,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} gap-3 ${
-                    message.role === 'user' ? 'bg-black-95 rounded-2xl p-3' : ''
+                    message.role === 'user' ? 'bg-black rounded-2xl p-3' : ''
                   }`}
                 >
                   {message.role === 'assistant' && currentAgent && (
@@ -940,7 +940,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   <div
                     className={`max-w-[85%] sm:max-w-[75%] rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 ${
                       message.role === 'user'
-                        ? 'bg-black-90 border-2 border-primary-400/50 text-primary-400'
+                        ? 'bg-black border-2 border-primary-400 text-primary-400'
                         : 'bg-cream-50 border-2 border-rose-200 text-primary-200 shadow-md'
                     }`}
                   >

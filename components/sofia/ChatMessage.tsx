@@ -22,13 +22,13 @@ export function ChatMessage({ message, index }: ChatMessageProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-3 sm:mb-4 ${
-        isUser ? 'bg-black-95 rounded-2xl p-3' : ''
+        isUser ? 'bg-black rounded-2xl p-3' : ''
       }`}
     >
       <div
         className={`max-w-[85%] sm:max-w-[75%] md:max-w-[70%] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-md ${
           isUser
-            ? 'bg-black-90 border-2 border-primary-400/50 text-primary-400'
+            ? 'bg-black border-2 border-primary-400 text-primary-400'
             : 'bg-cream-50 border-2 border-primary-200 text-primary-200 shadow-md'
         }`}
       >
