@@ -31,13 +31,10 @@ export default function Home() {
         {/* 1. Hero - Entrada con headlines */}
         <PremiumHero />
 
-        {/* 2. Pre-Lanzamiento App - Descarga de aplicación */}
-        <PreLaunchSection />
-
-        {/* 3. Rebeca Barreto - Quién es y su experiencia */}
+        {/* 2. Rebeca Barreto - La fundadora */}
         <RebecaSection />
 
-        {/* 4. ¿Qué buscás? - Categorías de tratamientos */}
+        {/* 3. ¿Qué buscás? - Categorías de tratamientos */}
         <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
         {/* Animaciones de fondo deshabilitadas en móvil para mejor performance */}
         {!isMobile && (
@@ -205,7 +202,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Tratamientos Destacados - Los más elegidos */}
+      {/* 4. Tratamientos Destacados - Los más elegidos */}
       <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
@@ -370,6 +367,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* 5. Pre-Lanzamiento App - Descarga de aplicación */}
+      <PreLaunchSection />
 
       {/* 6. Testimonios Premium - Prueba social */}
       <PremiumTestimonials />
