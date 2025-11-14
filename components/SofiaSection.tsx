@@ -14,6 +14,7 @@ interface Message {
   content: string
   timestamp: Date
   agentName?: string
+  userName?: string // Nombre del usuario/cliente
   isTyping?: boolean // Para rastrear si el mensaje está siendo escrito
   displayedContent?: string // Contenido que se muestra mientras se escribe
   hasTypo?: boolean // Para rastrear si hay un error de typing que necesita corrección
@@ -76,6 +77,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   const [loading, setLoading] = useState(false)
   const [currentAgent, setCurrentAgent] = useState<Agent | null>(null)
   const [agents, setAgents] = useState<Agent[]>(AGENTS)
+  const [userName, setUserName] = useState<string | undefined>(undefined)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const messagesContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -126,6 +128,50 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [])
+
+  // Detectar nombre del usuario en las respuestas del agente
+  useEffect(() => {
+    if (!userName && messages.length > 0) {
+      // Buscar en los mensajes del usuario primero
+      for (const msg of messages) {
+        if (msg.role === 'user') {
+          const nombreMatch = msg.content.match(/me llamo ([A-Za-zÁÉÍÓÚáéíóúÑñ]+)|soy ([A-Za-zÁÉÍÓÚáéíóúÑñ]+)|mi nombre es ([A-Za-zÁÉÍÓÚáéíóúÑñ]+)/i)
+          if (nombreMatch) {
+            const nombre = nombreMatch[1] || nombreMatch[2] || nombreMatch[3]
+            setUserName(nombre)
+            // Actualizar todos los mensajes del usuario con el nombre
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.role === 'user' ? { ...m, userName: nombre } : m
+              )
+            )
+            break
+          }
+        }
+        
+        // También buscar en las respuestas del agente cuando menciona el nombre
+        if (msg.role === 'assistant' && !userName) {
+          // Buscar patrones como "Hola María", "Perfecto María", etc.
+          const nombreEnRespuesta = msg.content.match(/(?:Hola|Perfecto|Gracias|Entiendo|Mirá|Bueno),?\s+([A-Z][a-záéíóúñ]+)/i)
+          if (nombreEnRespuesta) {
+            const nombre = nombreEnRespuesta[1]
+            // Verificar que no sea una palabra común
+            const palabrasComunes = ['Sí', 'No', 'Bien', 'Claro', 'Bueno', 'Hola', 'Gracias']
+            if (!palabrasComunes.includes(nombre)) {
+              setUserName(nombre)
+              // Actualizar todos los mensajes del usuario con el nombre
+              setMessages((prev) =>
+                prev.map((m) =>
+                  m.role === 'user' ? { ...m, userName: nombre } : m
+                )
+              )
+              break
+            }
+          }
+        }
+      }
+    }
+  }, [messages, userName])
 
   // Simular cambios de estado de agentes (muy dinámico)
   useEffect(() => {
@@ -431,6 +477,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
       role: 'user',
       content: userMessage,
       timestamp: new Date(),
+      userName: userName, // Incluir nombre si ya lo tenemos
     }
     
     const messagesWithUser = [...completedMessages, newUserMessage]
@@ -944,6 +991,9 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   >
                     {message.role === 'assistant' && message.agentName && (
                       <p className="text-xs font-semibold text-primary-300 mb-1">{message.agentName}</p>
+                    )}
+                    {message.role === 'user' && message.userName && (
+                      <p className="text-xs font-semibold text-primary-400 mb-1">{message.userName}</p>
                     )}
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {message.isTyping && message.displayedContent !== undefined
