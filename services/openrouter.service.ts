@@ -25,7 +25,7 @@ export class OpenRouterService {
    */
   static async sendChatRequest(
     messages: SofiaMessage[],
-    model: string = 'openai/gpt-4o-mini',
+    model: string = 'openai/gpt-4o',
     temperature: number = 0.7,
     maxTokens: number = 500
   ): Promise<any> {
