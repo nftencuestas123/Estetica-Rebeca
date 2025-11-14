@@ -1007,18 +1007,18 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
             )}
 
             {/* Header del chat */}
-            <div className="bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 p-5 pl-40">
+            <div className="bg-black p-5 pl-40 border-b-2 border-primary-400/30">
               <div className="flex items-center justify-between">
                 <div>
                   {currentAgent ? (
                     <>
-                      <h3 className="text-white font-bold text-lg mb-1">{currentAgent.name}</h3>
-                      <p className="text-white/80 text-sm font-light">Agente de Atención al Cliente</p>
+                      <h3 className="text-primary-400 font-bold text-lg mb-1">{currentAgent.name}</h3>
+                      <p className="text-primary-300 text-sm font-light">Agente de Atención al Cliente</p>
                     </>
                   ) : (
                     <>
-                      <h3 className="text-white font-bold text-lg mb-1">Selecciona un Agente</h3>
-                      <p className="text-white/80 text-sm font-light">Elige una especialista disponible</p>
+                      <h3 className="text-primary-400 font-bold text-lg mb-1">Selecciona un Agente</h3>
+                      <p className="text-primary-300 text-sm font-light">Elige una especialista disponible</p>
                     </>
                   )}
                 </div>
@@ -1026,18 +1026,18 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 {/* Estado disponible dinámico */}
                 {currentAgent && (
                   <motion.div
-                    className="flex items-center gap-2 bg-cream-100/20 md:backdrop-blur-sm rounded-full px-4 py-2"
+                    className="flex items-center gap-2 bg-primary-400/10 md:backdrop-blur-sm rounded-full px-4 py-2 border border-primary-400/20"
                     whileHover={{ scale: 1.05 }}
                   >
                     <motion.div
-                      className="w-2.5 h-2.5 bg-green-400 rounded-full"
+                      className="w-2.5 h-2.5 bg-green-400 rounded-full shadow-lg shadow-green-400/50"
                       animate={{
                         scale: [1, 1.4, 1],
                         opacity: [1, 0.6, 1],
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
-                    <span className="text-white text-sm font-medium">En línea</span>
+                    <span className="text-primary-400 text-sm font-medium">En línea</span>
                   </motion.div>
                 )}
               </div>
