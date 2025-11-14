@@ -12,12 +12,20 @@ export default function Navbar() {
   const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -35,36 +43,38 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      initial={isMobile ? {} : { y: -100 }}
+      animate={isMobile ? {} : { y: 0 }}
+      transition={isMobile ? {} : { duration: 0.6, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 ${isMobile ? '' : 'transition-all duration-300'} ${
         scrolled
           ? 'bg-cream-100/95 md:backdrop-blur-xl shadow-lg border-b border-primary-200/60'
           : 'bg-cream-100/80 md:backdrop-blur-md border-b border-primary-100/40'
       } safe-area-top`}
     >
-      {/* Efecto de fondo animado */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-200/20 via-primary-300/20 to-primary-400/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, 30, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute top-0 right-1/4 w-80 h-80 bg-gradient-to-bl from-primary-200/20 via-primary-300/20 to-primary-400/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-            x: [0, -20, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </div>
+      {/* Efecto de fondo animado - Solo en desktop */}
+      {!isMobile && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-200/20 via-primary-300/20 to-primary-400/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+              x: [0, 30, 0],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute top-0 right-1/4 w-80 h-80 bg-gradient-to-bl from-primary-200/20 via-primary-300/20 to-primary-400/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2],
+              x: [0, -20, 0],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </div>
+      )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -72,8 +82,8 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
               className="relative w-14 h-14"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={isMobile ? {} : { scale: 1.1, rotate: 5 }}
+              whileTap={isMobile ? {} : { scale: 0.95 }}
             >
               {/* Círculo exterior dorado con gradiente */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-xl"></div>
@@ -98,14 +108,16 @@ export default function Navbar() {
                 <div className="text-amber-400 text-xs">♕</div>
               </div>
               
-              {/* Brillo animado */}
-              <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent"
-                animate={{
-                  rotate: [0, 360],
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-              />
+              {/* Brillo animado - Solo en desktop */}
+              {!isMobile && (
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent"
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                />
+              )}
               
               {/* Resplandor al hover */}
               <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-amber-400/30 blur-xl"></div>

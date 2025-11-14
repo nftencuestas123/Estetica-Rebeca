@@ -23,38 +23,55 @@ html {
   scroll-behavior: smooth;
 }
 
-/* OPTIMIZACIÓN EQUILIBRADA PARA MÓVIL - RÁPIDA Y HERMOSA */
+/* OPTIMIZACIÓN ULTRA AGRESIVA PARA MÓVIL - CERO FREEZES */
 @media (max-width: 768px) {
-  /* Desactivar solo animaciones PESADAS */
-  [class*="animate-"][class*="float"],
-  [class*="animate-"][class*="spin"],
-  [class*="animate-"][class*="bounce"] {
+  /* Desactivar TODAS las animaciones Framer Motion */
+  [data-framer-component],
+  [data-framer-name] {
     animation: none !important;
+    transition: none !important;
   }
   
-  /* Transiciones rápidas pero presentes */
+  /* Transiciones instantáneas en móvil */
   * {
-    transition-duration: 0.2s !important;
+    transition-duration: 0s !important;
   }
   
-  /* Eliminar solo efectos MUY costosos */
+  /* Eliminar TODOS los efectos costosos */
   * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    filter: none !important;
     will-change: auto !important;
+    transform: none !important;
   }
   
-  /* Mantener sombras simples para profundidad */
-  /* box-shadow y text-shadow se permiten */
+  /* Sombras simples solamente */
+  * {
+    box-shadow: none !important;
+  }
   
-  /* Scroll ultra optimizado */
+  /* Mantener solo sombras críticas */
+  button, a, .shadow-xl, .shadow-2xl {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Scroll ULTRA optimizado */
   * {
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   
-  /* Imágenes optimizadas */
+  /* Imágenes con rendering rápido */
   img {
-    image-rendering: auto;
+    content-visibility: auto;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  /* Contenido fuera de vista no se renderiza */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
   }
 }
 
