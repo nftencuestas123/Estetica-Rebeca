@@ -162,12 +162,12 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     }
   }, [messages])
 
-  // Focus en input
+  // Focus en input solo cuando se active el modo chat
   useEffect(() => {
-    if (inputRef.current) {
+    if (isChatMode && inputRef.current) {
       setTimeout(() => inputRef.current?.focus(), 100)
     }
-  }, [])
+  }, [isChatMode])
 
   // Detectar nombre del usuario en las respuestas del agente
   useEffect(() => {

@@ -45,7 +45,7 @@ export default function ScrollToTop() {
     // Forzar scroll al top múltiples veces durante la carga inicial
     if (typeof window !== 'undefined') {
       const forceScroll = () => {
-        window.scrollTo(0, 0)
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
       }
@@ -58,6 +58,8 @@ export default function ScrollToTop() {
       setTimeout(forceScroll, 50)
       setTimeout(forceScroll, 100)
       setTimeout(forceScroll, 200)
+      setTimeout(forceScroll, 300)
+      setTimeout(forceScroll, 500)
       
       // También cuando la página esté completamente cargada
       if (document.readyState === 'complete') {
@@ -66,7 +68,7 @@ export default function ScrollToTop() {
         window.addEventListener('load', forceScroll, { once: true })
       }
 
-      // Observer para detectar cambios en el DOM durante la carga inicial
+      // Observer agresivo para detectar y prevenir CUALQUIER scroll
       let observerActive = true
       const observer = new MutationObserver(() => {
         if (observerActive && window.scrollY > 0) {
@@ -79,23 +81,34 @@ export default function ScrollToTop() {
         subtree: true,
       })
 
-      // Desactivar observer después de que la página esté cargada
+      // Listener adicional para detectar intentos de scroll
+      const preventScroll = () => {
+        if (observerActive && window.scrollY > 0) {
+          forceScroll()
+        }
+      }
+
+      window.addEventListener('scroll', preventScroll, { passive: true })
+
+      // Desactivar observer después de que la página esté completamente cargada
       const deactivateObserver = () => {
         observerActive = false
         observer.disconnect()
+        window.removeEventListener('scroll', preventScroll)
       }
 
       if (document.readyState === 'complete') {
-        setTimeout(deactivateObserver, 500)
+        setTimeout(deactivateObserver, 1000)
       } else {
         window.addEventListener('load', () => {
-          setTimeout(deactivateObserver, 500)
+          setTimeout(deactivateObserver, 1000)
         }, { once: true })
       }
 
       return () => {
         observer.disconnect()
         window.removeEventListener('load', forceScroll)
+        window.removeEventListener('scroll', preventScroll)
       }
     }
   }, [])
