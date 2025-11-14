@@ -112,6 +112,12 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
         document.body.style.overflow = ''
         window.scrollTo(0, parseInt(scrollY || '0') * -1)
       }
+    } else {
+      // Asegurar que el scroll esté desbloqueado cuando NO está en modo chat
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
     }
   }, [isChatMode, isMobile, currentAgent])
 
@@ -122,13 +128,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     }
   }, [currentAgent, isMobile])
 
-  // Asignar agente al iniciar conversación
-  useEffect(() => {
-    if (messages.length === 0 && !currentAgent) {
-      assignAgent()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // NO asignar agente automáticamente - solo cuando el usuario interactúe
+  // El agente se asignará cuando el usuario seleccione uno o envíe un mensaje
 
   // Scroll automático al final - Siempre mostrar los mensajes nuevos arriba
   useEffect(() => {
@@ -571,7 +572,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   }
 
   const handleSend = async () => {
-    if (!input.trim() || !currentAgent) return
+    if (!input.trim()) return
+    
+    // Si no hay agente asignado, asignar uno ahora
+    if (!currentAgent) {
+      assignAgent()
+      return
+    }
     
     // Si ya está cargando (procesando otro mensaje), no hacer nada
     if (loading) return
