@@ -123,7 +123,7 @@ export async function chatWithSofia(
     const cleanApiKey = OPENROUTER_API_KEY.trim()
     
     console.log('📤 Enviando mensaje a OpenRouter...', {
-      model: 'openai/gpt-4o',
+      model: 'openai/gpt-4o-mini',
       messageCount: messages.length,
       agentName: nombreAgente,
       apiKeyLength: cleanApiKey.length,
@@ -139,7 +139,7 @@ export async function chatWithSofia(
         'X-Title': 'Rebeca Barreto Estética',
       },
       body: JSON.stringify({
-        model: 'openai/gpt-4o', // Modelo GPT-4o de OpenAI vía OpenRouter
+        model: 'openai/gpt-4o-mini', // Modelo GPT-4o-mini de OpenAI vía OpenRouter (más económico)
         messages: messages.map((m) => ({
           role: m.role,
           content: m.content,

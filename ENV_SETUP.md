@@ -57,17 +57,17 @@ Significa que la API key no está configurada o es inválida.
 ## Notas Importantes
 
 - El archivo `.env.local` NO debe subirse a Git (ya está en `.gitignore`)
-- Necesitás créditos en tu cuenta de OpenRouter para usar el modelo GPT-4o
-- GPT-4o es más costoso que gpt-4o-mini, pero ofrece mejor calidad
+- Necesitás créditos en tu cuenta de OpenRouter para usar el modelo GPT-4o-mini
+- Actualmente usamos **GPT-4o-mini** por su excelente relación costo-beneficio
+
+## Modelo de IA Actual
+
+**GPT-4o-mini** - Modelo económico y potente, ideal para chat de atención al cliente
 
 ## Costos Aproximados (OpenRouter)
 
-- **GPT-4o**: ~$2.50 por millón de tokens de entrada, ~$10 por millón de tokens de salida
-- **GPT-4o-mini**: ~$0.15 por millón de tokens de entrada, ~$0.60 por millón de tokens de salida
+- **GPT-4o-mini** (actual): ~$0.15 por millón de tokens de entrada, ~$0.60 por millón de tokens de salida
+- **GPT-4o** (alternativa premium): ~$2.50 por millón de tokens de entrada, ~$10 por millón de tokens de salida
 
-Si preferís usar el modelo más económico, podés cambiar en `services/openrouter.service.ts`:
-
-```typescript
-model: string = 'openai/gpt-4o-mini'  // En lugar de 'openai/gpt-4o'
-```
+Para un chat de atención al cliente como Sofía, GPT-4o-mini ofrece la misma calidad a una fracción del costo.
 
