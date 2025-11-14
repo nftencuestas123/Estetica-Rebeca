@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/app/providers'
+import { useAuth } from '@/hooks/useAuth'
 import Navbar from '@/components/Navbar'
 import ChatSofia from '@/components/ChatSofia'
 import { supabase, type User, type Cita } from '@/lib/supabase'

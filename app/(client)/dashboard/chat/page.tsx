@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth } from '@/app/providers'
+import { useAuth } from '@/hooks/useAuth'
 import Navbar from '@/components/Navbar'
 import ChatSofia from '@/components/ChatSofia'
 import { useRouter } from 'next/navigation'

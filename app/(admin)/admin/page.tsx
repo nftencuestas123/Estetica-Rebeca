@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/app/providers'
+import { useAuth } from '@/hooks/useAuth'
 import Navbar from '@/components/Navbar'
 import { supabase } from '@/lib/supabase'
 import { Users, Calendar, DollarSign, TrendingUp } from 'lucide-react'
