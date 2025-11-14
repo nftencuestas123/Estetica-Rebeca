@@ -28,19 +28,17 @@ export default function Home() {
     <main className="relative min-h-screen bg-transparent dynamic-stellar">
       <Navbar />
       <div className="pt-16 sm:pt-20">
+        {/* 1. Hero - Entrada con headlines */}
         <PremiumHero />
 
-      {/* Sección: Pre-Lanzamiento App */}
-      <PreLaunchSection />
+        {/* 2. Pre-Lanzamiento App - Descarga de aplicación */}
+        <PreLaunchSection />
 
-      {/* Sección: Rebeca Barreto */}
-      <RebecaSection />
+        {/* 3. Rebeca Barreto - Quién es y su experiencia */}
+        <RebecaSection />
 
-      {/* Sección Sofía - Atención al Cliente */}
-      <SofiaSection />
-
-      {/* Sección: ¿Qué buscás? - Premium */}
-      <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
+        {/* 4. ¿Qué buscás? - Categorías de tratamientos */}
+        <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
         {/* Animaciones de fondo deshabilitadas en móvil para mejor performance */}
         {!isMobile && (
           <div className="absolute inset-0">
@@ -207,7 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección: Tratamientos Destacados - Premium */}
+      {/* 5. Tratamientos Destacados - Los más elegidos */}
       <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
@@ -373,13 +371,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección: Storytelling */}
-      <StorytellingSection />
-
-      {/* Sección: Testimonios Premium */}
+      {/* 6. Testimonios Premium - Prueba social */}
       <PremiumTestimonials />
 
-      {/* Footer Premium */}
+      {/* 7. Storytelling - Historia emocional */}
+      <StorytellingSection />
+
+      {/* 8. Sofía - Atención al Cliente (Chat al final para contacto) */}
+      <SofiaSection />
+
+      {/* 9. Footer Premium */}
       <footer className="bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
