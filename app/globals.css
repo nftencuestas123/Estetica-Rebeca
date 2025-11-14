@@ -4,13 +4,13 @@
 
 :root {
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
-  --color-cream: #f3d8a4;
-  --color-cream-soft: #efcb87;
-  --color-cream-deep: #d79c38;
-  --color-gold: #c9a347;
-  --color-gold-soft: #e4c17d;
-  --color-gold-deep: #8d5f23;
-  --foreground-rgb: 201, 163, 71;
+  --color-cream: #000000;
+  --color-cream-soft: #020202;
+  --color-cream-deep: #040404;
+  --color-gold: #ffb31a;
+  --color-gold-soft: #ffd26e;
+  --color-gold-deep: #c1800a;
+  --foreground-rgb: 255, 220, 140;
 }
 
 * {
@@ -112,7 +112,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: var(--font-inter);
-  background-color: var(--color-cream);
+  background-color: #000000;
   color: rgb(var(--foreground-rgb));
   font-feature-settings: 'kern' 1, 'liga' 1;
   -webkit-font-smoothing: antialiased;
@@ -165,6 +165,29 @@ a {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, var(--color-gold-deep), #704514);
+}
+
+.dynamic-stellar {
+  position: relative;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.dynamic-stellar::before {
+  content: '';
+  position: absolute;
+  inset: -75%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 179, 26, 0.08), transparent 35%),
+    radial-gradient(circle at 80% 80%, rgba(255, 179, 26, 0.05), transparent 30%);
+  opacity: 0.35;
+  filter: blur(90px);
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.dynamic-stellar:hover::before {
+  opacity: 0.45;
 }
 
 /* Animaciones premium y dinámicas */
@@ -267,6 +290,27 @@ a {
     }
     100% {
       background-position: 1000px 0;
+    }
+  }
+
+  @keyframes stellarRotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  @keyframes stellarShimmer {
+    0% {
+      transform: translate3d(-10%, -6%, 0) skewX(-3deg);
+    }
+    50% {
+      transform: translate3d(12%, 6%, 0) skewX(3deg);
+    }
+    100% {
+      transform: translate3d(-10%, -6%, 0) skewX(-3deg);
     }
   }
 

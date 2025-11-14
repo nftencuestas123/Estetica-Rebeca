@@ -13,14 +13,14 @@ export default function SedesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-cream-50">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-primary-900 mb-4">
+          <h1 className="text-4xl font-bold text-primary-100 mb-4">
             Nuestras Sedes
           </h1>
-          <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-300 max-w-2xl mx-auto">
             Encontrá la sede más cercana a vos
           </p>
         </div>
@@ -32,21 +32,21 @@ export default function SedesPage() {
                 <MapPin className="w-16 h-16 text-primary opacity-50" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-primary-900 mb-4">
+                <h3 className="text-xl font-semibold text-primary-100 mb-4">
                   {sede.nombre}
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary mt-0.5" />
-                    <p className="text-primary-600">{sede.direccion}</p>
+                    <p className="text-primary-300">{sede.direccion}</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <Phone className="w-5 h-5 text-primary mt-0.5" />
-                    <p className="text-primary-600">{sede.telefono}</p>
+                    <p className="text-primary-300">{sede.telefono}</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <Clock className="w-5 h-5 text-primary mt-0.5" />
-                    <p className="text-primary-600">{sede.horario}</p>
+                    <p className="text-primary-300">{sede.horario}</p>
                   </div>
                 </div>
                 <div className="mt-6">
@@ -68,6 +68,9 @@ export default function SedesPage() {
     </div>
   )
 }
+
+
+
 
 
 

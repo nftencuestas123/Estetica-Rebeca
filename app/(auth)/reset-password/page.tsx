@@ -34,7 +34,7 @@ export default function ResetPasswordPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-cream-50">
+      <div className="min-h-screen bg-transparent">
         <Navbar />
         <div className="flex items-center justify-center py-20 px-4">
           <div className="w-full max-w-md">
@@ -42,10 +42,10 @@ export default function ResetPasswordPage() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-green-600 text-2xl">✓</span>
               </div>
-              <h1 className="text-2xl font-bold text-primary-900 mb-4">
+              <h1 className="text-2xl font-bold text-primary-100 mb-4">
                 Email Enviado
               </h1>
-              <p className="text-primary-600 mb-6">
+              <p className="text-primary-300 mb-6">
                 Te enviamos un enlace para restablecer tu contraseña a{' '}
                 <strong>{email}</strong>
               </p>
@@ -63,15 +63,15 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream-50">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
       <div className="flex items-center justify-center py-20 px-4">
         <div className="w-full max-w-md">
           <div className="bg-cream-50 rounded-lg shadow-lg p-8">
-            <h1 className="text-3xl font-bold text-primary-900 mb-2">
+            <h1 className="text-3xl font-bold text-primary-100 mb-2">
               Recuperar Contraseña
             </h1>
-            <p className="text-primary-600 mb-8">
+            <p className="text-primary-300 mb-8">
               Ingresá tu email y te enviaremos un enlace para restablecer tu contraseña
             </p>
 
@@ -83,7 +83,7 @@ export default function ResetPasswordPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-primary-200 mb-2">
                   Email
                 </label>
                 <input
@@ -113,7 +113,7 @@ export default function ResetPasswordPage() {
               </button>
             </form>
 
-            <div className="mt-6 text-center text-sm text-primary-600">
+            <div className="mt-6 text-center text-sm text-primary-300">
               <Link href="/login" className="text-primary font-semibold hover:underline">
                 Volver al Login
               </Link>
@@ -124,6 +124,9 @@ export default function ResetPasswordPage() {
     </div>
   )
 }
+
+
+
 
 
 

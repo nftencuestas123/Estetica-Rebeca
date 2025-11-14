@@ -80,15 +80,15 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream-50">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
       <div className="flex items-center justify-center py-12 sm:py-16 md:py-20 px-4">
         <div className="w-full max-w-md">
           <div className="bg-cream-50 rounded-lg shadow-lg p-6 sm:p-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary-900 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-primary-100 mb-2">
               Crear Cuenta
             </h1>
-            <p className="text-sm sm:text-base text-primary-600 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-primary-300 mb-6 sm:mb-8">
               Registrate para acceder a todos nuestros servicios
             </p>
 
@@ -100,7 +100,7 @@ export default function RegisterPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
-                <label htmlFor="nombre" className="block text-sm font-medium text-primary-700 mb-2">
+                <label htmlFor="nombre" className="block text-sm font-medium text-primary-200 mb-2">
                   Nombre Completo
                 </label>
                 <input
@@ -116,7 +116,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-primary-200 mb-2">
                   Email
                 </label>
                 <input
@@ -132,7 +132,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label htmlFor="whatsapp" className="block text-sm font-medium text-primary-700 mb-2">
+                <label htmlFor="whatsapp" className="block text-sm font-medium text-primary-200 mb-2">
                   WhatsApp (opcional)
                 </label>
                 <input
@@ -147,7 +147,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-primary-700 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-primary-200 mb-2">
                   Contraseña
                 </label>
                 <input
@@ -164,7 +164,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-700 mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-200 mb-2">
                   Confirmar Contraseña
                 </label>
                 <input
@@ -195,7 +195,7 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-primary-600">
+            <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-primary-300">
               ¿Ya tenés cuenta?{' '}
               <Link href="/login" className="text-primary font-semibold hover:underline min-h-[44px] inline-flex items-center">
                 Iniciá sesión acá
@@ -207,6 +207,9 @@ export default function RegisterPage() {
     </div>
   )
 }
+
+
+
 
 
 

@@ -48,14 +48,14 @@ export default function TratamientosPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-cream-50">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-primary-900 mb-4">
+          <h1 className="text-4xl font-bold text-primary-100 mb-4">
             Nuestros Tratamientos
           </h1>
-          <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-300 max-w-2xl mx-auto">
             Descubrí nuestros tratamientos personalizados diseñados para realzar tu belleza natural
           </p>
         </div>
@@ -75,12 +75,12 @@ export default function TratamientosPage() {
                   <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
                     {tratamiento.categoria}
                   </span>
-                  <span className="text-xs text-primary-500">{tratamiento.duracion}</span>
+                  <span className="text-xs text-primary-200">{tratamiento.duracion}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold text-primary-100 mb-2 group-hover:text-primary transition-colors">
                   {tratamiento.nombre}
                 </h3>
-                <p className="text-primary-600 mb-4 text-sm">
+                <p className="text-primary-300 mb-4 text-sm">
                   {tratamiento.descripcion}
                 </p>
                 <div className="flex items-center justify-between">
@@ -100,6 +100,9 @@ export default function TratamientosPage() {
     </div>
   )
 }
+
+
+
 
 
 

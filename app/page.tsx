@@ -13,7 +13,7 @@ import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-cream-50">
+    <main className="relative min-h-screen bg-transparent dynamic-stellar">
       <Navbar />
       <div className="pt-16 sm:pt-20">
         <PremiumHero />
@@ -28,7 +28,7 @@ export default function Home() {
       <SofiaSection />
 
       {/* Sección: ¿Qué buscás? - Premium */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-primary-200/30 via-primary-300/30 to-primary-400/30 rounded-full blur-3xl"
@@ -74,13 +74,13 @@ export default function Home() {
                 Tratamientos Personalizados
               </span>
             </motion.div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-4 sm:mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6">
               ¿Qué{' '}
               <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 buscás
               </span>?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl font-light text-primary-600 max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl font-light text-primary-300 max-w-2xl mx-auto px-4">
               Cada tratamiento está diseñado pensando en vos y en tus necesidades únicas
             </p>
           </motion.div>
@@ -170,14 +170,14 @@ export default function Home() {
                     >
                       <div className="w-8 h-8 bg-cream-100/50 rounded-lg backdrop-blur-sm" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-primary-900 mb-3 relative z-10 group-hover:bg-gradient-to-r group-hover:from-primary-400 group-hover:to-primary-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                    <h3 className="text-xl font-bold text-primary-100 mb-3 relative z-10 group-hover:bg-gradient-to-r group-hover:from-primary-400 group-hover:to-primary-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
                       {category.name}
                     </h3>
-                    <p className="text-primary-700 font-medium leading-relaxed relative z-10">
+                    <p className="text-primary-200 font-medium leading-relaxed relative z-10">
                       {category.description}
                     </p>
                     <motion.div
-                      className="mt-6 text-primary-600 text-sm font-bold relative z-10"
+                      className="mt-6 text-primary-300 text-sm font-bold relative z-10"
                       initial={{ opacity: 0, x: -10 }}
                       whileHover={{ opacity: 1, x: 0 }}
                     >
@@ -192,7 +192,7 @@ export default function Home() {
       </section>
 
       {/* Sección: Tratamientos Destacados - Premium */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-primary-200/30 via-primary-300/25 to-primary-400/25 rounded-full blur-3xl"
@@ -236,13 +236,13 @@ export default function Home() {
                 Los Más Elegidos
               </span>
             </motion.div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-4 sm:mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6">
               Tratamientos{' '}
               <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
                 destacados
               </span>
             </h2>
-            <p className="text-xl font-light text-primary-600">
+            <p className="text-xl font-light text-primary-300">
               Los tratamientos que más transforman vidas
             </p>
           </motion.div>
@@ -318,16 +318,16 @@ export default function Home() {
                     )}
                   </div>
                   <div className="p-8">
-                    <h3 className="text-2xl font-light text-primary-900 mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-light text-primary-100 mb-3 group-hover:text-primary transition-colors">
                       {tratamiento.nombre}
                     </h3>
-                    <p className="text-primary-600 mb-6 font-light leading-relaxed">
+                    <p className="text-primary-300 mb-6 font-light leading-relaxed">
                       {tratamiento.descripcion}
                     </p>
                     <div className="flex items-center justify-between pt-6 border-t border-primary-100">
                       <span className="text-3xl font-light text-primary">
                         ${tratamiento.precio}
-                        <span className="text-lg text-primary-500"> USD</span>
+                        <span className="text-lg text-primary-200"> USD</span>
                       </span>
                       <span className="text-primary text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity">
                         Ver más →
@@ -372,13 +372,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
               <h3 className="font-light text-2xl mb-4 text-primary">Rebeca Barreto</h3>
-              <p className="text-primary-400 text-sm font-light leading-relaxed">
+              <p className="text-primary-300 text-sm font-light leading-relaxed">
                 Tu belleza auténtica, elevada. Transformando vidas desde 2010.
               </p>
             </div>
             <div>
               <h4 className="font-light mb-6">Enlaces</h4>
-              <ul className="space-y-3 text-sm text-primary-400 font-light">
+              <ul className="space-y-3 text-sm text-primary-300 font-light">
                 <li>
                   <Link href="/tratamientos" className="hover:text-primary transition-colors">
                     Tratamientos
@@ -403,7 +403,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-light mb-6">Contacto</h4>
-              <ul className="space-y-3 text-sm text-primary-400 font-light">
+              <ul className="space-y-3 text-sm text-primary-300 font-light">
                 <li>Ciudad del Este, Paraguay</li>
                 <li>+595 987 123 456</li>
                 <li>info@rebecabarreto.com</li>
@@ -411,7 +411,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-light mb-6">Seguinos</h4>
-              <ul className="space-y-3 text-sm text-primary-400 font-light">
+              <ul className="space-y-3 text-sm text-primary-300 font-light">
                 <li>
                   <Link href="#" className="hover:text-primary transition-colors">
                     Instagram
@@ -430,7 +430,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-primary-700 pt-8 text-center text-sm text-primary-500 font-light">
+          <div className="border-t border-primary-700 pt-8 text-center text-sm text-primary-200 font-light">
             <p>© 2025 Rebeca Barreto Estética y Belleza. Todos los derechos reservados.</p>
           </div>
         </div>
@@ -439,6 +439,8 @@ export default function Home() {
     </main>
   )
 }
+
+
 
 
 

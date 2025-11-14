@@ -512,7 +512,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   }
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-rose-50/30 to-gold-50/20 relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         {/* Background decorativo - Simplificado en móvil */}
@@ -558,13 +558,13 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
               Atención al Cliente en Vivo
             </span>
           </motion.div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-4 sm:mb-6 px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-100 mb-4 sm:mb-6 px-4">
             Nuestro{' '}
             <span className="bg-gradient-to-r from-rose-500 via-gold-400 to-accent-400 bg-clip-text text-transparent animate-gradient">
               Equipo
             </span>
           </h2>
-              <p className="text-base sm:text-lg md:text-xl font-light text-primary-700 max-w-2xl mx-auto px-4">
+              <p className="text-base sm:text-lg md:text-xl font-light text-primary-200 max-w-2xl mx-auto px-4">
             Cinco especialistas disponibles para ayudarte con cualquier consulta sobre tratamientos, citas y más.
           </p>
         </motion.div>
@@ -699,7 +699,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                 </div>
 
                 {/* Nombre - Más grande */}
-                <h3 className="text-center font-bold text-primary-900 text-sm sm:text-base md:text-lg mb-2">{agent.name}</h3>
+                <h3 className="text-center font-bold text-primary-100 text-sm sm:text-base md:text-lg mb-2">{agent.name}</h3>
 
                 {/* Estado dinámico - Mejorado */}
                 <div className="text-center">
@@ -906,10 +906,10 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   >
                     <span className="text-4xl">👋</span>
                   </motion.div>
-                  <p className="text-base sm:text-lg font-medium text-primary-900 mb-2">
+                  <p className="text-base sm:text-lg font-medium text-primary-100 mb-2">
                     {currentAgent ? `¡Hola! Soy ${currentAgent.name}` : 'Selecciona un agente'}
                   </p>
-                  <p className="text-sm sm:text-base text-primary-600 font-light px-4">
+                  <p className="text-sm sm:text-base text-primary-300 font-light px-4">
                     {currentAgent
                       ? 'Estoy acá para ayudarte. ¿En qué puedo acompañarte hoy?'
                       : 'Elige una especialista disponible arriba para comenzar'}
@@ -939,11 +939,11 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     className={`max-w-[85%] sm:max-w-[75%] rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 ${
                       message.role === 'user'
                         ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white'
-                        : 'bg-cream-50 border-2 border-rose-200 text-primary-800 shadow-md'
+                        : 'bg-cream-50 border-2 border-rose-200 text-primary-200 shadow-md'
                     }`}
                   >
                     {message.role === 'assistant' && message.agentName && (
-                      <p className="text-xs font-semibold text-primary-600 mb-1">{message.agentName}</p>
+                      <p className="text-xs font-semibold text-primary-300 mb-1">{message.agentName}</p>
                     )}
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {message.isTyping && message.displayedContent !== undefined
@@ -960,7 +960,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     {!message.isTyping && (
                       <p
                         className={`text-xs mt-2 ${
-                          message.role === 'user' ? 'text-white/70' : 'text-primary-500'
+                          message.role === 'user' ? 'text-white/70' : 'text-primary-200'
                         }`}
                       >
                         {message.timestamp.toLocaleTimeString('es-PY', {
@@ -991,8 +991,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   </div>
                   <div className="bg-cream-50 border-2 border-rose-200 rounded-2xl px-5 py-3 shadow-md">
                     <div className="flex items-center gap-2">
-                      <Loader2 className="w-5 h-5 animate-spin text-primary-500" />
-                      <span className="text-xs text-primary-500">{currentAgent.name} está escribiendo...</span>
+                      <Loader2 className="w-5 h-5 animate-spin text-primary-200" />
+                      <span className="text-xs text-primary-200">{currentAgent.name} está escribiendo...</span>
                     </div>
                   </div>
                 </div>
@@ -1019,7 +1019,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                     }
                   }}
                   placeholder={currentAgent ? `Escribí tu mensaje para ${currentAgent.name}...` : 'Selecciona un agente primero...'}
-                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-primary-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-800 placeholder-primary-400 min-h-[48px]"
+                  className="flex-1 px-4 sm:px-5 py-3 sm:py-4 border-2 border-primary-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-base sm:text-lg text-primary-200 placeholder-primary-400 min-h-[48px]"
                   disabled={loading || !currentAgent}
                   autoComplete="off"
                 />
@@ -1046,7 +1046,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
                   )}
                 </motion.button>
               </div>
-              <p className="text-xs sm:text-sm text-primary-500 mt-2 sm:mt-3 text-center font-light px-2">
+              <p className="text-xs sm:text-sm text-primary-200 mt-2 sm:mt-3 text-center font-light px-2">
                 {currentAgent
                   ? `${currentAgent.name} está disponible ahora para ayudarte`
                   : 'Selecciona una especialista disponible arriba'}
@@ -1070,12 +1070,12 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <p className="text-sm text-primary-700 font-light">
-              <span className="font-semibold text-primary-600">
+            <p className="text-sm text-primary-200 font-light">
+              <span className="font-semibold text-primary-300">
                 {agents.filter((a) => a.status === 'available').length} agentes
               </span>{' '}
               disponibles ahora • Tiempo de respuesta:{' '}
-              <span className="font-semibold text-primary-600">menos de 2 minutos</span>
+              <span className="font-semibold text-primary-300">menos de 2 minutos</span>
             </p>
           </motion.div>
         </div>
@@ -1083,6 +1083,8 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
     </section>
   )
 }
+
+
 
 
 

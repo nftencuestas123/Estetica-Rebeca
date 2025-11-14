@@ -41,7 +41,7 @@ export default function PremiumHero() {
   }, [controls, isMobile])
 
   return (
-    <section className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200">
+    <section className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 bg-transparent">
       {/* Background animado con gradiente dinámico */}
       <motion.div
         className="absolute inset-0"
@@ -150,7 +150,7 @@ export default function PremiumHero() {
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="text-sm font-medium text-primary-700 uppercase tracking-wider">
+            <span className="text-sm font-medium text-primary-200 uppercase tracking-wider">
               Beauty • Innovation • Premium
             </span>
           </motion.div>
@@ -160,7 +160,7 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, type: 'spring' }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-900 mb-6 sm:mb-8 leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-100 mb-6 sm:mb-8 leading-[1.1] tracking-tight"
             style={{
               textShadow: '0 0 30px rgba(201,163,71,0.25)',
             }}
@@ -212,11 +212,11 @@ export default function PremiumHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-primary-800 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-primary-200 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
           >
             No estás sola. Miles de mujeres como vos recuperaron su{' '}
             <motion.span
-              className="font-bold text-primary-600"
+              className="font-bold text-primary-300"
               animate={{
                 textShadow: [
                   '0 0 10px rgba(201,163,71,0.4)',
@@ -230,7 +230,7 @@ export default function PremiumHero() {
             </motion.span>{' '}
             y{' '}
             <motion.span
-              className="font-bold text-primary-500"
+              className="font-bold text-primary-200"
               animate={{
                 textShadow: [
                   '0 0 10px rgba(255,215,109,0.5)',
@@ -244,7 +244,7 @@ export default function PremiumHero() {
             </motion.span>{' '}
             con nosotros.
             <br />
-            <span className="text-lg mt-4 block text-primary-700 font-medium">
+            <span className="text-lg mt-4 block text-primary-200 font-medium">
               Tu transformación empieza acá.
             </span>
           </motion.p>
@@ -288,7 +288,7 @@ export default function PremiumHero() {
             >
               <Link
                 href="/contacto"
-                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-cream-100/90 md:backdrop-blur-sm text-primary-700 rounded-full font-semibold text-base sm:text-lg border-2 border-primary-300/70 hover:border-primary-400 hover:bg-cream-50 transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
+                className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-cream-100/90 md:backdrop-blur-sm text-primary-200 rounded-full font-semibold text-base sm:text-lg border-2 border-primary-300/70 hover:border-primary-400 hover:bg-cream-50 transition-all shadow-lg w-full sm:w-auto min-h-[48px] flex items-center justify-center"
               >
                 Hablá con nosotras
               </Link>
@@ -330,8 +330,8 @@ export default function PremiumHero() {
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-primary-800 font-medium mb-1">{stat.label}</div>
-                <div className="text-sm text-primary-600">{stat.sublabel}</div>
+                <div className="text-primary-200 font-medium mb-1">{stat.label}</div>
+                <div className="text-sm text-primary-300">{stat.sublabel}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -355,6 +355,8 @@ export default function PremiumHero() {
     </section>
   )
 }
+
+
 
 
 
