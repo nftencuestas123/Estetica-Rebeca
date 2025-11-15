@@ -20,17 +20,28 @@ export default function LoginPage() {
     setError(null)
 
     try {
+      console.log('[DEBUG] Intentando login con:', email)
+      
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
-      if (authError) throw authError
+      
+      if (authError) {
+        console.error('[ERROR] Error de auth:', authError)
+        throw authError
+      }
+      
       if (data.user) {
+        console.log('[DEBUG] Login exitoso, usuario:', data.user.email)
+        console.log('[DEBUG] Redirigiendo a dashboard')
+        
         // Redirigir al dashboard de CLIENTE
         router.push('/dashboard')
         router.refresh()
       }
     } catch (err: any) {
+      console.error('[ERROR] Error en login:', err)
       setError(err.message || 'Email o contraseña incorrectos')
     } finally {
       setLoading(false)

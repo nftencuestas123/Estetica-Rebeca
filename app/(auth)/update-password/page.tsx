@@ -45,19 +45,28 @@ export default function UpdatePasswordPage() {
     }
 
     try {
+      // Actualizar contraseña
       const { error: updateError } = await supabase.auth.updateUser({
         password: password,
       })
 
       if (updateError) throw updateError
 
+      console.log('[DEBUG] Contraseña actualizada correctamente')
+      
+      // IMPORTANTE: Cerrar sesión para limpiar tokens viejos
+      await supabase.auth.signOut()
+      console.log('[DEBUG] Sesión cerrada')
+
       setSuccess(true)
       
-      // Redirigir al login después de 3 segundos
+      // Redirigir al login después de 2 segundos
       setTimeout(() => {
+        console.log('[DEBUG] Redirigiendo a login')
         router.push('/login')
-      }, 3000)
+      }, 2000)
     } catch (err: any) {
+      console.error('[ERROR] Error al actualizar contraseña:', err)
       setError(err.message || 'Error al actualizar la contraseña')
     } finally {
       setLoading(false)
@@ -105,7 +114,7 @@ export default function UpdatePasswordPage() {
                 ¡Contraseña Actualizada!
               </h1>
               <p className="text-white mb-6">
-                Tu contraseña se actualizó correctamente. Serás redirigido al login en unos segundos...
+                Tu contraseña se actualizó correctamente. Ahora podés iniciar sesión con tu nueva contraseña.
               </p>
               <Link
                 href="/login"
