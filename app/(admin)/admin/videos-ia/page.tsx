@@ -83,21 +83,186 @@ export default function VideosIAPage() {
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-          <Video className="w-8 h-8 text-primary-400" />
-          Generador de Videos IA
-        </h1>
-        <p className="text-white/60">
-          Powered by{' '}
-          <a 
-            href="https://www.topview.ai/es/make/avatar4" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-primary-400 hover:text-primary-300 font-semibold"
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
+              <Video className="w-8 h-8 text-primary-400" />
+              Generador de Videos IA
+            </h1>
+            <p className="text-white/60">
+              Powered by{' '}
+              <a 
+                href="https://www.topview.ai/es/make/avatar4" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary-400 hover:text-primary-300 font-semibold"
+              >
+                TopView Avatar 4
+              </a>
+            </p>
+          </div>
+          
+          {/* Help Button */}
+          <button
+            onClick={() => {
+              const helpModal = document.getElementById('help-modal')
+              if (helpModal) {
+                helpModal.classList.toggle('hidden')
+              }
+            }}
+            className="bg-gradient-to-r from-primary-500/20 to-primary-600/10 border border-primary-400/40 text-primary-400 px-6 py-3 rounded-xl font-semibold hover:from-primary-500/30 hover:to-primary-600/20 transition-all flex items-center gap-2"
           >
-            TopView Avatar 4
-          </a>
-        </p>
+            <span className="text-xl">❓</span>
+            ¿Cómo usar?
+          </button>
+        </div>
+      </div>
+
+      {/* Help Modal */}
+      <div
+        id="help-modal"
+        className="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            e.currentTarget.classList.add('hidden')
+          }
+        }}
+      >
+        <div className="bg-gradient-to-b from-neutral-950 via-black to-neutral-950 border-2 border-primary-400/30 rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto p-8">
+          {/* Close Button */}
+          <button
+            onClick={() => {
+              const helpModal = document.getElementById('help-modal')
+              if (helpModal) {
+                helpModal.classList.add('hidden')
+              }
+            }}
+            className="absolute top-4 right-4 text-white/60 hover:text-white text-3xl"
+          >
+            ×
+          </button>
+
+          <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+            <Sparkles className="w-8 h-8 text-primary-400" />
+            Guía Rápida - Generador de Videos IA
+          </h2>
+
+          <div className="space-y-6">
+            {/* Step 1 */}
+            <div className="bg-black/50 border border-primary-400/20 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-primary-400 mb-3">
+                1️⃣ Configuración Inicial (Solo la primera vez)
+              </h3>
+              <div className="space-y-2 text-white/80">
+                <p>✅ <strong>Crear cuenta</strong> en <a href="https://www.topview.ai/es/make/avatar4" target="_blank" className="text-primary-400 underline">TopView.ai</a></p>
+                <p>✅ <strong>Obtener API Key</strong> (contactar: <a href="mailto:official@topview.ai" className="text-primary-400">official@topview.ai</a>)</p>
+                <p>✅ <strong>Configurar</strong> en archivo <code className="bg-black px-2 py-1 rounded text-primary-300">.env.local</code></p>
+                <p className="text-white/60 text-sm mt-2">
+                  📖 Lee: <code>TOPVIEW_GUIA_COMPLETA_PARA_PRINCIPIANTES.md</code> para detalles
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-black/50 border border-primary-400/20 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-primary-400 mb-3">
+                2️⃣ Crear tu Video
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <p className="font-semibold text-white mb-2">📸 Imagen del Avatar</p>
+                  <p className="text-sm text-white/70">Sube una foto clara, frontal, bien iluminada. Puede ser tuya, de un producto, o un personaje.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-white mb-2">✍️ Guión del Video</p>
+                  <p className="text-sm text-white/70">Escribe lo que dirá el avatar. Sé natural. 100-300 palabras = 30-90 segundos.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-white mb-2">🎤 Configurar Voz</p>
+                  <p className="text-sm text-white/70">Elige una voz de IA en español, o sube tu propio audio.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-black/50 border border-primary-400/20 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-primary-400 mb-3">
+                3️⃣ Generar y Descargar
+              </h3>
+              <div className="space-y-2 text-white/80">
+                <p>✅ Click en <strong>"Generar Video con IA"</strong></p>
+                <p>✅ Espera 1-3 minutos (procesando)</p>
+                <p>✅ Ve a tab <strong>"Mis Videos"</strong></p>
+                <p>✅ Descarga tu video (MP4 en 1080p)</p>
+                <p>✅ Comparte en redes sociales 📱</p>
+              </div>
+            </div>
+
+            {/* Pricing */}
+            <div className="bg-gradient-to-r from-primary-500/10 to-primary-600/5 border border-primary-400/30 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-white mb-3">
+                💰 Precios TopView
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p className="font-semibold text-white mb-1">Gratuito</p>
+                  <p className="text-white/70">$0 - 2-5 videos prueba</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-primary-400 mb-1">Pro (Recomendado)</p>
+                  <p className="text-white/70">$29-49/mes - 50-100 videos</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-white mb-1">Business</p>
+                  <p className="text-white/70">$99-199/mes - 200-500 videos</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Capabilities */}
+            <div className="bg-black/50 border border-primary-400/20 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-white mb-3">
+                ✨ ¿Qué puede hacer el Avatar?
+              </h3>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="flex items-start gap-2">
+                  <span className="text-green-400">✅</span>
+                  <span className="text-white/80">Hablar naturalmente</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-400">✅</span>
+                  <span className="text-white/80">Sostener productos</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-400">✅</span>
+                  <span className="text-white/80">Gestos con manos</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-400">✅</span>
+                  <span className="text-white/80">Movimientos de cabeza</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-400">✅</span>
+                  <span className="text-white/80">Expresiones faciales</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-400">✅</span>
+                  <span className="text-white/80">Videos hasta 2 minutos</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div className="text-center pt-4 border-t border-primary-400/20">
+              <p className="text-white/60 text-sm mb-2">
+                📚 Documentación completa en archivos .md del proyecto
+              </p>
+              <p className="text-white/60 text-sm">
+                📧 Dudas sobre TopView: <a href="mailto:official@topview.ai" className="text-primary-400">official@topview.ai</a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Tabs */}
