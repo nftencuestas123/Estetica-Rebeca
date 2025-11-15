@@ -49,6 +49,11 @@ export default function AdminSidebar() {
       label: 'Tratamientos'
     },
     {
+      href: '/admin/videos-ia',
+      icon: <span className="text-lg">🎬</span>,
+      label: 'Videos IA'
+    },
+    {
       href: '/admin/sofia',
       icon: <MessageSquare className="w-5 h-5" />,
       label: 'Sofía IA'
