@@ -682,7 +682,7 @@ export default function SofiaSection({ userId }: SofiaSectionProps) {
   }
 
   return (
-    <section id="sofia-section" className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-transparent relative overflow-hidden">
       {/* Background decorativo */}
       <div className="absolute inset-0">
         {/* Background decorativo - Simplificado en móvil */}

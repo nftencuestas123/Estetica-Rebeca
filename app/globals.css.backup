@@ -23,8 +23,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* OPTIMIZACIÓN ULTRA AGRESIVA PARA MÓVIL - CERO FREEZES */
+/* Optimización LIGERA para móvil */
 @media (max-width: 768px) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  /* Solo optimizaciones básicas */
   /* Desactivar TODAS las animaciones Framer Motion */
   [data-framer-component],
   [data-framer-name] {
@@ -72,6 +77,27 @@ html {
   section {
     content-visibility: auto;
     contain-intrinsic-size: 1px 500px;
+  }
+  
+  /* Reducir repaints y reflows */
+  * {
+    contain: layout style paint;
+  }
+  
+  /* Optimizar fuentes */
+  body {
+    font-display: swap;
+    text-rendering: optimizeSpeed;
+  }
+  
+  /* Reducir complejidad de gradientes */
+  [class*="gradient"] {
+    background-attachment: scroll !important;
+  }
+  
+  /* Desactivar blur costoso */
+  .blur-3xl, .blur-2xl, .blur-xl, .blur-lg, .blur-md {
+    filter: none !important;
   }
 }
 
