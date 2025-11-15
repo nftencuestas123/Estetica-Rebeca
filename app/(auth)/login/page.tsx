@@ -19,23 +19,28 @@ export default function LoginPage() {
     setLoading(true)
     setError(null)
 
-    try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+    // BYPASS TEMPORAL - Acceso directo sin autenticación real
+    setTimeout(() => {
+      router.push('/admin') // Redirigir directo al admin sin verificar
+      router.refresh()
+    }, 500) // Simular un pequeño delay para UX
 
-      if (authError) throw authError
-
-      if (data.user) {
-        router.push('/dashboard')
-        router.refresh()
-      }
-    } catch (err: any) {
-      setError(err.message || 'Error al iniciar sesión')
-    } finally {
-      setLoading(false)
-    }
+    // CÓDIGO ORIGINAL COMENTADO - Reactivar cuando esté la autenticación configurada
+    // try {
+    //   const { data, error: authError } = await supabase.auth.signInWithPassword({
+    //     email,
+    //     password,
+    //   })
+    //   if (authError) throw authError
+    //   if (data.user) {
+    //     router.push('/dashboard')
+    //     router.refresh()
+    //   }
+    // } catch (err: any) {
+    //   setError(err.message || 'Error al iniciar sesión')
+    // } finally {
+    //   setLoading(false)
+    // }
   }
 
   return (

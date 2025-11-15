@@ -24,6 +24,7 @@ export default function RegisterPage() {
     setLoading(true)
     setError(null)
 
+    // Validaciones básicas mantenidas para UX
     if (formData.password !== formData.confirmPassword) {
       setError('Las contraseñas no coinciden')
       setLoading(false)
@@ -36,40 +37,42 @@ export default function RegisterPage() {
       return
     }
 
-    try {
-      // Registrar usuario en Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-      })
+    // BYPASS TEMPORAL - Acceso directo sin registro real
+    setTimeout(() => {
+      router.push('/admin') // Redirigir directo al admin sin crear cuenta
+      router.refresh()
+    }, 500) // Simular un pequeño delay para UX
 
-      if (authError) throw authError
-
-      if (authData.user) {
-        // Crear perfil en tabla users
-        const { error: profileError } = await supabase.from('users').insert({
-          id: authData.user.id,
-          email: formData.email,
-          nombre: formData.nombre,
-          whatsapp: formData.whatsapp || null,
-          estado: 'activo',
-          puntos_lealtad: 0,
-          tier: 'bronze',
-        })
-
-        if (profileError) {
-          console.error('Error creando perfil:', profileError)
-          // No lanzamos error aquí porque el usuario ya está creado en auth
-        }
-
-        router.push('/dashboard')
-        router.refresh()
-      }
-    } catch (err: any) {
-      setError(err.message || 'Error al registrarse')
-    } finally {
-      setLoading(false)
-    }
+    // CÓDIGO ORIGINAL COMENTADO - Reactivar cuando esté la autenticación configurada
+    // try {
+    //   // Registrar usuario en Supabase Auth
+    //   const { data: authData, error: authError } = await supabase.auth.signUp({
+    //     email: formData.email,
+    //     password: formData.password,
+    //   })
+    //   if (authError) throw authError
+    //   if (authData.user) {
+    //     // Crear perfil en tabla users
+    //     const { error: profileError } = await supabase.from('users').insert({
+    //       id: authData.user.id,
+    //       email: formData.email,
+    //       nombre: formData.nombre,
+    //       whatsapp: formData.whatsapp || null,
+    //       estado: 'activo',
+    //       puntos_lealtad: 0,
+    //       tier: 'bronze',
+    //     })
+    //     if (profileError) {
+    //       console.error('Error creando perfil:', profileError)
+    //     }
+    //     router.push('/dashboard')
+    //     router.refresh()
+    //   }
+    // } catch (err: any) {
+    //   setError(err.message || 'Error al registrarse')
+    // } finally {
+    //   setLoading(false)
+    // }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
