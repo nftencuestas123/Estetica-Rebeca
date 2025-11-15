@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { supabase } from '@/lib/supabase'
@@ -25,21 +25,7 @@ export default function ClientDashboardPage() {
   })
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    if (!authLoading) {
-      if (!user) {
-        router.push('/login')
-        return
-      }
-      if (profile?.role === 'admin') {
-        router.push('/admin')
-        return
-      }
-      loadDashboardData()
-    }
-  }, [user, profile, authLoading, router])
-
-  const loadDashboardData = async () => {
+  const loadDashboardData = useCallback(async () => {
     try {
       // Cargar créditos
       const { data: creditsData } = await supabase
@@ -79,7 +65,21 @@ export default function ClientDashboardPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [user])
+
+  useEffect(() => {
+    if (!authLoading) {
+      if (!user) {
+        router.push('/login')
+        return
+      }
+      if (profile?.role === 'admin') {
+        router.push('/admin')
+        return
+      }
+      loadDashboardData()
+    }
+  }, [user, profile, authLoading, router, loadDashboardData])
 
   if (authLoading || loading) {
     return (
