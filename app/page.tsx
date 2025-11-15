@@ -24,15 +24,19 @@ export default function HomeDynamic() {
     
     const loadRootPage = async () => {
       try {
+        console.log('[DEBUG] Cargando página root...')
         const rootPage = await getRootPage()
         
+        console.log('[DEBUG] Página root recibida:', rootPage)
+        
         if (!rootPage) {
-          console.error('No hay página root configurada')
+          console.error('[ERROR] No hay página root configurada')
           setError(true)
           setLoading(false)
           return
         }
 
+        console.log('[DEBUG] Template key:', rootPage.template_key)
         setTemplateKey(rootPage.template_key)
         setPageId(rootPage.id)
         
@@ -43,7 +47,7 @@ export default function HomeDynamic() {
         
         setLoading(false)
       } catch (err) {
-        console.error('Error cargando página root:', err)
+        console.error('[ERROR] Error cargando página root:', err)
         setError(true)
         setLoading(false)
       }
