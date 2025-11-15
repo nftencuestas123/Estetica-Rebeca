@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-// import { useAuth } from '@/hooks/useAuth' // DESACTIVADO - Sin autenticación temporal
+import { useAuth } from '@/hooks/useAuth'
 import { supabase } from '@/lib/supabase'
 import { Users, Calendar, DollarSign, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AdminPage() {
-  // AUTENTICACIÓN DESACTIVADA TEMPORALMENTE - Acceso directo sin login
-  // const { user, loading: authLoading } = useAuth()
+  const { user, profile, loading: authLoading } = useAuth()
   const router = useRouter()
   const [stats, setStats] = useState({
     totalUsuarios: 0,
@@ -20,15 +19,14 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // BYPASS DE AUTENTICACIÓN - Cargar stats directamente
-    // if (!authLoading && !user) {
-    //   router.push('/login')
-    //   return
-    // }
-    // if (user) {
+    if (!authLoading) {
+      if (!user || profile?.role !== 'admin') {
+        router.push('/admin-login')
+        return
+      }
       loadStats()
-    // }
-  }, [router])
+    }
+  }, [user, profile, authLoading, router])
 
   const loadStats = async () => {
     try {
@@ -59,22 +57,20 @@ export default function AdminPage() {
     }
   }
 
-  // BYPASS: Mostrar loading solo mientras carga stats, NO por autenticación
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-white">Cargando estadísticas...</p>
+          <p className="text-white">Cargando...</p>
         </div>
       </div>
     )
   }
 
-  // BYPASS: No verificar usuario - Acceso libre
-  // if (!user) {
-  //   return null
-  // }
+  if (!user || profile?.role !== 'admin') {
+    return null
+  }
 
   return (
     <div>
