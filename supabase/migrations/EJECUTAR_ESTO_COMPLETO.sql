@@ -122,7 +122,37 @@ CREATE POLICY "Admins manage purchase requests" ON public.credit_purchase_reques
 CREATE POLICY "Admins view all transactions" ON public.credit_transactions FOR ALL USING (EXISTS (SELECT 1 FROM public.user_profiles WHERE id = auth.uid() AND role = 'admin'));
 
 -- =====================================================
--- 4. SISTEMA DE REDES SOCIALES
+-- 4. SISTEMA DE VIDEOS IA
+-- =====================================================
+
+CREATE TABLE IF NOT EXISTS public.videos (
+  id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id uuid REFERENCES public.user_profiles(id) ON DELETE CASCADE,
+  title text,
+  description text,
+  video_url text,
+  thumbnail_url text,
+  duration_seconds integer,
+  status text DEFAULT 'processing' CHECK (status IN ('processing', 'completed', 'failed')),
+  topview_job_id text,
+  avatar_image_url text,
+  script_text text,
+  voice_id text,
+  cost_usd numeric(10, 2),
+  created_at timestamp with time zone DEFAULT now() NOT NULL,
+  updated_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_videos_user_id ON public.videos(user_id);
+CREATE INDEX IF NOT EXISTS idx_videos_status ON public.videos(status);
+
+ALTER TABLE public.videos ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users view own videos" ON public.videos FOR ALL USING (auth.uid() = user_id);
+CREATE POLICY "Admins view all videos" ON public.videos FOR SELECT USING (EXISTS (SELECT 1 FROM public.user_profiles WHERE id = auth.uid() AND role = 'admin'));
+
+-- =====================================================
+-- 5. SISTEMA DE REDES SOCIALES
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.social_accounts (
@@ -140,6 +170,7 @@ CREATE TABLE IF NOT EXISTS public.social_accounts (
 CREATE TABLE IF NOT EXISTS public.social_posts (
   id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id uuid REFERENCES public.user_profiles(id) ON DELETE CASCADE,
+  video_id uuid REFERENCES public.videos(id) ON DELETE SET NULL,
   account_id uuid REFERENCES public.social_accounts(id) ON DELETE CASCADE,
   platform text NOT NULL,
   post_id text,
@@ -150,20 +181,43 @@ CREATE TABLE IF NOT EXISTS public.social_posts (
   comments integer DEFAULT 0,
   views integer DEFAULT 0,
   shares integer DEFAULT 0,
+  engagement_rate numeric(5,2) DEFAULT 0,
   scheduled_at timestamp with time zone,
   published_at timestamp with time zone,
+  analytics_updated_at timestamp with time zone,
   created_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS public.copy_templates (
+  id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id uuid REFERENCES public.user_profiles(id) ON DELETE CASCADE,
+  template_name text NOT NULL,
+  template_text text NOT NULL,
+  platform text,
+  category text,
+  times_used integer DEFAULT 0,
+  avg_engagement numeric(5,2),
+  created_at timestamp with time zone DEFAULT now() NOT NULL,
+  updated_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_social_accounts_user_id ON public.social_accounts(user_id);
+CREATE INDEX IF NOT EXISTS idx_social_posts_user_id ON public.social_posts(user_id);
+CREATE INDEX IF NOT EXISTS idx_copy_templates_user_id ON public.copy_templates(user_id);
+
 ALTER TABLE public.social_accounts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.social_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.copy_templates ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Users manage own social accounts" ON public.social_accounts FOR ALL USING (auth.uid() = user_id);
 CREATE POLICY "Users manage own posts" ON public.social_posts FOR ALL USING (auth.uid() = user_id);
+CREATE POLICY "Users manage own copy templates" ON public.copy_templates FOR ALL USING (auth.uid() = user_id);
 CREATE POLICY "Admins view all social" ON public.social_accounts FOR SELECT USING (EXISTS (SELECT 1 FROM public.user_profiles WHERE id = auth.uid() AND role = 'admin'));
+CREATE POLICY "Admins view all posts" ON public.social_posts FOR SELECT USING (EXISTS (SELECT 1 FROM public.user_profiles WHERE id = auth.uid() AND role = 'admin'));
+CREATE POLICY "Admins view all templates" ON public.copy_templates FOR SELECT USING (EXISTS (SELECT 1 FROM public.user_profiles WHERE id = auth.uid() AND role = 'admin'));
 
 -- =====================================================
--- 5. CRM - CLIENTES
+-- 6. CRM - CLIENTES
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.crm_clients (
@@ -186,7 +240,7 @@ CREATE TABLE IF NOT EXISTS public.crm_clients (
 );
 
 -- =====================================================
--- 6. TRATAMIENTOS/SERVICIOS
+-- 7. TRATAMIENTOS/SERVICIOS
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.treatments (
@@ -202,7 +256,7 @@ CREATE TABLE IF NOT EXISTS public.treatments (
 );
 
 -- =====================================================
--- 7. CITAS/RESERVAS
+-- 8. CITAS/RESERVAS
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.appointments (
@@ -222,7 +276,7 @@ CREATE INDEX IF NOT EXISTS idx_appointments_date ON public.appointments(appointm
 CREATE INDEX IF NOT EXISTS idx_appointments_status ON public.appointments(status);
 
 -- =====================================================
--- 8. PRODUCTOS
+-- 9. PRODUCTOS
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.products (
@@ -241,7 +295,7 @@ CREATE TABLE IF NOT EXISTS public.products (
 );
 
 -- =====================================================
--- 9. VENTAS DE PRODUCTOS
+-- 10. VENTAS DE PRODUCTOS
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.product_sales (
@@ -257,7 +311,7 @@ CREATE TABLE IF NOT EXISTS public.product_sales (
 );
 
 -- =====================================================
--- 10. REPORTES/ESTADÍSTICAS
+-- 11. REPORTES/ESTADÍSTICAS
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.business_stats (
@@ -274,7 +328,7 @@ CREATE TABLE IF NOT EXISTS public.business_stats (
 );
 
 -- =====================================================
--- 11. CONFIGURACIONES DEL SISTEMA
+-- 12. CONFIGURACIONES DEL SISTEMA
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS public.system_config (
