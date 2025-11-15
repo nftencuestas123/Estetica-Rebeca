@@ -37,42 +37,31 @@ export default function RegisterPage() {
       return
     }
 
-    // BYPASS TEMPORAL - Acceso directo sin registro real
-    setTimeout(() => {
-      router.push('/admin') // Redirigir directo al admin sin crear cuenta
-      router.refresh()
-    }, 500) // Simular un pequeño delay para UX
-
-    // CÓDIGO ORIGINAL COMENTADO - Reactivar cuando esté la autenticación configurada
-    // try {
-    //   // Registrar usuario en Supabase Auth
-    //   const { data: authData, error: authError } = await supabase.auth.signUp({
-    //     email: formData.email,
-    //     password: formData.password,
-    //   })
-    //   if (authError) throw authError
-    //   if (authData.user) {
-    //     // Crear perfil en tabla users
-    //     const { error: profileError } = await supabase.from('users').insert({
-    //       id: authData.user.id,
-    //       email: formData.email,
-    //       nombre: formData.nombre,
-    //       whatsapp: formData.whatsapp || null,
-    //       estado: 'activo',
-    //       puntos_lealtad: 0,
-    //       tier: 'bronze',
-    //     })
-    //     if (profileError) {
-    //       console.error('Error creando perfil:', profileError)
-    //     }
-    //     router.push('/dashboard')
-    //     router.refresh()
-    //   }
-    // } catch (err: any) {
-    //   setError(err.message || 'Error al registrarse')
-    // } finally {
-    //   setLoading(false)
-    // }
+    try {
+      // Registrar usuario en Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            full_name: formData.nombre,
+            phone: formData.whatsapp || null,
+          },
+        },
+      })
+      if (authError) throw authError
+      
+      if (authData.user) {
+        // El trigger automáticamente crea el perfil en user_profiles
+        // Redirigir al dashboard de CLIENTE
+        router.push('/dashboard')
+        router.refresh()
+      }
+    } catch (err: any) {
+      setError(err.message || 'Error al registrarse')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

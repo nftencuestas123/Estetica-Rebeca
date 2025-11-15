@@ -1,101 +1,86 @@
-import { createServerClient } from '@supabase/ssr'
+/**
+ * =====================================================
+ * MIDDLEWARE DE AUTENTICACIÓN
+ * Protege rutas según rol (admin vs client)
+ * =====================================================
+ */
+
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
-  let response = NextResponse.next({
-    request: {
-      headers: req.headers,
-    },
-  })
+  const res = NextResponse.next()
+  const supabase = createMiddlewareClient({ req, res })
 
-  try {
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          get(name: string) {
-            return req.cookies.get(name)?.value
-          },
-          set(name: string, value: string, options: any) {
-            req.cookies.set({
-              name,
-              value,
-              ...options,
-            })
-            response = NextResponse.next({
-              request: {
-                headers: req.headers,
-              },
-            })
-            response.cookies.set({
-              name,
-              value,
-              ...options,
-            })
-          },
-          remove(name: string, options: any) {
-            req.cookies.set({
-              name,
-              value: '',
-              ...options,
-            })
-            response = NextResponse.next({
-              request: {
-                headers: req.headers,
-              },
-            })
-            response.cookies.set({
-              name,
-              value: '',
-              ...options,
-            })
-          },
-        },
-      }
-    )
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
-
-    // Rutas protegidas que requieren autenticación
-    const protectedRoutes = ['/dashboard', '/admin']
-    const isProtectedRoute = protectedRoutes.some((route) =>
-      req.nextUrl.pathname.startsWith(route)
-    )
-
-    // Si es ruta protegida y no hay sesión, redirigir a login
-    if (isProtectedRoute && !session) {
-      const redirectUrl = req.nextUrl.clone()
-      redirectUrl.pathname = '/login'
-      redirectUrl.searchParams.set('redirect', req.nextUrl.pathname)
-      return NextResponse.redirect(redirectUrl)
+  // Rutas protegidas para ADMIN
+  if (req.nextUrl.pathname.startsWith('/admin')) {
+    if (!session) {
+      // No autenticado → redirigir a admin login
+      return NextResponse.redirect(new URL('/admin-login', req.url))
     }
 
-    // Si hay sesión y está en login/register, redirigir a dashboard
-    if (session && (req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/register')) {
+    // Verificar que sea admin
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('role')
+      .eq('id', session.user.id)
+      .single()
+
+    if (profile?.role !== 'admin') {
+      // No es admin → redirigir a dashboard de cliente
       return NextResponse.redirect(new URL('/dashboard', req.url))
     }
-  } catch (error) {
-    // Si hay error, continuar sin protección (para desarrollo)
-    console.error('Middleware error:', error)
   }
 
-  return response
+  // Rutas protegidas para CLIENTES
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!session) {
+      // No autenticado → redirigir a client login
+      return NextResponse.redirect(new URL('/login', req.url))
+    }
+
+    // Verificar que sea cliente (o admin también puede ver)
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('role')
+      .eq('id', session.user.id)
+      .single()
+
+    if (!profile) {
+      return NextResponse.redirect(new URL('/login', req.url))
+    }
+  }
+
+  // Redirigir admin-login y login si ya está autenticado
+  if (req.nextUrl.pathname === '/admin-login' || req.nextUrl.pathname === '/login') {
+    if (session) {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('role')
+        .eq('id', session.user.id)
+        .single()
+
+      if (profile?.role === 'admin') {
+        return NextResponse.redirect(new URL('/admin', req.url))
+      } else {
+        return NextResponse.redirect(new URL('/dashboard', req.url))
+      }
+    }
+  }
+
+  return res
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/admin/:path*',
+    '/dashboard/:path*',
+    '/admin-login',
+    '/login',
   ],
 }
-
