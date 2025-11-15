@@ -44,6 +44,21 @@ export default function AdminSidebar() {
       label: 'Solicitudes Créditos'
     },
     {
+      href: '/admin/videos-ia-v2',
+      icon: <span className="text-lg">🎬</span>,
+      label: 'Videos IA + Publicar'
+    },
+    {
+      href: '/admin/estadisticas',
+      icon: <BarChart3 className="w-5 h-5" />,
+      label: 'Estadísticas'
+    },
+    {
+      href: '/admin/configuracion/redes-sociales',
+      icon: <span className="text-lg">🔗</span>,
+      label: 'Redes Sociales'
+    },
+    {
       href: '/admin/clientes',
       icon: <Users className="w-5 h-5" />,
       label: 'CRM - Clientes'
@@ -57,11 +72,6 @@ export default function AdminSidebar() {
       href: '/admin/tratamientos',
       icon: <Sparkles className="w-5 h-5" />,
       label: 'Tratamientos'
-    },
-    {
-      href: '/admin/videos-ia',
-      icon: <span className="text-lg">🎬</span>,
-      label: 'Videos IA'
     },
     {
       href: '/admin/sofia',
