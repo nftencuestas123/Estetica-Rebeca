@@ -63,6 +63,23 @@ html {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
   }
   
+  /* EXCEPCIONES: Botones flotantes de contacto DEBEN tener animaciones */
+  [class*="fixed bottom-"] button,
+  [class*="fixed bottom-"] button * {
+    animation: unset !important;
+    transition: unset !important;
+    transform: unset !important;
+    box-shadow: unset !important;
+    filter: unset !important;
+  }
+  
+  /* Permitir animaciones CSS nativas en botones flotantes */
+  [class*="fixed bottom-"] .animate-ping,
+  [class*="fixed bottom-"] .animate-pulse,
+  [class*="fixed bottom-"] .animate-bounce {
+    animation: unset !important;
+  }
+  
   /* Scroll ULTRA optimizado */
   * {
     -webkit-overflow-scrolling: touch;

@@ -1,26 +1,42 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Phone, MessageCircle, X } from 'lucide-react'
+import { Phone, MessageCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function FloatingContactButtons() {
   const [isMobile, setIsMobile] = useState(false)
-  const [showTooltip, setShowTooltip] = useState(true)
+  const [showCallText, setShowCallText] = useState(true)
+  const [showChatText, setShowChatText] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
     window.addEventListener('resize', checkMobile)
     
-    // Ocultar tooltip después de 5 segundos
-    const timer = setTimeout(() => setShowTooltip(false), 5000)
-    
     return () => {
       window.removeEventListener('resize', checkMobile)
-      clearTimeout(timer)
     }
   }, [])
+
+  // Animación de textos alternados para llamar la atención
+  useEffect(() => {
+    if (!isMobile) return
+
+    const interval = setInterval(() => {
+      setShowCallText(prev => {
+        if (!prev) {
+          setShowChatText(false)
+          return true
+        } else {
+          setTimeout(() => setShowChatText(true), 2000)
+          return false
+        }
+      })
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [isMobile])
 
   // Solo mostrar en móvil
   if (!isMobile) return null
@@ -40,124 +56,84 @@ export default function FloatingContactButtons() {
   }
 
   return (
-    <div className="fixed bottom-6 right-4 z-[9999] flex flex-col gap-3">
-      {/* Tooltip informativo */}
+    <div className="fixed bottom-6 right-4 z-[9999] flex flex-col gap-4">
+      {/* Texto animado flotante para llamada */}
       <AnimatePresence>
-        {showTooltip && (
+        {showCallText && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            className="absolute -top-20 right-0 bg-neutral-900 text-white px-4 py-2 rounded-lg shadow-xl text-sm max-w-[200px]"
+            initial={{ opacity: 0, scale: 0.8, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0.8, x: 20 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="absolute -top-16 right-20 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white px-4 py-2.5 rounded-2xl shadow-2xl"
           >
-            <button
-              onClick={() => setShowTooltip(false)}
-              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center"
-            >
-              <X className="w-3 h-3" />
-            </button>
-            <p className="font-medium">¡Contactanos ahora!</p>
-            <p className="text-xs text-white/70 mt-1">Te llamamos gratis o chatea</p>
-            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-neutral-900 transform rotate-45"></div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <p className="font-bold text-sm">¡Te Llamamos GRATIS!</p>
+            </div>
+            <div className="absolute -bottom-2 right-4 w-4 h-4 bg-green-500 transform rotate-45"></div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Botón de Llamada en Vivo */}
+      {/* Texto animado flotante para chat */}
+      <AnimatePresence>
+        {showChatText && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0.8, x: 20 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="absolute -bottom-16 right-20 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 text-white px-4 py-2.5 rounded-2xl shadow-2xl"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <p className="font-bold text-sm">Chatea en Vivo</p>
+            </div>
+            <div className="absolute -bottom-2 right-4 w-4 h-4 bg-blue-500 transform rotate-45"></div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Botón de Llamada en Vivo - MÁS IMPRESIONANTE */}
       <motion.button
         onClick={handleLiveCall}
-        className="relative w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full shadow-2xl flex items-center justify-center group"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        animate={{
-          boxShadow: [
-            '0 0 0 0 rgba(34, 197, 94, 0.7)',
-            '0 0 0 15px rgba(34, 197, 94, 0)',
-            '0 0 0 0 rgba(34, 197, 94, 0)',
-          ],
-        }}
-        transition={{
-          boxShadow: { duration: 2, repeat: Infinity },
-        }}
+        className="relative w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-500 to-green-600 rounded-full flex items-center justify-center"
+        style={{ boxShadow: '0 0 25px 7px rgba(34, 197, 94, 0.7)' }}
+        whileTap={{ scale: 0.9 }}
       >
-        {/* Onda expansiva animada */}
-        <motion.div
-          className="absolute inset-0 rounded-full bg-green-400"
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.5, 0, 0.5],
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+        {/* Múltiples ondas expansivas - CSS puro para mejor rendimiento */}
+        <div className="absolute inset-0 rounded-full bg-green-300 animate-ping opacity-50" style={{ animationDuration: '2s' }}></div>
+        <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-30" style={{ animationDuration: '2.5s', animationDelay: '0.3s' }}></div>
+        <div className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20" style={{ animationDuration: '3s', animationDelay: '0.6s' }}></div>
         
-        <Phone className="w-7 h-7 text-white z-10" />
+        <Phone className="w-9 h-9 text-white z-10 drop-shadow-lg" />
         
-        {/* Badge "GRATIS" */}
-        <div className="absolute -top-1 -right-1 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+        {/* Badge "GRATIS" más grande y animado */}
+        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-rose-600 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg animate-pulse">
           GRATIS
         </div>
-        
-        {/* Texto descriptivo */}
-        <div className="absolute -left-32 top-1/2 -translate-y-1/2 bg-neutral-900 text-white px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-xs font-medium">
-          Te Llamamos Gratis
-        </div>
       </motion.button>
 
-      {/* Botón de Chat/Mensaje */}
+      {/* Botón de Chat - MÁS IMPRESIONANTE */}
       <motion.button
         onClick={handleChat}
-        className="relative w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-2xl flex items-center justify-center group"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        animate={{
-          boxShadow: [
-            '0 0 0 0 rgba(59, 130, 246, 0.7)',
-            '0 0 0 15px rgba(59, 130, 246, 0)',
-            '0 0 0 0 rgba(59, 130, 246, 0)',
-          ],
-        }}
-        transition={{
-          boxShadow: { duration: 2, repeat: Infinity, delay: 1 },
-        }}
+        className="relative w-20 h-20 bg-gradient-to-br from-blue-400 via-cyan-500 to-blue-600 rounded-full flex items-center justify-center"
+        style={{ boxShadow: '0 0 25px 7px rgba(59, 130, 246, 0.7)' }}
+        whileTap={{ scale: 0.9 }}
       >
-        {/* Onda expansiva animada */}
-        <motion.div
-          className="absolute inset-0 rounded-full bg-blue-400"
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.5, 0, 0.5],
-          }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        />
+        {/* Múltiples ondas expansivas - CSS puro para mejor rendimiento */}
+        <div className="absolute inset-0 rounded-full bg-blue-300 animate-ping opacity-50" style={{ animationDuration: '2s', animationDelay: '1s' }}></div>
+        <div className="absolute inset-0 rounded-full bg-cyan-400 animate-ping opacity-30" style={{ animationDuration: '2.5s', animationDelay: '1.3s' }}></div>
+        <div className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-20" style={{ animationDuration: '3s', animationDelay: '1.6s' }}></div>
         
-        <MessageCircle className="w-7 h-7 text-white z-10" />
+        <MessageCircle className="w-9 h-9 text-white z-10 drop-shadow-lg" />
         
-        {/* Badge con contador (opcional) */}
-        <motion.div
-          className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center"
-          animate={{
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 1, repeat: Infinity }}
-        >
-          <span className="text-white text-[10px] font-bold">!</span>
-        </motion.div>
-        
-        {/* Texto descriptivo */}
-        <div className="absolute -left-24 top-1/2 -translate-y-1/2 bg-neutral-900 text-white px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-xs font-medium">
-          Chatea con Nosotros
+        {/* Badge animado con efecto de notificación */}
+        <div className="absolute -top-2 -right-2 w-7 h-7 bg-gradient-to-r from-red-500 to-rose-600 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+          <span className="text-white text-xs font-bold">!</span>
         </div>
       </motion.button>
-
-      {/* Indicador visual animado */}
-      <motion.div
-        className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [1, 0.5, 1],
-        }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      />
     </div>
   )
 }
