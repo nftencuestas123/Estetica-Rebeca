@@ -34,6 +34,11 @@ export default function AdminSidebar() {
       label: 'Dashboard'
     },
     {
+      href: '/admin/gestor-paginas',
+      icon: <span className="text-lg">📄</span>,
+      label: 'Gestor de Páginas'
+    },
+    {
       href: '/admin/creditos/comprar',
       icon: <span className="text-lg">💳</span>,
       label: 'Comprar Créditos'
