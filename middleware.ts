@@ -17,47 +17,9 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession()
 
-  // Rutas protegidas para ADMIN
-  if (req.nextUrl.pathname.startsWith('/admin')) {
-    if (!session) {
-      // No autenticado → redirigir a admin login
-      return NextResponse.redirect(new URL('/admin-login', req.url))
-    }
-
-    // Verificar que sea admin
-    const { data: profile } = await supabase
-      .from('user_profiles')
-      .select('role')
-      .eq('id', session.user.id)
-      .single()
-
-    if (profile?.role !== 'admin') {
-      // No es admin → redirigir a dashboard de cliente
-      return NextResponse.redirect(new URL('/dashboard', req.url))
-    }
-  }
-
-  // Rutas protegidas para CLIENTES
-  if (req.nextUrl.pathname.startsWith('/dashboard')) {
-    if (!session) {
-      // No autenticado → redirigir a client login
-      return NextResponse.redirect(new URL('/login', req.url))
-    }
-
-    // Verificar que sea cliente (o admin también puede ver)
-    const { data: profile } = await supabase
-      .from('user_profiles')
-      .select('role')
-      .eq('id', session.user.id)
-      .single()
-
-    if (!profile) {
-      return NextResponse.redirect(new URL('/login', req.url))
-    }
-  }
-
-  // Redirigir admin-login y login si ya está autenticado
-  if (req.nextUrl.pathname === '/admin-login' || req.nextUrl.pathname === '/login') {
+  // Excluir /admin-login para evitar loops
+  if (req.nextUrl.pathname === '/admin-login') {
+    // Si ya está autenticado, verificar rol y redirigir
     if (session) {
       const { data: profile } = await supabase
         .from('user_profiles')
@@ -67,9 +29,50 @@ export async function middleware(req: NextRequest) {
 
       if (profile?.role === 'admin') {
         return NextResponse.redirect(new URL('/admin', req.url))
-      } else {
+      }
+    }
+    // Si no está autenticado, permitir acceso a login
+    return res
+  }
+
+  // Rutas protegidas para ADMIN (excepto admin-login)
+  if (req.nextUrl.pathname.startsWith('/admin')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/admin-login', req.url))
+    }
+
+    // Verificar que sea admin
+    const { data: profile, error } = await supabase
+      .from('user_profiles')
+      .select('role')
+      .eq('id', session.user.id)
+      .single()
+
+    if (error || profile?.role !== 'admin') {
+      return NextResponse.redirect(new URL('/admin-login', req.url))
+    }
+  }
+
+  // Login de cliente
+  if (req.nextUrl.pathname === '/login') {
+    if (session) {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('role')
+        .eq('id', session.user.id)
+        .single()
+
+      if (profile?.role === 'client') {
         return NextResponse.redirect(new URL('/dashboard', req.url))
       }
+    }
+    return res
+  }
+
+  // Rutas protegidas para CLIENTES
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/login', req.url))
     }
   }
 
