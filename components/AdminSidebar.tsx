@@ -34,6 +34,16 @@ export default function AdminSidebar() {
       label: 'Dashboard'
     },
     {
+      href: '/admin/creditos/comprar',
+      icon: <span className="text-lg">💳</span>,
+      label: 'Comprar Créditos'
+    },
+    {
+      href: '/admin/solicitudes-creditos',
+      icon: <span className="text-lg">📋</span>,
+      label: 'Solicitudes Créditos'
+    },
+    {
       href: '/admin/clientes',
       icon: <Users className="w-5 h-5" />,
       label: 'CRM - Clientes'
