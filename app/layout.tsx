@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import ScrollToTop from '@/components/ScrollToTop'
-import FloatingContactButtons from '@/components/FloatingContactButtons'
-import CallOfferPopup from '@/components/CallOfferPopup'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -48,8 +46,6 @@ export default function RootLayout({
       <body className="touch-manipulation">
         <Providers>
           <ScrollToTop />
-          <FloatingContactButtons />
-          <CallOfferPopup />
           {children}
         </Providers>
       </body>
