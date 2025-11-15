@@ -1,0 +1,25 @@
+{
+  "name": "Rebeca Barreto Estética y Belleza",
+  "short_name": "Rebeca Barreto",
+  "description": "Centro de estética y belleza en Ciudad del Este, Paraguay",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
