@@ -400,22 +400,22 @@ SUGERENCIAS:
     const strengths =
       strengthsSection
         .split('\n')
-        .filter((line) => line.trim().startsWith('-'))
-        .map((line) => line.replace('-', '').trim()) || []
+        .filter((line: string) => line.trim().startsWith('-'))
+        .map((line: string) => line.replace('-', '').trim()) || []
 
     const improvementsSection = analysisText.match(/MEJORAS:([\s\S]*?)SUGERENCIAS:/)?.[1] || ''
     const improvements =
       improvementsSection
         .split('\n')
-        .filter((line) => line.trim().startsWith('-'))
-        .map((line) => line.replace('-', '').trim()) || []
+        .filter((line: string) => line.trim().startsWith('-'))
+        .map((line: string) => line.replace('-', '').trim()) || []
 
     const suggestionsSection = analysisText.match(/SUGERENCIAS:([\s\S]*)$/)?.[1] || ''
     const suggestions =
       suggestionsSection
         .split('\n')
-        .filter((line) => line.trim().startsWith('-'))
-        .map((line) => line.replace('-', '').trim()) || []
+        .filter((line: string) => line.trim().startsWith('-'))
+        .map((line: string) => line.replace('-', '').trim()) || []
 
     return {
       score,

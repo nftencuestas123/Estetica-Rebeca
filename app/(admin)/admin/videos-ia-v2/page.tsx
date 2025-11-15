@@ -4,7 +4,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Video, Upload, Sparkles, Check, Loader2, DollarSign, Instagram, Facebook, Send } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { getUserBalance, calculateVideoCost, deductCredits } from '@/services/credits'
@@ -41,26 +41,26 @@ export default function VideosIACompletePage() {
   const [publishing, setPublishing] = useState(false)
   const [publishResults, setPublishResults] = useState<any[]>([])
 
-  useEffect(() => {
-    if (user) {
-      loadUserData()
-    }
-  }, [user])
-
-  useEffect(() => {
-    // Calcular costo del video cuando cambia la duración
-    const cost = calculateVideoCost(duration)
-    setVideoCost(cost)
-  }, [duration])
-
-  const loadUserData = async () => {
+  const loadUserData = useCallback(async () => {
     if (!user) return
     const currentBalance = await getUserBalance(user.id)
     setBalance(currentBalance)
     
     const accounts = await getSocialAccounts(user.id)
     setConnectedAccounts(accounts)
-  }
+  }, [user])
+
+  useEffect(() => {
+    if (user) {
+      loadUserData()
+    }
+  }, [user, loadUserData])
+
+  useEffect(() => {
+    // Calcular costo del video cuando cambia la duración
+    const cost = calculateVideoCost(duration)
+    setVideoCost(cost)
+  }, [duration])
 
   // ========================================
   // PASO 1: GENERAR VIDEO
@@ -105,12 +105,12 @@ export default function VideosIACompletePage() {
 
       while (!videoReady && attempts < maxAttempts) {
         await new Promise(resolve => setTimeout(resolve, 5000)) // Esperar 5 segundos
-        const status = await getVideoStatus(videoData.id)
+        const status = await getVideoStatus(videoData.jobId)
         
         if (status.status === 'completed') {
           videoReady = true
           videoUrl = status.videoUrl
-        } else if (status.status === 'failed') {
+        } else if (status.status === 'error') {
           throw new Error('Error al generar video en TopView')
         }
         

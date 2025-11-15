@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { DollarSign, Upload, Check, Clock, X } from 'lucide-react'
 import { CREDIT_PACKAGES, PAYMENT_METHODS, PAYMENT_CONFIG } from '@/constants/payment-config'
 import { getUserBalance, createCreditPurchaseRequest, getUserCreditRequests } from '@/services/credits'
@@ -19,20 +19,20 @@ export default function ComprarCreditosPage() {
   const [myRequests, setMyRequests] = useState<any[]>([])
   const [step, setStep] = useState<'select' | 'payment' | 'upload'>('select')
 
-  useEffect(() => {
-    if (user) {
-      loadUserData()
-    }
-  }, [user])
-
-  const loadUserData = async () => {
+  const loadUserData = useCallback(async () => {
     if (!user) return
     const currentBalance = await getUserBalance(user.id)
     setBalance(currentBalance)
     
     const requests = await getUserCreditRequests(user.id)
     setMyRequests(requests)
-  }
+  }, [user])
+
+  useEffect(() => {
+    if (user) {
+      loadUserData()
+    }
+  }, [user, loadUserData])
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -80,10 +80,9 @@ export default function ComprarCreditosPage() {
     const method = PAYMENT_METHODS.find(m => m.id === selectedPaymentMethod)
     if (!method) return null
 
-    const config = PAYMENT_CONFIG[method.instructionsKey as keyof typeof PAYMENT_CONFIG]
-
     switch (selectedPaymentMethod) {
-      case 'bank_transfer':
+      case 'bank_transfer': {
+        const config = PAYMENT_CONFIG.bankTransfer
         return (
           <div className="bg-black border border-primary-400/30 rounded-lg p-4 space-y-2">
             <p className="font-semibold text-white mb-3">📋 Instrucciones:</p>
@@ -96,7 +95,9 @@ export default function ComprarCreditosPage() {
             <p className="text-white/60 text-sm mt-3">⚠️ Concepto: "Créditos Rebeca Barreto"</p>
           </div>
         )
-      case 'personal_wallet':
+      }
+      case 'personal_wallet': {
+        const config = PAYMENT_CONFIG.personalWallet
         return (
           <div className="bg-black border border-primary-400/30 rounded-lg p-4 space-y-2">
             <p className="font-semibold text-white mb-3">📋 Instrucciones:</p>
@@ -107,7 +108,9 @@ export default function ComprarCreditosPage() {
             <p className="text-white/60 text-sm mt-3">⚠️ Luego sube captura de pantalla</p>
           </div>
         )
-      case 'cambio_chaco':
+      }
+      case 'cambio_chaco': {
+        const config = PAYMENT_CONFIG.cambioChaco
         return (
           <div className="bg-black border border-primary-400/30 rounded-lg p-4 space-y-2">
             <p className="font-semibold text-white mb-3">📋 Instrucciones:</p>
@@ -118,7 +121,9 @@ export default function ComprarCreditosPage() {
             <p className="text-white/60 text-sm mt-3">⚠️ Luego sube el comprobante de depósito</p>
           </div>
         )
-      case 'cash':
+      }
+      case 'cash': {
+        const config = PAYMENT_CONFIG.cashInPerson
         return (
           <div className="bg-black border border-primary-400/30 rounded-lg p-4 space-y-2">
             <p className="font-semibold text-white mb-3">📋 Información:</p>
@@ -130,6 +135,7 @@ export default function ComprarCreditosPage() {
             <p className="text-white/60 text-sm mt-3">⚠️ Nos contactaremos contigo para coordinar</p>
           </div>
         )
+      }
       default:
         return null
     }

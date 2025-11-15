@@ -225,3 +225,26 @@ export function getTopViewService(): TopViewService {
 
 export default TopViewService
 
+// Helper functions para usar directamente
+export async function generateVideo(imageFile: File, script: string, voiceId: string) {
+  const service = getTopViewService()
+  return await service.createAvatarVideo({
+    avatarImage: imageFile,
+    script,
+    voice: {
+      type: 'text-to-speech',
+      voiceId,
+    },
+  })
+}
+
+export async function getVideoStatus(jobId: string) {
+  const service = getTopViewService()
+  return await service.getVideoStatus(jobId)
+}
+
+export async function getVoices() {
+  const service = getTopViewService()
+  return await service.getAvailableVoices()
+}
+

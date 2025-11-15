@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { BarChart3, TrendingUp, Eye, Heart, MessageCircle, Share2, RefreshCw, Calendar, Award } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import {
@@ -21,13 +21,7 @@ export default function EstadisticasPage() {
   const [syncing, setSyncing] = useState(false)
   const [selectedPlatform, setSelectedPlatform] = useState<string | undefined>(undefined)
 
-  useEffect(() => {
-    if (user) {
-      loadAllData()
-    }
-  }, [user, selectedPlatform])
-
-  const loadAllData = async () => {
+  const loadAllData = useCallback(async () => {
     if (!user) return
     setLoading(true)
 
@@ -43,7 +37,13 @@ export default function EstadisticasPage() {
     setPlatformComparison(comparison)
     setBestTimes(times)
     setLoading(false)
-  }
+  }, [user, selectedPlatform])
+
+  useEffect(() => {
+    if (user) {
+      loadAllData()
+    }
+  }, [user, selectedPlatform, loadAllData])
 
   const handleSyncAnalytics = async () => {
     if (!user) return
