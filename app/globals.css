@@ -605,12 +605,3 @@ h1, h2, h3, h4, h5, h6 {
 .safe-area-right {
   padding-right: env(safe-area-inset-right);
 }
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
