@@ -63,21 +63,20 @@ html {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
   }
   
-  /* EXCEPCIONES: Botones flotantes de contacto DEBEN tener animaciones */
-  [class*="fixed bottom-"] button,
-  [class*="fixed bottom-"] button * {
-    animation: unset !important;
-    transition: unset !important;
-    transform: unset !important;
-    box-shadow: unset !important;
-    filter: unset !important;
-  }
-  
-  /* Permitir animaciones CSS nativas en botones flotantes */
-  [class*="fixed bottom-"] .animate-ping,
-  [class*="fixed bottom-"] .animate-pulse,
-  [class*="fixed bottom-"] .animate-bounce {
-    animation: unset !important;
+  /* EXCEPCIONES: Elementos de contacto flotantes NO se optimizan */
+  .fixed.bottom-5,
+  .fixed.bottom-5 *,
+  .fixed.top-20,
+  .fixed.top-20 *,
+  [data-contact-widget],
+  [data-contact-widget] * {
+    animation: revert !important;
+    transition: revert !important;
+    transform: revert !important;
+    box-shadow: revert !important;
+    filter: revert !important;
+    will-change: revert !important;
+    transition-duration: revert !important;
   }
   
   /* Scroll ULTRA optimizado */

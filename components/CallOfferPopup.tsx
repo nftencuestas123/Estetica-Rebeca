@@ -3,24 +3,31 @@
 import { useState, useEffect } from 'react'
 import { Phone, X, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 
 export default function CallOfferPopup() {
   const [showPopup, setShowPopup] = useState(false)
   const [scrollTime, setScrollTime] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
+
+  // TEMPORALMENTE DESACTIVADO - Solo retornar null
+  // Activar cuando se pruebe que el resto funciona
+  if (true) return null
 
   useEffect(() => {
-    let scrollTimer: NodeJS.Timeout
-    let activityTimer: NodeJS.Timeout
+    let timer: NodeJS.Timeout
+    let scrollCount = 0
     
     const handleScroll = () => {
-      setIsScrolling(true)
+      scrollCount++
       
-      // Resetear el timer cada vez que hay scroll
-      clearTimeout(scrollTimer)
-      scrollTimer = setTimeout(() => {
-        setIsScrolling(false)
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        setScrollTime(prev => {
+          const newTime = prev + 1
+          if (newTime >= 15 && !showPopup) {
+            setShowPopup(true)
+          }
+          return newTime
+        })
       }, 1000)
     }
 
@@ -28,31 +35,9 @@ export default function CallOfferPopup() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      clearTimeout(scrollTimer)
-      clearTimeout(activityTimer)
+      clearTimeout(timer)
     }
-  }, [])
-
-  // Contar tiempo de actividad (scroll)
-  useEffect(() => {
-    if (!isScrolling || showPopup) return
-
-    const interval = setInterval(() => {
-      setScrollTime(prev => {
-        const newTime = prev + 1
-        
-        // Mostrar popup después de 15 segundos de scroll activo
-        if (newTime >= 15) {
-          setShowPopup(true)
-          return 0
-        }
-        
-        return newTime
-      })
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [isScrolling, showPopup])
+  }, [showPopup])
 
   const handleAccept = () => {
     // Aquí se integrará VAPI para la llamada en vivo
