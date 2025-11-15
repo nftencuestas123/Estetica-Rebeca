@@ -1,10 +1,35 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { MessageCircle } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Phone, MessageCircle, X } from 'lucide-react'
 
 export default function FloatingContactButtons() {
+  const [isMobile, setIsMobile] = useState(false)
+  const [showTooltip, setShowTooltip] = useState(true)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    // Ocultar tooltip después de 5 segundos
+    const timer = setTimeout(() => setShowTooltip(false), 5000)
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      clearTimeout(timer)
+    }
+  }, [])
+
+  // Solo mostrar en móvil
+  if (!isMobile) return null
+
+  const handleLiveCall = () => {
+    // Aquí se integrará VAPI para llamada en vivo
+    console.log('Iniciando llamada en vivo con VAPI...')
+    alert('🎙️ Llamada en Vivo: Próximamente con asistente de IA VAPI')
+  }
+
   const handleChat = () => {
     // Abrir el chat de Sofía (scroll a la sección)
     const sofiaSection = document.querySelector('#sofia-section')
@@ -14,60 +39,50 @@ export default function FloatingContactButtons() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-[9999]">
-      {/* Botón de Chat - Rebotando como PELOTA ⚽ */}
-      <motion.button
-        onClick={handleChat}
-        className="relative w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 via-cyan-400 to-blue-600 rounded-full flex items-center justify-center shadow-xl"
-        animate={{
-          y: [0, -15, 0], // Rebote vertical como pelota
-          scale: [1, 0.95, 1], // Compresión al "tocar el suelo"
-        }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.85 }}
-      >
-        {/* Brillo interno */}
-        <div className="absolute inset-2 rounded-full bg-white/20 blur-sm"></div>
-        
-        <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-white z-10 drop-shadow-lg" />
-        
-        {/* Badge con número de mensajes */}
-        <motion.div
-          className="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 bg-gradient-to-r from-red-500 to-rose-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white"
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <span className="text-white text-[10px] md:text-xs font-bold">1</span>
-        </motion.div>
-      </motion.button>
+    <div className="fixed bottom-6 right-4 z-[9999] flex flex-col gap-3">
+      {/* Tooltip informativo */}
+      {showTooltip && (
+        <div className="absolute -top-20 right-0 bg-neutral-900 text-white px-4 py-2 rounded-lg shadow-xl text-sm max-w-[200px]">
+          <button
+            onClick={() => setShowTooltip(false)}
+            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center"
+          >
+            <X className="w-3 h-3" />
+          </button>
+          <p className="font-medium">¡Contáctanos ahora!</p>
+          <p className="text-xs text-white/70 mt-1">Llamada en vivo o chat</p>
+          <div className="absolute -bottom-2 right-8 w-4 h-4 bg-neutral-900 transform rotate-45"></div>
+        </div>
+      )}
 
-      {/* Sombra dinámica debajo del botón (simula pelota) */}
-      <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-2 bg-black/20 rounded-full blur-sm"
-        animate={{
-          scale: [1, 0.7, 1], // La sombra se reduce cuando la pelota sube
-          opacity: [0.3, 0.15, 0.3],
-        }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-        }}
-      />
+      {/* Botón de Llamada en Vivo */}
+      <button
+        onClick={handleLiveCall}
+        className="relative w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full shadow-2xl flex items-center justify-center active:scale-95"
+      >
+        <Phone className="w-7 h-7 text-white z-10" />
+        
+        {/* Badge "LIVE" */}
+        <div className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+          LIVE
+        </div>
+      </button>
+
+      {/* Botón de Chat/Mensaje */}
+      <button
+        onClick={handleChat}
+        className="relative w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-2xl flex items-center justify-center active:scale-95"
+      >
+        <MessageCircle className="w-7 h-7 text-white z-10" />
+        
+        {/* Badge con contador */}
+        <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse">
+          <span className="text-white text-[10px] font-bold">!</span>
+        </div>
+      </button>
+
+      {/* Indicador visual */}
+      <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
     </div>
   )
 }
