@@ -34,22 +34,20 @@ if %ERRORLEVEL% EQU 0 (
     :: Puerto 3000 libre - Iniciar servidor
     echo ⚡ Servidor está APAGADO
     echo.
-    echo ⏳ Iniciando servidor...
+    echo ⏳ Iniciando servidor Next.js...
     echo.
-    
-    :: Iniciar Next.js en segundo plano
-    start /B npm run dev
-    
+    echo 🌐 El servidor se abrirá en: http://localhost:3000
+    echo.
+    echo 💡 Para apagar el servidor:
+    echo    1. Cierra esta ventana (X)
+    echo    2. O presiona Ctrl+C
     echo.
     echo =====================================
-    echo   ✅ SERVIDOR ENCENDIDO
+    echo   SERVIDOR INICIANDO...
     echo =====================================
     echo.
-    echo 🌐 URL: http://localhost:3000
-    echo.
-    echo 💡 El servidor está corriendo en segundo plano
-    echo    Para apagarlo, ejecuta este archivo otra vez
-    echo.
-    timeout /t 3 >nul
+    
+    :: Iniciar Next.js directamente (ventana se queda abierta)
+    npm run dev
 )
 
