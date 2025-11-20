@@ -5,6 +5,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import OptimizedImage from '@/components/OptimizedImage'
+import { SERVICIOS, TRATAMIENTOS_FACIALES, TRATAMIENTOS_CORPORALES, TRATAMIENTOS_MAQUILLAJE } from '@/constants/tratamientos'
 
 /**
  * =====================================================
@@ -12,32 +13,6 @@ import OptimizedImage from '@/components/OptimizedImage'
  * OPTIMIZACIÓN EXTREMA - Máxima velocidad de carga
  * =====================================================
  */
-
-const SERVICIOS = {
-  faciales: [
-    'Hidrofacial Profesional',
-    'Limpieza Facial Profunda',
-    'Exfoliación + Extracción',
-    'Peeling ultrasónico',
-    'Dermapen / Microneedling',
-    'Tratamiento Antiage',
-    'Tratamiento para Manchas',
-    'Hidratación y Luminosidad',
-  ],
-  corporales: [
-    'Masaje Reductor',
-    'Maderoterapia',
-    'Drenaje Linfático',
-    'Combo Reductor + Madero + Drenaje (1 hora)',
-    'Masaje Descontracturante',
-  ],
-  maquillaje: [
-    'Maquillaje Social',
-    'Maquillaje para Eventos',
-    'Maquillaje para Novia',
-    'Prueba de Maquillaje',
-  ],
-}
 
 const TESTIMONIOS = [
   {
@@ -282,59 +257,32 @@ function TreatmentSection({ title, description, items, imagePrefix, isBodyTreatm
 }
 
 function TreatmentCard({ servicio, imageIndex, imagePrefix }: { servicio: string; imageIndex: number; imagePrefix: string }) {
-  // Mapeo EXACTO de imágenes - ULTRA COMPRIMIDAS
-  const facialesImages: { [key: string]: string } = {
-    'Hidrofacial Profesional': '/images/landing/treatments/facial-hidrofacial.jpg.png',
-    'Limpieza Facial Profunda': '/images/landing/treatments/facial-limpieza-profunda.jpg.png',
-    'Exfoliación + Extracción': '/images/landing/treatments/facial-exfoliacion.jpg',
-    'Peeling ultrasónico': '/images/landing/treatments/facial-peeling-ultrasonico.jpg',
-    'Dermapen / Microneedling': '/images/landing/treatments/facial-dermapen.jpg',
-    'Tratamiento Antiage': '/images/landing/treatments/facial-antiage.jpg',
-    'Tratamiento para Manchas': '/images/landing/treatments/facial-manchas.jpg',
-    'Hidratación y Luminosidad': '/images/landing/treatments/facial-hidratacion-luminosidad.jpg',
-  }
-
-  const corporalesImages: { [key: string]: string } = {
-    'Masaje Reductor': '/images/landing/treatments/corporal-masaje-reductor.jpg',
-    'Maderoterapia': '/images/landing/treatments/corporal-maderoterapia.jpg',
-    'Drenaje Linfático': '/images/landing/treatments/corporal-drenaje-linfatico.jpg',
-    'Combo Reductor + Madero + Drenaje (1 hora)': '/images/landing/treatments/corporal-combo-reductor.jpg',
-    'Masaje Descontracturante': '/images/landing/treatments/corporal-masaje-descontracturante.jpg',
-  }
-
-  const maquillajeImages: { [key: string]: string } = {
-    'Maquillaje Social': '/images/landing/treatments/maquillaje-social.jpg',
-    'Maquillaje para Eventos': '/images/landing/treatments/maquillaje-eventos.jpg',
-    'Maquillaje para Novia': '/images/landing/treatments/maquillaje-novia.jpg',
-    'Prueba de Maquillaje': '/images/landing/treatments/maquillaje-prueba.jpg',
-  }
-
-  let imageSrc = '/images/rebeca-barreto.jpg'
-
-  if (imagePrefix.includes('facial')) {
-    imageSrc = facialesImages[servicio] || '/images/rebeca-barreto.jpg'
-  } else if (imagePrefix.includes('corporal')) {
-    imageSrc = corporalesImages[servicio] || '/images/rebeca-barreto.jpg'
-  } else if (imagePrefix.includes('maquillaje')) {
-    imageSrc = maquillajeImages[servicio] || '/images/rebeca-barreto.jpg'
+  // Obtener datos del tratamiento según el tipo
+  let tratamientoData = { imagen: '/images/rebeca-barreto.jpg', descripcion: 'Resultados profesionales' }
+  
+  if (imagePrefix.includes('facial') && servicio in TRATAMIENTOS_FACIALES) {
+    tratamientoData = TRATAMIENTOS_FACIALES[servicio as keyof typeof TRATAMIENTOS_FACIALES]
+  } else if (imagePrefix.includes('corporal') && servicio in TRATAMIENTOS_CORPORALES) {
+    tratamientoData = TRATAMIENTOS_CORPORALES[servicio as keyof typeof TRATAMIENTOS_CORPORALES]
+  } else if (imagePrefix.includes('maquillaje') && servicio in TRATAMIENTOS_MAQUILLAJE) {
+    tratamientoData = TRATAMIENTOS_MAQUILLAJE[servicio as keyof typeof TRATAMIENTOS_MAQUILLAJE]
   }
 
   return (
     <div className="group bg-white rounded-3xl border-2 border-[#E8C4C4] hover:border-[#C4A5A5] shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden">
-      <div className="relative h-48 overflow-hidden bg-gray-200">
+      <div className="relative h-64 overflow-hidden bg-gray-200">
         <OptimizedImage
-          src={imageSrc}
+          src={tratamientoData.imagen}
           alt={servicio}
           fill
-          className="object-cover"
-          quality={80}
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
+          quality={90}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
       </div>
       <div className="p-6">
         <h3 className="font-black text-xl text-gray-900 mb-2">{servicio}</h3>
-        <p className="text-base font-semibold text-gray-700">Resultados visibles</p>
+        <p className="text-base font-semibold text-gray-700">{tratamientoData.descripcion}</p>
       </div>
     </div>
   )

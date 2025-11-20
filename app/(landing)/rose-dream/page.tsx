@@ -3,32 +3,7 @@
 import { useState } from 'react'
 import { Sparkles, Copy, Check, Star, Phone, Heart, Flower2, Award, Crown, Gem, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
-
-const SERVICIOS = {
-  faciales: [
-    'Hidrofacial Profesional',
-    'Limpieza Facial Profunda',
-    'Exfoliación + Extracción',
-    'Peeling ultrasónico',
-    'Dermapen / Microneedling',
-    'Tratamiento Antiage',
-    'Tratamiento para Manchas',
-    'Hidratación y Luminosidad',
-  ],
-  corporales: [
-    'Masaje Reductor',
-    'Maderoterapia',
-    'Drenaje Linfático',
-    'Combo Reductor + Madero + Drenaje (1 hora)',
-    'Masaje Descontracturante',
-  ],
-  maquillaje: [
-    'Maquillaje Social',
-    'Maquillaje para Eventos',
-    'Maquillaje para Novia',
-    'Prueba de Maquillaje',
-  ],
-}
+import { SERVICIOS, TRATAMIENTOS_FACIALES, TRATAMIENTOS_CORPORALES, TRATAMIENTOS_MAQUILLAJE } from '@/constants/tratamientos'
 
 const TESTIMONIOS = [
   {
@@ -172,16 +147,7 @@ export default function RoseDreamPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {SERVICIOS.faciales.map((servicio, index) => {
-              const facialesImages = [
-                '/images/landing/treatments/facial-hidrofacial.jpg.png',
-                '/images/landing/treatments/facial-limpieza-profunda.jpg.png',
-                '/images/landing/treatments/facial-exfoliacion.jpg',
-                '/images/landing/treatments/facial-peeling-ultrasonico.jpg',
-                '/images/landing/treatments/facial-dermapen.jpg',
-                '/images/landing/treatments/facial-antiage.jpg',
-                '/images/landing/treatments/facial-manchas.jpg',
-                '/images/landing/treatments/facial-hidratacion-luminosidad.jpg'
-              ]
+              const tratamiento = TRATAMIENTOS_FACIALES[servicio as keyof typeof TRATAMIENTOS_FACIALES]
               return (
               <div
                 key={index}
@@ -189,7 +155,7 @@ export default function RoseDreamPage() {
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={facialesImages[index]}
+                    src={tratamiento.imagen}
                     alt={servicio}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -198,7 +164,7 @@ export default function RoseDreamPage() {
                 </div>
                 <div className="p-8">
                   <h3 className="font-black text-2xl text-gray-900 mb-4 leading-tight">{servicio}</h3>
-                  <p className="text-lg font-bold text-gray-600">Tu piel soñada</p>
+                  <p className="text-lg font-bold text-gray-600">{tratamiento.descripcion}</p>
                 </div>
               </div>
               )
@@ -315,13 +281,7 @@ export default function RoseDreamPage() {
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
             {SERVICIOS.corporales.map((servicio, index) => {
-              const corporalesImages = [
-                '/images/landing/treatments/corporal-masaje-reductor.jpg',
-                '/images/landing/treatments/corporal-maderoterapia.jpg',
-                '/images/landing/treatments/corporal-drenaje-linfatico.jpg',
-                '/images/landing/treatments/corporal-combo-reductor.jpg',
-                '/images/landing/treatments/corporal-masaje-descontracturante.jpg'
-              ]
+              const tratamiento = TRATAMIENTOS_CORPORALES[servicio as keyof typeof TRATAMIENTOS_CORPORALES]
               return (
               <div
                 key={index}
@@ -329,7 +289,7 @@ export default function RoseDreamPage() {
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={corporalesImages[index]}
+                    src={tratamiento.imagen}
                     alt={servicio}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -338,7 +298,7 @@ export default function RoseDreamPage() {
                 </div>
                 <div className="p-8">
                   <h3 className="font-black text-xl text-gray-900 mb-4 leading-tight">{servicio}</h3>
-                  <p className="text-lg font-bold text-gray-600">Bienestar total</p>
+                  <p className="text-lg font-bold text-gray-600">{tratamiento.descripcion}</p>
                 </div>
               </div>
               )
@@ -458,12 +418,7 @@ export default function RoseDreamPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {SERVICIOS.maquillaje.map((servicio, index) => {
-              const maquillajeImages = [
-                '/images/landing/treatments/maquillaje-social.jpg',
-                '/images/landing/treatments/maquillaje-eventos.jpg',
-                '/images/landing/treatments/maquillaje-novia.jpg',
-                '/images/landing/treatments/maquillaje-prueba.jpg'
-              ]
+              const tratamiento = TRATAMIENTOS_MAQUILLAJE[servicio as keyof typeof TRATAMIENTOS_MAQUILLAJE]
               return (
               <div
                 key={index}
@@ -471,7 +426,7 @@ export default function RoseDreamPage() {
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={maquillajeImages[index]}
+                    src={tratamiento.imagen}
                     alt={servicio}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -480,7 +435,7 @@ export default function RoseDreamPage() {
                 </div>
                 <div className="p-8">
                   <h3 className="font-black text-2xl text-gray-900 mb-4 leading-tight">{servicio}</h3>
-                  <p className="text-lg font-bold text-gray-600">Perfección total</p>
+                  <p className="text-lg font-bold text-gray-600">{tratamiento.descripcion}</p>
                 </div>
               </div>
               )
