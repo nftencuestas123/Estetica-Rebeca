@@ -61,7 +61,7 @@ if %ERRORLEVEL% EQU 0 (
     echo.
     echo ⏳ Iniciando servidor...
     echo.
-    pm2 start ecosystem.config.js
+    pm2 start "node_modules/next/dist/bin/next" --name estetica-rebeca -- dev
     pm2 save
     echo.
     echo =====================================
