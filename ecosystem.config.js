@@ -10,8 +10,8 @@ module.exports = {
       name: 'estetica-rebeca',
       
       // Script a ejecutar
-      script: 'npm',
-      args: 'run dev',
+      script: 'node_modules/next/dist/bin/next',
+      args: 'dev',
       
       // Directorio de trabajo
       cwd: './',
