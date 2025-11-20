@@ -1,0 +1,621 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-cream: #000000;
+  --color-cream-soft: #020202;
+  --color-cream-deep: #040404;
+  --color-gold: #ffb31a;
+  --color-gold-soft: #ffd26e;
+  --color-gold-deep: #c1800a;
+  --foreground-rgb: 255, 220, 140;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* OPTIMIZACIÓN ULTRA AGRESIVA PARA MÓVIL - CERO FREEZES */
+@media (max-width: 768px) {
+  /* Desactivar TODAS las animaciones Framer Motion */
+  [data-framer-component],
+  [data-framer-name] {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Transiciones instantáneas en móvil */
+  * {
+    transition-duration: 0s !important;
+  }
+  
+  /* Eliminar TODOS los efectos costosos */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    will-change: auto !important;
+    transform: none !important;
+  }
+  
+  /* Sombras simples solamente */
+  * {
+    box-shadow: none !important;
+  }
+  
+  /* Mantener solo sombras críticas */
+  button, a, .shadow-xl, .shadow-2xl {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Scroll ULTRA optimizado */
+  * {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Imágenes con rendering rápido */
+  img {
+    content-visibility: auto;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  /* Contenido fuera de vista no se renderiza */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+  }
+}
+
+/* Optimización general de rendimiento */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU acceleration para elementos animados */
+.animate-gpu {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimización de scroll en móvil */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto; /* Cambiar a auto en móvil para mejor rendimiento */
+  }
+  
+  /* Reducir repaints */
+  section {
+    contain: layout style paint;
+  }
+  
+  /* Optimizar Framer Motion en móvil */
+  [data-framer-component] {
+    will-change: auto;
+  }
+  
+  /* Desactivar transformaciones complejas */
+  [style*="transform"] {
+    will-change: auto;
+  }
+  
+  /* Optimizar imágenes */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    loading: lazy;
+  }
+  
+  /* Reducir animaciones de Framer Motion */
+  [data-framer-name] {
+    will-change: auto !important;
+  }
+  
+  /* Optimizar scroll suave */
+  * {
+    scroll-margin-top: 0;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-inter);
+  background-color: #000000;
+  color: rgb(var(--foreground-rgb));
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Mobile app feel */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+a {
+  color: var(--color-gold-deep);
+  text-decoration: none;
+}
+
+/* Scrollbar personalizado premium */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-gold-soft), var(--color-gold-deep));
+  border-radius: 5px;
+  border: 2px solid var(--color-cream-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--color-gold-deep), #704514);
+}
+
+/* Custom scrollbar para el chat */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-cream-soft);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-gold-soft), var(--color-gold-deep));
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--color-gold-deep), #704514);
+}
+
+.dynamic-stellar {
+  position: relative;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.dynamic-stellar::before {
+  content: '';
+  position: absolute;
+  inset: -75%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 179, 26, 0.08), transparent 35%),
+    radial-gradient(circle at 80% 80%, rgba(255, 179, 26, 0.05), transparent 30%);
+  opacity: 0.35;
+  filter: blur(90px);
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.dynamic-stellar:hover::before {
+  opacity: 0.45;
+}
+
+/* Animaciones premium y dinámicas */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
+  /* Animaciones ULTRA DINÁMICAS */
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .slide-in-from-left {
+    animation: slideInFromLeft 0.8s ease-out;
+  }
+
+  .slide-in-from-right {
+    animation: slideInFromRight 0.8s ease-out;
+  }
+
+  .slide-in-from-bottom {
+    animation: slideInFromBottom 0.6s ease-out;
+  }
+
+  .zoom-in {
+    animation: zoomIn 0.8s ease-out;
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      opacity: 0.5;
+      filter: blur(40px);
+    }
+    50% {
+      opacity: 0.8;
+      filter: blur(30px);
+    }
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 107, 157, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes stellarRotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  @keyframes stellarShimmer {
+    0% {
+      transform: translate3d(-10%, -6%, 0) skewX(-3deg);
+    }
+    50% {
+      transform: translate3d(12%, 6%, 0) skewX(3deg);
+    }
+    100% {
+      transform: translate3d(-10%, -6%, 0) skewX(-3deg);
+    }
+  }
+
+  /* Efectos de hover premium - Desactivado en móvil */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media (min-width: 769px) {
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Gradientes premium */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--color-gold-soft) 0%, var(--color-gold) 50%, var(--color-gold-deep) 100%);
+  }
+
+  .gradient-rose {
+    background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-soft) 50%, var(--color-cream-deep) 100%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-gold-soft) 0%, var(--color-gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Tipografía premium */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Selección de texto */
+::selection {
+  background: rgba(201, 163, 71, 0.25);
+  color: #4a2a10;
+}
+
+/* Mobile App Styles - Hacer que se sienta como app nativa */
+@layer base {
+  /* Touch targets - mínimo 44x44px para móvil */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Inputs móviles */
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Previene zoom en iOS */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 12px;
+    touch-action: manipulation;
+  }
+
+  /* Links y botones con feedback táctil */
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  /* Prevenir selección de texto accidental en móvil */
+  @media (max-width: 768px) {
+    * {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    input,
+    textarea {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+  }
+
+  /* Safe area para dispositivos con notch */
+  @supports (padding: max(0px)) {
+    body {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+  }
+}
+
+/* Responsive breakpoints mejorados */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Clase utility para touch manipulation */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safe area utilities */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ========================================
+   CLASES DE RELIEVE PARA LANDING PAGES
+   ======================================== */
+
+/* ========================================
+   RELIEVE 3D ULTRA FUERTE - SALE DE LA PANTALLA
+   ======================================== */
+
+/* Relieve ULTRA FUERTE para títulos H1 */
+.text-relief-strong {
+  text-shadow: 
+    3px 3px 0px rgba(0, 0, 0, 0.1),
+    6px 6px 0px rgba(0, 0, 0, 0.08),
+    9px 9px 0px rgba(0, 0, 0, 0.06),
+    12px 12px 20px rgba(0, 0, 0, 0.15);
+  transform: translateZ(50px);
+}
+
+/* Relieve FUERTE para H2 */
+.text-relief-medium {
+  text-shadow: 
+    2px 2px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 0px rgba(0, 0, 0, 0.08),
+    6px 6px 15px rgba(0, 0, 0, 0.12);
+  transform: translateZ(30px);
+}
+
+/* Relieve MEDIO para H3 */
+.text-relief-light {
+  text-shadow: 
+    2px 2px 0px rgba(0, 0, 0, 0.08),
+    4px 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateZ(20px);
+}
+
+/* Relieve SUAVE para párrafos */
+.text-relief-subtle {
+  text-shadow: 
+    1px 1px 0px rgba(0, 0, 0, 0.08),
+    2px 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateZ(10px);
+}
+
+/* Relieve para textos con gradiente */
+.text-relief-gradient {
+  text-shadow: 
+    3px 3px 0px rgba(0, 0, 0, 0.15),
+    6px 6px 0px rgba(0, 0, 0, 0.1),
+    9px 9px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Relieve para botones */
+.text-relief-button {
+  text-shadow: 
+    2px 2px 0px rgba(0, 0, 0, 0.15),
+    4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Fondo semi-transparente para textos sobre imágenes */
+.text-with-bg {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
