@@ -1,16 +1,26 @@
 'use client'
 
-import { useState } from 'react'
-import { BookOpen, Settings, Zap, BarChart3, HelpCircle, Mic, ChevronRight, ChevronDown, Lightbulb, Users } from 'lucide-react'
-import VoiceAssistantSetupGuide from './VoiceAssistantSetupGuide'
-import AdvancedSettings from './VoiceAssistantAdvancedSettings'
-import FeaturesSection from './VoiceAssistantFeatures'
-import StatisticsSection from './VoiceAssistantStats'
-import HelpSection from './VoiceAssistantHelp'
-import ElevenLabsGuide from './ElevenLabsGuide'
-import ClientsManagement from './ClientsManagement'
-import ElevenLabsExpertChat from './ElevenLabsExpertChat'
-import ElevenLabsExpertGuide from './ElevenLabsExpertGuide'
+import { useState, Suspense, lazy } from 'react'
+import dynamic from 'next/dynamic'
+import { BookOpen, Settings, Zap, BarChart3, HelpCircle, Mic, ChevronRight, ChevronDown, Lightbulb, Users, Loader2 } from 'lucide-react'
+
+// Lazy load componentes pesados - Se cargan SOLO cuando se necesitan
+const VoiceAssistantSetupGuide = dynamic(() => import('./VoiceAssistantSetupGuide'), { ssr: false })
+const AdvancedSettings = dynamic(() => import('./VoiceAssistantAdvancedSettings'), { ssr: false })
+const FeaturesSection = dynamic(() => import('./VoiceAssistantFeatures'), { ssr: false })
+const StatisticsSection = dynamic(() => import('./VoiceAssistantStats'), { ssr: false })
+const HelpSection = dynamic(() => import('./VoiceAssistantHelp'), { ssr: false })
+const ElevenLabsGuide = dynamic(() => import('./ElevenLabsGuide'), { ssr: false })
+const ClientsManagement = dynamic(() => import('./ClientsManagement'), { ssr: false })
+const ElevenLabsExpertChat = dynamic(() => import('./ElevenLabsExpertChat'), { ssr: false })
+const ElevenLabsExpertGuide = dynamic(() => import('./ElevenLabsExpertGuide'), { ssr: false })
+
+// Loading spinner reutilizable
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center py-12">
+    <Loader2 className="w-8 h-8 text-rose-500 animate-spin" />
+  </div>
+)
 
 type NavItem = 'setup' | 'settings' | 'features' | 'stats' | 'help' | 'elevenlabs' | 'clients' | 'credits' | 'history' | 'integrations' | 'expert-chat' | 'expert-guide'
 type MenuGroup = 'guide' | 'monitoring' | 'support' | 'elevenlabs' | 'management'
@@ -373,8 +383,8 @@ export default function VoiceAssistantLayout() {
                 </div>
               </div>
             ) : (
-              // CONTENIDO ESPECÍFICO
-              <>
+              // CONTENIDO ESPECÍFICO - Con Suspense para mejor UX
+              <Suspense fallback={<LoadingSpinner />}>
                 {activeNav === 'setup' && <VoiceAssistantSetupGuide />}
                 {activeNav === 'settings' && <AdvancedSettings />}
                 {activeNav === 'features' && <FeaturesSection />}
@@ -387,7 +397,7 @@ export default function VoiceAssistantLayout() {
                 {activeNav === 'credits' && <ClientsManagement section="credits" />}
                 {activeNav === 'history' && <ClientsManagement section="history" />}
                 {activeNav === 'integrations' && <ClientsManagement section="integrations" />}
-              </>
+              </Suspense>
             )}
           </div>
         </div>
